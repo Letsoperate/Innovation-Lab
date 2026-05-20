@@ -307,13 +307,109 @@ metadata:
   run_ui: false
 
 test_plan:
-  current_focus: []
-  stuck_tasks: []
+  current_focus:
+    - "Auth - Login/Register Modal"
+    - "Submit Project Page"
+  stuck_tasks:
+    - "Auth - Login/Register Modal"
   test_all: false
   test_priority: "high_first"
 
+frontend:
+  - task: "Homepage - Hero, Sidebars, Project Cards, Tabs, FAQ"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/HomePage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Homepage with 4-column layout, real API data, tab switching, project voting, bookmarks"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - Homepage loads correctly with hero section, 12 project cards visible, all tabs (Top/Live/Recent/Updated) present and functional. Tab switching works - clicking Live, Recent, Updated tabs changes content and active state. Sidebars with sponsors and categories visible. Search functionality works - typing 'AI' shows 6 search results in dropdown."
+
+  - task: "Auth - Login/Register Modal"
+    implemented: true
+    working: false
+    file: "/app/frontend/src/components/AuthModal.jsx"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Auth modal with login/register toggle, JWT token storage"
+        - working: false
+          agent: "testing"
+          comment: "❌ CRITICAL BUG - Clicking 'Sign up' button in navbar opens LOGIN modal ('Welcome back') instead of REGISTER modal ('Create an account'). The initialMode prop is set to 'register' in Navbar.jsx line 140, but modal opens in login mode. Workaround exists: user can click 'Sign up' link inside the login modal to switch to register mode. After switching, registration works correctly - user can register and gets logged in (JWT token stored, user name appears in navbar). Backend auth endpoints working (POST /api/auth/register returns 200 OK). Issue is in AuthModal component not respecting initialMode prop on first open."
+
+  - task: "Leaderboard Page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/LeaderboardPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Leaderboard with time filters, real stats, ranked table"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - Leaderboard page loads correctly with title, stats cards (19 Projects, 925 Total Votes, 19 Participants, 14 Days Left), and rankings table showing projects with rank, votes, rating, and score. Time filters (All Time, This Month, This Week, Today) are visible and clickable. Clicking 'This Month' filter updates the active state correctly. Navigation from navbar works."
+
+  - task: "Submit Project Page"
+    implemented: true
+    working: false
+    file: "/app/frontend/src/pages/SubmitPage.jsx"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Submit form with categories/tracks from API, auth-gated"
+        - working: false
+          agent: "testing"
+          comment: "❌ ISSUE - Submit page loads correctly with form fields. All form fields can be filled (name, tagline, description, demo_url, tech_stack, category dropdown, track dropdown, team_name, institution dropdown). However, submit button remains disabled even after filling all required fields. Button has disabled={loading || !user} condition (line 247). The issue is that after registration via the auth modal workaround, the user state may not be persisting correctly across page navigation, causing !user to be true. This is related to the auth modal bug - the user registration flow is broken."
+
+  - task: "Blog Page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/BlogPage.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Blog listing from API, newsletter signup"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - Blog page loads correctly with title 'Blog & Updates', 4 blog posts displayed as article cards with category tags, dates, read times, titles, excerpts, and 'Read more' links. Newsletter signup section visible at bottom with email input and Subscribe button. Navigation from navbar works."
+
+  - task: "Navigation and Routing"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Navbar.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Navbar with search, auth state, mobile menu, all page routes"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - Navbar present on all pages with VibePush SA logo, search bar, Browse dropdown, Rules link, Leaderboard link, Blog link, Login and Sign up buttons. All navigation links work correctly (Leaderboard, Rules/How It Works, Blog). Search functionality works - typing 'AI' shows dropdown with 6 matching projects. Footer visible at bottom of pages with content. Minor: Auth buttons have the modal bug mentioned in Auth task."
+
 agent_communication:
     - agent: "main"
-      message: "Full backend implemented for VibePush SA. Backend runs on port 8001. DB auto-seeds on startup if empty. Test all endpoints - auth flow (register then login then me), project CRUD, voting toggle, comments, bookmarks, all reference data endpoints, leaderboard, search, and stats. Use REACT_APP_BACKEND_URL from frontend .env for the base URL."
+      message: "Frontend testing needed. App URL: https://sa-vibe-code.preview.emergentagent.com. Test: 1) Homepage loads with real data (projects, stats, sponsors, sidebars). 2) Tab switching (Top/Live/Recent/Updated). 3) Auth flow: click Sign up, register new user, verify logged-in state shows. 4) Voting: click upvote on a project (must be logged in). 5) Navigate to Leaderboard, verify data loads, test time filters. 6) Navigate to Submit, fill and submit a project (must be logged in). 7) Blog page loads with posts. 8) How It Works page renders. 9) Search in navbar. 10) Mobile menu toggle."
     - agent: "testing"
       message: "✅ ALL BACKEND TESTS PASSED (30/30 - 100% success rate). Comprehensive testing completed covering: Health check, Database seeding, All reference data APIs (categories, tracks, audiences, sponsors, faq, blog), Complete auth flow (register, login, get me), Projects (list, grouped, create, get single), Voting (toggle on/off, get vote IDs), Comments (create, retrieve), Bookmarks (toggle, get IDs, get bookmarked projects), Stats & Leaderboard (all periods), Hall of Fame, Search functionality. All endpoints return correct data structures and status codes. Auth with JWT tokens working perfectly. Database auto-seeding confirmed. No critical issues found. Backend is production-ready."
+    - agent: "testing"
+      message: "FRONTEND TESTING COMPLETED - 4/6 tasks passing, 2 CRITICAL BUGS found. ✅ WORKING: Homepage (hero, tabs, project cards, sidebars, search), Leaderboard (with time filters), Blog page (4 posts), Navigation (all routes work), Footer visible. ❌ CRITICAL BUGS: 1) Auth Modal Bug - Clicking 'Sign up' button opens LOGIN modal instead of REGISTER modal. User must click 'Sign up' link inside login modal to switch to register mode. AuthModal component not respecting initialMode='register' prop. 2) Submit Form - Button remains disabled even when all fields filled because user state not persisting after registration (related to auth bug). Backend auth endpoints working (200 OK). Root cause: AuthModal initialMode prop not working correctly on first open. RECOMMENDATION: Fix AuthModal to respect initialMode prop when opening, or investigate why useState(initialMode) in AuthModal.jsx line 7 is not using the passed prop value."

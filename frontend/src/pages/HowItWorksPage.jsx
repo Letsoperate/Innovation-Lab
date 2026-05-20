@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { howItWorksSteps, competitionTimeline } from "../data/mock";
 import {
   UserPlus,
   Code2,
@@ -21,6 +20,22 @@ const stepIcons = [
   <Upload className="w-6 h-6" />,
   <ThumbsUp className="w-6 h-6" />,
   <Trophy className="w-6 h-6" />,
+];
+
+const howItWorksSteps = [
+  { step: 1, title: "Register Your Team", description: "Create a free account, form your team (1-4 members), and verify your institutional affiliation. Registration takes less than 5 minutes." },
+  { step: 2, title: "Build Your Project", description: "Use innovation techniques and AI tools to build something amazing. There are no restrictions on tech stack — use whatever gets you in the zone." },
+  { step: 3, title: "Submit & Launch", description: "Submit your project with a description, demo video, screenshots, and tech stack details. Your project goes live for community voting immediately." },
+  { step: 4, title: "Get Votes & Feedback", description: "The community votes on projects. Engage with other builders, get feedback, iterate on your project, and climb the rankings." },
+  { step: 5, title: "Win Prizes", description: "Top projects advance to finals judged by industry experts. Winners receive cash prizes, mentorship, incubation, and more." },
+];
+
+const competitionTimeline = [
+  { phase: "Registration Open", date: "1 June 2025", status: "completed" },
+  { phase: "Building Phase", date: "15 June - 15 July 2025", status: "completed" },
+  { phase: "Community Voting", date: "1 July - 31 July 2025", status: "active" },
+  { phase: "Semi-Finals", date: "1 - 7 August 2025", status: "upcoming" },
+  { phase: "Finals & Awards", date: "15 August 2025", status: "upcoming" },
 ];
 
 const HowItWorksPage = () => {

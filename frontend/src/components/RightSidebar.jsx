@@ -1,25 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import api from "../services/api";
 import {
-  competitionStats,
-  hallOfFame,
-  blogPosts,
-  sponsors,
-} from "../data/mock";
-import {
-  Users,
   Trophy,
   Star,
   Medal,
   Calendar,
   ArrowRight,
-  ExternalLink,
-  TrendingUp,
-  Eye,
   Zap,
+  TrendingUp,
 } from "lucide-react";
 
 const RightSidebar = () => {
+  const [stats, setStats] = useState(null);
+  const [sponsors, setSponsors] = useState([]);
+  const [hallOfFame, setHallOfFame] = useState([]);
+  const [blogPosts, setBlogPosts] = useState([]);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const [statsRes, sponsorsRes, hofRes, blogRes] = await Promise.all([
+          api.get("/stats"),
+          api.get("/sponsors"),
+          api.get("/hall-of-fame"),
+          api.get("/blog"),
+        ]);
+        setStats(statsRes.data);
+        setSponsors(sponsorsRes.data);
+        setHallOfFame(hofRes.data.items || []);
+        setBlogPosts(blogRes.data);
+      } catch (err) {
+        console.error("Failed to load sidebar data:", err);
+      }
+    };
+    load();
+  }, []);
+
+  if (!stats) return null;
+
   return (
     <aside className="space-y-5">
       {/* Competition Stats */}
@@ -29,20 +48,16 @@ const RightSidebar = () => {
           <span className="text-sm font-bold text-[#111827]">Competition Stats</span>
         </div>
         <div className="text-2xl font-bold text-[#111827] mb-0.5">
-          {competitionStats.totalProjects.toLocaleString()}
+          {stats.total_projects.toLocaleString()}
         </div>
         <div className="text-xs text-gray-500 mb-3">Projects Submitted</div>
         <div className="grid grid-cols-2 gap-2">
           <div className="text-center p-2 bg-gray-50 rounded-lg">
-            <div className="text-sm font-bold text-[#111827]">
-              {competitionStats.totalVotes.toLocaleString()}
-            </div>
+            <div className="text-sm font-bold text-[#111827]">{stats.total_votes.toLocaleString()}</div>
             <div className="text-[10px] text-gray-500">Total Votes</div>
           </div>
           <div className="text-center p-2 bg-gray-50 rounded-lg">
-            <div className="text-sm font-bold text-[#111827]">
-              {competitionStats.totalParticipants.toLocaleString()}
-            </div>
+            <div className="text-sm font-bold text-[#111827]">{stats.total_participants.toLocaleString()}</div>
             <div className="text-[10px] text-gray-500">Participants</div>
           </div>
         </div>
@@ -52,26 +67,19 @@ const RightSidebar = () => {
       <div className="bg-[#009639]/5 border border-[#009639]/20 rounded-xl p-4">
         <div className="flex items-center gap-2 mb-2">
           <Calendar className="w-4 h-4 text-[#009639]" />
-          <span className="text-sm font-bold text-[#009639]">
-            {competitionStats.currentRound}
-          </span>
+          <span className="text-sm font-bold text-[#009639]">{stats.current_round}</span>
         </div>
-        <div className="text-2xl font-bold text-[#009639]">
-          {competitionStats.daysRemaining}
-        </div>
+        <div className="text-2xl font-bold text-[#009639]">{stats.days_remaining}</div>
         <div className="text-xs text-[#009639]/70">Days Remaining</div>
       </div>
 
-      {/* Sponsors Carousel */}
+      {/* Sponsors */}
       <div className="space-y-3">
         {sponsors.slice(0, 3).map((sponsor) => (
-          <div
-            key={sponsor.id}
-            className="flex flex-col items-center p-3 bg-white border border-gray-200 rounded-xl hover:shadow-sm transition-shadow cursor-pointer"
-          >
+          <div key={sponsor.id} className="flex flex-col items-center p-3 bg-white border border-gray-200 rounded-xl hover:shadow-sm transition-shadow cursor-pointer">
             <div
               className="w-12 h-12 rounded-xl flex items-center justify-center text-sm font-bold mb-2"
-              style={{ backgroundColor: sponsor.color, color: sponsor.textColor }}
+              style={{ backgroundColor: sponsor.color, color: sponsor.text_color }}
             >
               {sponsor.logo}
             </div>
@@ -102,15 +110,12 @@ const RightSidebar = () => {
             </div>
           ))}
         </div>
-        <Link
-          to="/leaderboard"
-          className="flex items-center justify-center gap-1 mt-3 pt-3 border-t border-gray-100 text-xs font-medium text-gray-500 hover:text-[#111827] transition-colors"
-        >
+        <Link to="/leaderboard" className="flex items-center justify-center gap-1 mt-3 pt-3 border-t border-gray-100 text-xs font-medium text-gray-500 hover:text-[#111827] transition-colors">
           View all <ArrowRight className="w-3 h-3" />
         </Link>
       </div>
 
-      {/* Advertise / Sponsor CTA */}
+      {/* Sponsor CTA */}
       <div className="bg-[#111827] rounded-xl p-4 text-center">
         <Zap className="w-8 h-8 text-[#FFB612] mx-auto mb-2" />
         <div className="text-sm font-semibold text-white mb-1">Sponsor a Track</div>
@@ -126,11 +131,7 @@ const RightSidebar = () => {
           <span className="text-sm font-bold text-[#111827]">Latest Updates</span>
         </div>
         {blogPosts.slice(0, 2).map((post) => (
-          <Link
-            key={post.id}
-            to="/blog"
-            className="block mb-3 last:mb-0 group"
-          >
+          <Link key={post.id} to="/blog" className="block mb-3 last:mb-0 group">
             <div className="text-xs font-medium text-[#111827] group-hover:text-[#009639] transition-colors line-clamp-2">
               {post.title}
             </div>

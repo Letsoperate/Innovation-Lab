@@ -1,17 +1,20 @@
-import React from "react";
-import { sponsors } from "../data/mock";
+import React, { useState, useEffect } from "react";
+import api from "../services/api";
 
 const SponsorSidebar = () => {
+  const [sponsors, setSponsors] = useState([]);
+
+  useEffect(() => {
+    api.get("/sponsors").then((res) => setSponsors(res.data)).catch(console.error);
+  }, []);
+
   return (
     <aside className="space-y-4">
       {sponsors.map((sponsor) => (
-        <div
-          key={sponsor.id}
-          className="flex flex-col items-center p-3 cursor-pointer group"
-        >
+        <div key={sponsor.id} className="flex flex-col items-center p-3 cursor-pointer group">
           <div
             className="w-14 h-14 rounded-2xl flex items-center justify-center text-sm font-bold mb-2 group-hover:scale-105 transition-transform shadow-sm"
-            style={{ backgroundColor: sponsor.color, color: sponsor.textColor }}
+            style={{ backgroundColor: sponsor.color, color: sponsor.text_color }}
           >
             {sponsor.logo}
           </div>

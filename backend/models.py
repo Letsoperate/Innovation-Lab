@@ -26,6 +26,7 @@ class UserResponse(BaseModel):
     name: str
     email: str
     institution: str = ""
+    is_admin: bool = False
     created_at: datetime
 
 
@@ -170,3 +171,45 @@ class HallOfFameItem(BaseModel):
     award: str
     logo_color: str = "#009639"
     logo_initial: str = ""
+
+
+
+# Profile Update
+class ProfileUpdate(BaseModel):
+    name: Optional[str] = None
+    institution: Optional[str] = None
+
+
+# Admin Models
+class BlogPostCreate(BaseModel):
+    title: str
+    excerpt: str = ""
+    content: str = ""
+    date: str = ""
+    category: str = ""
+    read_time: str = ""
+
+
+class BlogPostUpdate(BaseModel):
+    title: Optional[str] = None
+    excerpt: Optional[str] = None
+    content: Optional[str] = None
+    date: Optional[str] = None
+    category: Optional[str] = None
+    read_time: Optional[str] = None
+
+
+class SponsorCreate(BaseModel):
+    name: str
+    description: str = ""
+    logo: str = ""
+    color: str = "#009639"
+    text_color: str = "#fff"
+
+
+class SponsorUpdate(BaseModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
+    logo: Optional[str] = None
+    color: Optional[str] = None
+    text_color: Optional[str] = None

@@ -300,10 +300,160 @@ backend:
           agent: "testing"
           comment: "✅ PASSED - POST /api/seed successfully seeds database with 10 categories, 6 tracks, 6 audiences, 6 sponsors, 6 faq items, 4 blog posts, and 18 projects. Auto-seed on startup also confirmed working from backend logs"
 
+  - task: "Admin - First User Registration"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "POST /api/auth/register - first user gets is_admin: true automatically"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - First registered user correctly receives is_admin=True. Subsequent users get is_admin=False. Admin flag properly set in user document and returned in registration response."
+
+  - task: "Admin - Profile Update"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "PUT /api/auth/me - update user profile (name, institution)"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - Profile update working correctly. Successfully updated name from 'Admin User' to 'Updated Admin' and institution from 'UCT' to 'Wits University'. Returns updated user object with all fields."
+
+  - task: "Admin - Get My Projects"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "GET /api/users/me/projects - returns list of projects created by current user"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - Endpoint returns projects array for authenticated user. Correctly returns empty array when user has no projects, and populated array after project creation."
+
+  - task: "Admin - Dashboard"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "GET /api/admin/dashboard - admin-only endpoint with comprehensive stats"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - Admin dashboard returns complete statistics: total_projects (20), total_users (1), total_votes (0), total_comments (0), total_bookmarks (0), projects_today, votes_today, users_today, and top_categories array. Requires admin authentication."
+
+  - task: "Admin - Users List"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "GET /api/admin/users - admin-only endpoint to list all users with pagination"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - Returns users array with user details (id, name, email, institution, is_admin, created_at, project_count) and total count. Supports pagination with page and limit parameters. Password hashes correctly excluded from response."
+
+  - task: "Admin - Projects List"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "GET /api/admin/projects - admin-only endpoint to list all projects with pagination"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - Returns projects array with complete project details and total count. Retrieved 20 projects successfully. Supports pagination."
+
+  - task: "Admin - Blog CRUD"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "POST/PUT/DELETE /api/admin/blog - admin-only blog management endpoints"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - All blog CRUD operations working: POST /api/admin/blog creates blog post with title, excerpt, content, category, read_time. PUT /api/admin/blog/{id} updates blog post fields. DELETE /api/admin/blog/{id} deletes blog post. All require admin authentication."
+
+  - task: "Admin - Sponsor CRUD"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "POST/PUT/DELETE /api/admin/sponsors - admin-only sponsor management endpoints"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - All sponsor CRUD operations working: POST /api/admin/sponsors creates sponsor with name, description, logo, color, text_color. PUT /api/admin/sponsors/{id} updates sponsor fields. DELETE /api/admin/sponsors/{id} deletes sponsor. All require admin authentication."
+
+  - task: "Admin - Delete Project"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "DELETE /api/projects/{id} - allows project owner or admin to delete project"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - Project deletion working correctly. Admin can delete any project. Also deletes associated votes, comments, and bookmarks. Returns success message."
+
+  - task: "Admin - Access Control"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Admin endpoints protected with require_admin dependency"
+        - working: true
+          agent: "testing"
+          comment: "✅ PASSED - Access control working correctly. Non-admin users receive 403 Forbidden when attempting to access admin endpoints (tested with /api/admin/dashboard). Admin users can access all admin endpoints successfully."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
-  test_sequence: 2
+  test_sequence: 3
   run_ui: false
 
 test_plan:
@@ -413,3 +563,5 @@ agent_communication:
       message: "✅ ALL BACKEND TESTS PASSED (30/30 - 100% success rate). Comprehensive testing completed covering: Health check, Database seeding, All reference data APIs (categories, tracks, audiences, sponsors, faq, blog), Complete auth flow (register, login, get me), Projects (list, grouped, create, get single), Voting (toggle on/off, get vote IDs), Comments (create, retrieve), Bookmarks (toggle, get IDs, get bookmarked projects), Stats & Leaderboard (all periods), Hall of Fame, Search functionality. All endpoints return correct data structures and status codes. Auth with JWT tokens working perfectly. Database auto-seeding confirmed. No critical issues found. Backend is production-ready."
     - agent: "testing"
       message: "FRONTEND TESTING COMPLETED - 4/6 tasks passing, 2 CRITICAL BUGS found. ✅ WORKING: Homepage (hero, tabs, project cards, sidebars, search), Leaderboard (with time filters), Blog page (4 posts), Navigation (all routes work), Footer visible. ❌ CRITICAL BUGS: 1) Auth Modal Bug - Clicking 'Sign up' button opens LOGIN modal instead of REGISTER modal. User must click 'Sign up' link inside login modal to switch to register mode. AuthModal component not respecting initialMode='register' prop. 2) Submit Form - Button remains disabled even when all fields filled because user state not persisting after registration (related to auth bug). Backend auth endpoints working (200 OK). Root cause: AuthModal initialMode prop not working correctly on first open. RECOMMENDATION: Fix AuthModal to respect initialMode prop when opening, or investigate why useState(initialMode) in AuthModal.jsx line 7 is not using the passed prop value."
+    - agent: "testing"
+      message: "✅ NEW ADMIN FEATURES TESTING COMPLETED - ALL 17 TESTS PASSED (100% success rate). Tested NEW admin endpoints: 1) First user registration with is_admin=true ✅ 2) Admin status verification in /api/auth/me ✅ 3) Profile update PUT /api/auth/me ✅ 4) Get my projects GET /api/users/me/projects ✅ 5) Admin dashboard with comprehensive stats ✅ 6) Admin users list with pagination ✅ 7) Admin projects list ✅ 8) Admin blog CRUD (create/update/delete) ✅ 9) Admin sponsor CRUD (create/update/delete) ✅ 10) Project deletion by admin ✅ 11) Access control - non-admin users correctly receive 403 Forbidden ✅. All admin endpoints working perfectly. Admin authentication and authorization properly implemented. Database operations (create, update, delete) all functioning correctly. NOTE: For testing, cleared users collection to properly test 'first user becomes admin' logic - in production, first registered user will automatically become admin."

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { X, LogIn, UserPlus } from "lucide-react";
 
@@ -8,6 +8,15 @@ const AuthModal = ({ isOpen, onClose, initialMode = "login" }) => {
   const [form, setForm] = useState({ name: "", email: "", password: "", institution: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Sync mode with initialMode prop when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setMode(initialMode);
+      setError("");
+      setForm({ name: "", email: "", password: "", institution: "" });
+    }
+  }, [isOpen, initialMode]);
 
   if (!isOpen) return null;
 

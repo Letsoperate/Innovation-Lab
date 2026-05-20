@@ -9,6 +9,8 @@ import HowItWorksPage from "./pages/HowItWorksPage";
 import SubmitPage from "./pages/SubmitPage";
 import BlogPage from "./pages/BlogPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
+import ProfilePage from "./pages/ProfilePage";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
             <Route path="/submit" element={<SubmitPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/admin" element={<AdminPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>

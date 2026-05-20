@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Search, ChevronDown, Menu, X, Zap, LogOut, User } from "lucide-react";
+import { Search, ChevronDown, Menu, X, Zap, LogOut, User, Shield } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import AuthModal from "./AuthModal";
 import api from "../services/api";
@@ -116,10 +116,21 @@ const Navbar = () => {
             <div className="flex items-center gap-2 shrink-0">
               {user ? (
                 <div className="flex items-center gap-2">
-                  <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-xl">
+                  <Link
+                    to="/profile"
+                    className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+                  >
                     <User className="w-4 h-4 text-gray-500" />
                     <span className="text-sm font-medium text-[#111827] max-w-[100px] truncate">{user.name}</span>
-                  </div>
+                  </Link>
+                  {user.is_admin && (
+                    <Link
+                      to="/admin"
+                      className="hidden sm:flex items-center gap-1 px-3 py-1.5 bg-amber-50 text-amber-700 text-xs font-medium rounded-xl hover:bg-amber-100 transition-colors"
+                    >
+                      <Shield className="w-3.5 h-3.5" /> Admin
+                    </Link>
+                  )}
                   <button
                     onClick={logout}
                     className="p-2 text-gray-500 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
@@ -170,6 +181,12 @@ const Navbar = () => {
               <Link to="/leaderboard" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 text-sm font-medium text-[#009639] hover:bg-green-50 rounded-lg">Leaderboard</Link>
               <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Blog</Link>
               <Link to="/submit" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Submit Project</Link>
+              {user && (
+                <Link to="/profile" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg">My Profile</Link>
+              )}
+              {user?.is_admin && (
+                <Link to="/admin" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 text-sm font-medium text-amber-700 hover:bg-amber-50 rounded-lg">Admin Panel</Link>
+              )}
             </div>
           </div>
         )}

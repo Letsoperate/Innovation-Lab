@@ -110,15 +110,15 @@ const HomePage = () => {
   return (
     <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
       <div className="flex gap-0">
-        <div className="hidden xl:block w-[180px] shrink-0 pt-6">
+        <div className="hidden xl:block w-[180px] shrink-0 pt-6 animate-slide-left">
           <SponsorSidebar />
         </div>
 
-        <div className="hidden lg:block w-[200px] shrink-0 pt-6 pl-4">
+        <div className="hidden lg:block w-[200px] shrink-0 pt-6 pl-4 animate-slide-left delay-100">
           <BrowseSidebar />
         </div>
 
-        <div className="flex-1 min-w-0 pt-6 px-4 lg:px-6">
+        <div className="flex-1 min-w-0 pt-6 px-4 lg:px-6 animate-fade-in">
           <HeroSection />
 
           <div className="flex items-center gap-1 border-b border-gray-200 mb-6 overflow-x-auto">
@@ -168,7 +168,7 @@ const HomePage = () => {
           <FAQSection />
         </div>
 
-        <div className="hidden lg:block w-[260px] shrink-0 pt-6">
+        <div className="hidden lg:block w-[260px] shrink-0 pt-6 animate-slide-right">
           <RightSidebar />
         </div>
       </div>

@@ -6,7 +6,7 @@ const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="text-center pb-6 mb-2">
+    <div className="text-center pb-6 mb-2 animate-fade-in-up">
       {/* Top mini nav */}
       <div className="flex items-center justify-center gap-3 mb-5">
         <Link

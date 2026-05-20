@@ -168,7 +168,7 @@ const AdminPage = () => {
         </div>
         <div>
           <h1 className="text-xl font-bold text-[#111827]">Admin Panel</h1>
-          <p className="text-xs text-gray-500">Manage VibePush SA competition</p>
+          <p className="text-xs text-gray-500">Manage Innovation Lab competition</p>
         </div>
       </div>
 
@@ -290,7 +290,7 @@ const AdminPage = () => {
                     </div>
                   </div>
                   <div className="text-center text-sm font-medium text-[#111827]">{p.upvotes}</div>
-                  <div className="text-center text-sm font-medium text-[#009639]">{p.vibe_push_score}</div>
+                  <div className="text-center text-sm font-medium text-[#009639]">{p.innovation_score ?? p.vibe_push_score}</div>
                   <div className="text-center text-xs text-gray-500">{p.views}</div>
                   <div className="text-center">
                     <button onClick={() => handleDeleteProject(p.id)}

@@ -83,7 +83,7 @@ const LeaderboardPage = () => {
         </div>
         <h1 className="text-3xl font-bold text-[#111827] mb-3">Leaderboard</h1>
         <p className="text-sm text-gray-600 max-w-lg mx-auto">
-          Top-ranked projects in the VibePush SA vibe coding competition. Rankings update in real-time based on community votes.
+          Top-ranked projects in the Innovation Lab competition. Rankings update in real-time based on community votes.
         </p>
       </div>
 
@@ -177,7 +177,7 @@ const LeaderboardPage = () => {
               </div>
               <div className="flex items-center justify-center gap-1">
                 <Zap className="w-3 h-3 text-[#009639]" />
-                <span className="text-sm font-bold text-[#009639]">{project.vibe_push_score}</span>
+                <span className="text-sm font-bold text-[#009639]">{project.innovation_score ?? project.vibe_push_score}</span>
               </div>
             </div>
           ))}

@@ -29,14 +29,14 @@ const HowItWorksPage = () => {
       {/* Header */}
       <div className="text-center mb-12">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#009639]/10 text-[#009639] text-xs font-medium rounded-full mb-4">
-          <Zap className="w-3 h-3" /> VibePush SA Competition
+          <Zap className="w-3 h-3" /> Innovation Lab Competition
         </div>
         <h1 className="text-3xl sm:text-4xl font-bold text-[#111827] mb-4">
           How the Competition Works
         </h1>
         <p className="text-base text-gray-600 max-w-lg mx-auto">
           From registration to winning — here's everything you need to know
-          about South Africa's biggest vibe coding competition.
+          about South Africa's premier innovation competition.
         </p>
       </div>
 

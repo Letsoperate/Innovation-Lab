@@ -101,7 +101,7 @@ const SubmitPage = () => {
         </div>
         <h1 className="text-3xl font-bold text-[#111827] mb-3">Submit Your Project</h1>
         <p className="text-sm text-gray-600 max-w-md mx-auto">
-          Showcase your vibe-coded project to the community. Fill in the details below and your project goes live for voting.
+          Showcase your innovative project to the community. Fill in the details below and your project goes live for voting.
         </p>
       </div>
 

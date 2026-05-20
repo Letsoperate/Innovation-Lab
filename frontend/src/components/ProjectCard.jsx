@@ -67,7 +67,7 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
 
   // Use the field names from API (snake_case)
   const categories = project.categories || [];
-  const vibePushScore = project.vibe_push_score || project.vibePushScore || 0;
+  const innovationScore = project.innovation_score || project.innovationScore || project.vibe_push_score || project.vibePushScore || 0;
   const isTrending = project.is_trending ?? project.isTrending ?? false;
   const hasVideo = project.has_video ?? project.hasVideo ?? false;
   const commentsCount = project.comments_count ?? project.comments ?? 0;
@@ -142,7 +142,7 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
           )}
 
           <span className="inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-medium text-[#009639]">
-            <Zap className="w-3 h-3" /> {vibePushScore} VibePush
+            <Zap className="w-3 h-3" /> {innovationScore} Innovation Score
           </span>
 
           {rankLabel && (

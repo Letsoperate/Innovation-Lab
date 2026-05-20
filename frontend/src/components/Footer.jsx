@@ -39,7 +39,7 @@ const Footer = () => {
               <Link to="/blog" className="block text-sm text-gray-500 hover:text-[#111827] transition-colors">Blog</Link>
               <Link to="/" className="block text-sm text-gray-500 hover:text-[#111827] transition-colors">Newsletter</Link>
               <Link to="/" className="block text-sm text-gray-500 hover:text-[#111827] transition-colors">FAQ</Link>
-              <Link to="/how-it-works" className="block text-sm text-gray-500 hover:text-[#111827] transition-colors">Vibe Coding Guide</Link>
+              <Link to="/how-it-works" className="block text-sm text-gray-500 hover:text-[#111827] transition-colors">Innovation Guide</Link>
               <Link to="/" className="block text-sm text-gray-500 hover:text-[#111827] transition-colors">Workshops</Link>
             </div>
           </div>
@@ -78,11 +78,11 @@ const Footer = () => {
               <Zap className="w-3.5 h-3.5 text-[#FFB612]" />
             </div>
             <span className="text-sm font-bold text-[#111827]">
-              VibePush<span className="text-[#009639]"> SA</span>
+              Innovation<span className="text-[#009639]"> Lab</span>
             </span>
           </div>
           <span className="text-xs text-gray-400">
-            Vibe coding competition for South Africa's builders.
+            South Africa's premier innovation competition platform.
           </span>
         </div>
       </div>

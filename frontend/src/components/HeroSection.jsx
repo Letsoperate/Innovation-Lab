@@ -32,13 +32,13 @@ const HeroSection = () => {
       {/* Main Heading */}
       <h1 className="text-3xl sm:text-4xl font-bold text-[#111827] mb-3 leading-tight">
         Discover SA's Best{" "}
-        <span className="text-[#009639]">Vibe-Coded</span>{" "}
+        <span className="text-[#009639]">Innovative</span>{" "}
         Projects
       </h1>
 
       {/* Subtitle */}
       <p className="text-base text-gray-600 max-w-xl mx-auto mb-6 leading-relaxed">
-        South Africa's premier vibe coding competition. Showcase your project,
+        South Africa's premier innovation competition. Showcase your project,
         get community votes, and win R500K in prizes.
       </p>
 

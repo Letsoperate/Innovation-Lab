@@ -41,7 +41,7 @@ const Navbar = () => {
                 <Zap className="w-5 h-5 text-[#FFB612]" />
               </div>
               <span className="text-lg font-bold text-[#111827] hidden sm:block">
-                VibePush<span className="text-[#009639]"> SA</span>
+                Innovation<span className="text-[#009639]"> Lab</span>
               </span>
             </Link>
 

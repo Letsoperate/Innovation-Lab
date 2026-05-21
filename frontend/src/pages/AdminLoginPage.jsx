@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../services/api";
+import { useAuth } from "../context/AuthContext";
 import { Eye, EyeOff } from "lucide-react";
 
 const AdminLoginPage = () => {
@@ -9,6 +9,7 @@ const AdminLoginPage = () => {
   const [showPw, setShowPw] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -16,10 +17,12 @@ const AdminLoginPage = () => {
     setLoading(true);
     setError("");
     try {
-      const res = await api.post("/auth/login", { email, password });
-      localStorage.setItem("token", res.data.access_token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      navigate("/admin");
+      const userData = await login(email, password);
+      if (userData?.is_admin) {
+        navigate("/admin");
+      } else {
+        setError("Admin access required");
+      }
     } catch (err) {
       setError(err.response?.data?.detail || "Invalid email or password");
     } finally {

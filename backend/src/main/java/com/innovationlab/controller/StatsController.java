@@ -83,6 +83,7 @@ public class StatsController {
                     i < awards.length ? awards[i] : "Honorable Mention",
                     p.getLogoColor(),
                     p.getLogoInitial(),
+                    p.getLogoImage(),
                     p.getCreatedAt().toString().substring(0, 10)
             ));
         }

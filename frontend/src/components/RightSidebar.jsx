@@ -102,8 +102,14 @@ const RightSidebar = () => {
         <div className="space-y-2">
           {hallOfFame.slice(0, 10).map((item, i) => (
             <div key={i} className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-[10px] font-bold shrink-0" style={{ backgroundColor: item.logo_color }}>
-                {item.logo_initial || item.name?.charAt(0)}
+              <div className="w-7 h-7 rounded-lg overflow-hidden shrink-0" style={{ backgroundColor: item.logo_color || "#009639" }}>
+                {item.logo_image ? (
+                  <img src={item.logo_image} alt={item.name} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="w-full h-full flex items-center justify-center text-white text-[10px] font-bold">
+                    {item.logo_initial || item.name?.charAt(0)}
+                  </span>
+                )}
               </div>
               <div className="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center shrink-0">
                 {i === 0 && <Trophy className="w-3.5 h-3.5 text-amber-500" />}

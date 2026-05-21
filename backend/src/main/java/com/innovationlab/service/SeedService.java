@@ -530,11 +530,12 @@ public class SeedService {
             {"Lintshiwe Pontsho", "Ntoampi", "221651685", "221651685@tut4life.ac.za", "lintshiwe"},
         };
         String[] avatarColors = {
-            "E74C3C","3498DB","2ECC71","F39C12","9B59B6",
-            "1ABC9C","E67E22","2980B9","D35400","16A085",
-            "C0392B","27AE60","8E44AD","F1C40F","7F8C8D",
-            "2C3E50","D35400","FF6B00","003A70","D0021B",
-            "7B2D8E","00A3E0","FFC107","1A3A5C","009639"
+            "E74C3C","3498DB","F39C12","9B59B6",
+            "E67E22","2980B9","D35400",
+            "C0392B","8E44AD","F1C40F","7F8C8D",
+            "2C3E50","FF6B00","003A70","D0021B",
+            "7B2D8E","00A3E0","FFC107","1A3A5C",
+            "34495E","E91E63","607D8B","795548","5D4037","FF5722"
         };
         List<String> userIds = new ArrayList<>();
         int count = 0;

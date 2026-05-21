@@ -8,7 +8,7 @@ import SponsorBanner from "../components/SponsorBanner";
 import ProjectCard from "../components/ProjectCard";
 import FAQSection from "../components/FAQSection";
 import api from "../services/api";
-import { Tabs, Spinner } from "@heroui/react";
+import { Tabs, Spinner, Skeleton } from "@heroui/react";
 
 const tabs = [
   { id: "top", label: "Top", icon: null },
@@ -74,38 +74,69 @@ const HomePage = () => {
   );
 
   const renderLoading = () => (
-    <div className="py-12 flex flex-col items-center gap-3">
-      <Spinner size="lg" color="success" />
-      <p className="text-sm text-gray-500">Loading projects...</p>
+    <div className="py-4 space-y-4">
+      <div className="flex flex-col items-center gap-2 mb-4">
+        <Spinner size="lg" color="success" />
+        <p className="text-sm text-gray-500">Loading projects...</p>
+      </div>
+      {[1,2,3].map(i => (
+        <div key={i} className="flex items-start gap-3 p-4 border-b border-gray-100">
+          <Skeleton className="w-12 h-12 rounded-xl shrink-0" />
+          <div className="flex-1 space-y-2">
+            <Skeleton className="h-4 w-3/5 rounded-lg" />
+            <Skeleton className="h-3 w-full rounded-lg" />
+            <div className="flex gap-2">
+              <Skeleton className="h-3 w-16 rounded" />
+              <Skeleton className="h-3 w-12 rounded" />
+              <Skeleton className="h-3 w-20 rounded" />
+            </div>
+          </div>
+          <Skeleton className="w-14 h-16 rounded-lg shrink-0" />
+        </div>
+      ))}
     </div>
   );
 
   const projectBoard = (
     <>
       <HeroSection />
-      <div className="flex items-center gap-1 border-b border-gray-200 mb-6 overflow-x-auto">
-        {tabs.map((tab) => (
-          <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-1.5 px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
-              activeTab === tab.id ? "border-purple-600 text-purple-800" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"}`}>
-            {tab.icon === "live" && <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />}
-            {tab.label}
-          </button>
-        ))}
-      </div>
-      {loading ? renderLoading() : activeTab === "top" ? (
-        <>
-          {grouped.today.length > 0 && renderProjectSection(`Today Top ${grouped.today.length}`, grouped.today)}
-          {grouped.yesterday.length > 0 && renderProjectSection(`Yesterday Top ${grouped.yesterday.length}`, grouped.yesterday)}
-          {grouped.week.length > 0 && renderProjectSection(`This Week Top ${grouped.week.length}`, grouped.week)}
-          {grouped.month.length > 0 && renderProjectSection(`This Month Top ${grouped.month.length}`, grouped.month)}
-          {grouped.all && grouped.all.length > 0 && renderProjectSection(`Older Projects`, grouped.all)}
-        </>
-      ) : (
-        listProjects.length > 0 ? renderProjectSection(
-          activeTab === "live" ? "Today's Launches" : activeTab === "recent" ? "Recent Submissions" : "Recently Updated", listProjects
-        ) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>
-      )}
+      <Tabs
+        selectedKey={activeTab}
+        onSelectionChange={(key) => setActiveTab(String(key))}
+        className="mb-6"
+      >
+        <Tabs.ListContainer>
+          <Tabs.List aria-label="Projects" className="flex items-center gap-1 border-b border-gray-200">
+            {tabs.map(t => (
+              <Tabs.Tab key={t.id} id={t.id} className="text-sm font-medium px-4 py-3 border-b-2 border-transparent data-[selected=true]:border-purple-600 data-[selected=true]:text-purple-800 text-gray-500">
+                {t.icon === "live" && <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse inline-block mr-1.5" />}
+                {t.label}
+              </Tabs.Tab>
+            ))}
+          </Tabs.List>
+        </Tabs.ListContainer>
+
+        <Tabs.Panel id="top">
+          {loading ? renderLoading() : (
+            <>
+              {grouped.today.length > 0 && renderProjectSection(`Today Top ${grouped.today.length}`, grouped.today)}
+              {grouped.yesterday.length > 0 && renderProjectSection(`Yesterday Top ${grouped.yesterday.length}`, grouped.yesterday)}
+              {grouped.week.length > 0 && renderProjectSection(`This Week Top ${grouped.week.length}`, grouped.week)}
+              {grouped.month.length > 0 && renderProjectSection(`This Month Top ${grouped.month.length}`, grouped.month)}
+              {grouped.all && grouped.all.length > 0 && renderProjectSection(`Older Projects`, grouped.all)}
+            </>
+          )}
+        </Tabs.Panel>
+        <Tabs.Panel id="live">
+          {loading ? renderLoading() : listProjects.length > 0 ? renderProjectSection("Today's Launches", listProjects) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
+        </Tabs.Panel>
+        <Tabs.Panel id="recent">
+          {loading ? renderLoading() : listProjects.length > 0 ? renderProjectSection("Recent Submissions", listProjects) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
+        </Tabs.Panel>
+        <Tabs.Panel id="updated">
+          {loading ? renderLoading() : listProjects.length > 0 ? renderProjectSection("Recently Updated", listProjects) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
+        </Tabs.Panel>
+      </Tabs>
       <FAQSection />
     </>
   );

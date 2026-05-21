@@ -1,5 +1,27 @@
 # Innovation Lab — Documentation
 
+## Mission
+
+Innovation Lab is a platform that empowers students to transform their ideas into functional tools and systems using **AI-assisted development** — no coding experience required. We believe the next billion-rand idea lives in a student's mind, not in their ability to write code.
+
+### The Problem
+Industries, companies, and government departments need practical digital tools every day — but they don't know where to find them, and students with brilliant ideas don't have a platform to showcase them.
+
+### Our Solution
+Innovation Lab bridges this gap. Students submit their AI-built projects to compete, get community votes, and climb leaderboards. Companies browse the platform to discover tools they can use, sponsor, or acquire — creating a **marketplace for student innovation**.
+
+### How It Works
+1. **Students** use AI tools (ChatGPT, Claude, Copilot, etc.) to build anything useful — apps, dashboards, automation tools, analytics systems
+2. **No coding required** — AI handles the technical implementation. The value is in the **idea** and **execution**
+3. **Submit** to Innovation Lab for community voting and visibility
+4. **Companies & departments** discover tools they need, sponsor projects, or acquire solutions
+5. **Students earn** recognition, prizes, sponsorships, and potential revenue from their ideas
+
+### Vision
+To become Africa's premier marketplace where student innovation meets industry demand — turning classroom ideas into enterprise solutions, powered by AI.
+
+---
+
 South Africa's premier innovation competition platform. Build, compete, and collaborate with developers across the country.
 
 ## Tech Stack

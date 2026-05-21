@@ -1,6 +1,8 @@
 # Innovation Lab
 
-South Africa's premier innovation competition platform. Build, compete, and collaborate with developers across the country.
+**Where Ideas Meet AI — No Coding Required.**
+
+Innovation Lab is a platform that empowers students to build functional tools and systems using AI-assisted development. Students compete with their AI-built projects, companies discover and acquire solutions, and everyone wins. The next billion-rand idea is in a student's mind — not in their ability to code.
 
 ## Tech Stack
 

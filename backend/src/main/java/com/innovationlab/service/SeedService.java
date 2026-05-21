@@ -547,15 +547,22 @@ public class SeedService {
             String avatarUrl = "https://ui-avatars.com/api/?name=" + s[0].replace(" ", "+") + "+" + s[1] + "&background=" + color + "&color=fff&size=128&bold=true";
             
             User existing = userRepo.findByEmail(email).orElse(null);
+            String github = s[4];
             if (existing != null) {
                 existing.setAvatarUrl(avatarUrl);
-                existing.setBio("Student at TUT | GitHub: @" + s[4]);
+                existing.setBio("Student at TUT | GitHub: @" + github);
+                existing.setGithubUrl("https://github.com/" + github);
+                existing.setLinkedinUrl("https://linkedin.com/in/" + github);
+                existing.setHobbies("Coding, Gaming, Reading, Music");
                 userRepo.save(existing);
                 userIds.add(existing.getId());
             } else {
                 User u = new User(fullName, email, pass, "Tshwane University of Technology", false);
-                u.setBio("Student at TUT | GitHub: @" + s[4]);
+                u.setBio("Student at TUT | GitHub: @" + github);
                 u.setAvatarUrl(avatarUrl);
+                u.setGithubUrl("https://github.com/" + github);
+                u.setLinkedinUrl("https://linkedin.com/in/" + github);
+                u.setHobbies("Coding, Gaming, Reading, Music");
                 userRepo.save(u);
                 userIds.add(u.getId());
             }

@@ -31,6 +31,20 @@ public class User {
     @Column(name = "avatar_url")
     private String avatarUrl;
 
+    @Column(name = "github_url")
+    private String githubUrl;
+    @Column(name = "linkedin_url")
+    private String linkedinUrl;
+    @Column(name = "twitter_url")
+    private String twitterUrl;
+    @Column(name = "website_url")
+    private String websiteUrl;
+
+    @Column(columnDefinition = "TEXT")
+    private String hobbies;
+    @Column(columnDefinition = "TEXT")
+    private String todos;
+
     @Column(name = "created_at", nullable = false)
     private Instant createdAt = Instant.now();
 
@@ -60,6 +74,18 @@ public class User {
     public void setBio(String bio) { this.bio = bio; }
     public String getAvatarUrl() { return avatarUrl; }
     public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
+    public String getGithubUrl() { return githubUrl; }
+    public void setGithubUrl(String githubUrl) { this.githubUrl = githubUrl; }
+    public String getLinkedinUrl() { return linkedinUrl; }
+    public void setLinkedinUrl(String linkedinUrl) { this.linkedinUrl = linkedinUrl; }
+    public String getTwitterUrl() { return twitterUrl; }
+    public void setTwitterUrl(String twitterUrl) { this.twitterUrl = twitterUrl; }
+    public String getWebsiteUrl() { return websiteUrl; }
+    public void setWebsiteUrl(String websiteUrl) { this.websiteUrl = websiteUrl; }
+    public String getHobbies() { return hobbies; }
+    public void setHobbies(String hobbies) { this.hobbies = hobbies; }
+    public String getTodos() { return todos; }
+    public void setTodos(String todos) { this.todos = todos; }
     public Instant getCreatedAt() { return createdAt; }
     public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
 }

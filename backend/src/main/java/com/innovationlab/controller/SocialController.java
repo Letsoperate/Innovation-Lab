@@ -117,6 +117,11 @@ public class SocialController {
         resp.put("institution", user.getInstitution() != null ? user.getInstitution() : "");
         resp.put("bio", user.getBio() != null ? user.getBio() : "");
         resp.put("avatar_url", user.getAvatarUrl());
+        resp.put("github_url", user.getGithubUrl());
+        resp.put("linkedin_url", user.getLinkedinUrl());
+        resp.put("twitter_url", user.getTwitterUrl());
+        resp.put("website_url", user.getWebsiteUrl());
+        resp.put("hobbies", user.getHobbies());
         resp.put("is_admin", user.isAdmin());
         resp.put("created_at", user.getCreatedAt().toString());
         resp.put("followers_count", followRepo.countByFollowingId(id));

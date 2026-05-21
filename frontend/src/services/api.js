@@ -1,11 +1,12 @@
 import axios from "axios";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 const api = axios.create({
-  baseURL: "/api",
+  baseURL: BACKEND_URL ? `${BACKEND_URL}/api` : "/api",
   headers: { "Content-Type": "application/json" },
 });
 
-// Attach token if available
 const token = localStorage.getItem("token");
 if (token) {
   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;

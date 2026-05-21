@@ -23,12 +23,13 @@ public class AuthService {
     }
 
     public AuthResponse register(RegisterRequest req) {
-        if (userRepo.findByEmail(req.getEmail()).isPresent()) {
+        String email = req.getEmail().toLowerCase().trim();
+        if (userRepo.findByEmailIgnoreCase(email).isPresent()) {
             throw new RuntimeException("Email already registered");
         }
         boolean isAdmin = userRepo.count() == 0;
         User user = new User(
-            req.getName(), req.getEmail(),
+            req.getName(), email,
             encoder.encode(req.getPassword()),
             req.getInstitution() != null ? req.getInstitution() : "",
             isAdmin
@@ -46,7 +47,7 @@ public class AuthService {
     }
 
     public AuthResponse login(LoginRequest req) {
-        User user = userRepo.findByEmail(req.getEmail())
+        User user = userRepo.findByEmailIgnoreCase(req.getEmail().toLowerCase().trim())
             .orElseThrow(() -> new RuntimeException("Invalid email or password"));
         if (!encoder.matches(req.getPassword(), user.getPasswordHash())) {
             throw new RuntimeException("Invalid email or password");

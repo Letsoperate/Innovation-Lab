@@ -110,7 +110,7 @@ public class SocialController {
         return ResponseEntity.ok(resp);
     }
 
-    @PutMapping("/auth/me")
+    @PutMapping("/auth/profile")
     public ResponseEntity<Map<String, Object>> updateProfile(
             @RequestHeader("Authorization") String auth, @RequestBody Map<String, String> body) {
         String userId = extractUserId(auth);

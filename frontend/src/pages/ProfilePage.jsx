@@ -69,7 +69,7 @@ const ProfilePage = () => {
     setSaving(true);
     try {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      await api.put("/auth/me", editForm);
+      await api.put("/auth/profile", editForm);
       setEditing(false);
       window.location.reload();
     } catch (err) { console.error("Failed to update profile:", err); }

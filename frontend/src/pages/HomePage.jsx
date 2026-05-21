@@ -8,7 +8,7 @@ import SponsorBanner from "../components/SponsorBanner";
 import ProjectCard from "../components/ProjectCard";
 import FAQSection from "../components/FAQSection";
 import api from "../services/api";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Tabs, Spinner } from "@heroui/react";
 
 const tabs = [
   { id: "top", label: "Top", icon: null },
@@ -74,9 +74,9 @@ const HomePage = () => {
   );
 
   const renderLoading = () => (
-    <div className="py-12 text-center">
-      <div className="inline-block w-6 h-6 border-2 border-gray-300 border-t-[#009639] rounded-full animate-spin" />
-      <p className="text-sm text-gray-500 mt-2">Loading projects...</p>
+    <div className="py-12 flex flex-col items-center gap-3">
+      <Spinner size="lg" color="success" />
+      <p className="text-sm text-gray-500">Loading projects...</p>
     </div>
   );
 

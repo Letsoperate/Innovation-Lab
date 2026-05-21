@@ -539,12 +539,24 @@ public class SeedService {
         List<String> userIds = new ArrayList<>();
         int count = 0;
         for (String[] s : studentData) {
-            if (userRepo.findByEmail(s[3]).isPresent()) continue;
-            User u = new User(s[0] + " " + s[1], s[3], pass, "Tshwane University of Technology", false);
-            u.setBio("Student at TUT | GitHub: @" + s[4]);
-            u.setAvatarUrl("https://ui-avatars.com/api/?name=" + s[0].replace(" ", "+") + "+" + s[1] + "&background=" + avatarColors[count % avatarColors.length] + "&color=fff&size=128&bold=true");
-            userRepo.save(u);
-            userIds.add(u.getId());
+            String fullName = s[0] + " " + s[1];
+            String email = s[3];
+            String color = avatarColors[count % avatarColors.length];
+            String avatarUrl = "https://ui-avatars.com/api/?name=" + s[0].replace(" ", "+") + "+" + s[1] + "&background=" + color + "&color=fff&size=128&bold=true";
+            
+            User existing = userRepo.findByEmail(email).orElse(null);
+            if (existing != null) {
+                existing.setAvatarUrl(avatarUrl);
+                existing.setBio("Student at TUT | GitHub: @" + s[4]);
+                userRepo.save(existing);
+                userIds.add(existing.getId());
+            } else {
+                User u = new User(fullName, email, pass, "Tshwane University of Technology", false);
+                u.setBio("Student at TUT | GitHub: @" + s[4]);
+                u.setAvatarUrl(avatarUrl);
+                userRepo.save(u);
+                userIds.add(u.getId());
+            }
             count++;
         }
         // Assign some projects to these students

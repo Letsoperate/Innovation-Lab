@@ -22,6 +22,21 @@ public class SocialController {
         this.jwtProvider = jwtProvider;
     }
 
+    @GetMapping("/users")
+    public ResponseEntity<List<Map<String, Object>>> getUsers() {
+        List<User> users = userRepo.findAll();
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (User u : users) {
+            Map<String, Object> m = new HashMap<>();
+            m.put("id", u.getId());
+            m.put("name", u.getName());
+            m.put("avatar_url", u.getAvatarUrl());
+            m.put("institution", u.getInstitution());
+            result.add(m);
+        }
+        return ResponseEntity.ok(result);
+    }
+
     @PostMapping("/users/{id}/follow")
     public ResponseEntity<Map<String, Object>> toggleFollow(
             @RequestHeader("Authorization") String auth, @PathVariable String id) {

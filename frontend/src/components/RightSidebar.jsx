@@ -9,6 +9,7 @@ const RightSidebar = () => {
   const [stats, setStats] = useState(null);
   const [hallOfFame, setHallOfFame] = useState([]);
   const [blogPosts, setBlogPosts] = useState([]);
+  const [users, setUsers] = useState([]);
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
 
   useEffect(() => {
@@ -20,6 +21,8 @@ const RightSidebar = () => {
         setStats(statsRes.data);
         setHallOfFame(hofRes.data.items || []);
         setBlogPosts(blogRes.data);
+        const usersRes = await api.get("/users");
+        setUsers(usersRes.data || []);
       } catch (err) { console.error("Failed to load sidebar data:", err); }
     };
     load();
@@ -62,8 +65,13 @@ const RightSidebar = () => {
             <div className="text-[9px] text-gray-500">Total Votes</div>
           </div>
           <div className="text-center p-2 bg-gray-50 rounded-lg">
-            <div className="text-xs font-bold text-purple-800">{stats.total_participants.toLocaleString()}</div>
-            <div className="text-[9px] text-gray-500">Participants</div>
+            <div className="flex items-center justify-center -space-x-1.5 mb-1">
+              {users.slice(0, 4).map(u => (
+                <img key={u.id} src={u.avatar_url} alt={u.name} className="w-5 h-5 rounded-full ring-1 ring-white object-cover" />
+              ))}
+              {users.length > 4 && <span className="w-5 h-5 rounded-full bg-purple-100 text-[8px] font-bold text-purple-600 flex items-center justify-center ring-1 ring-white">+{users.length-4}</span>}
+            </div>
+            <div className="text-[9px] text-gray-500">{users.length} Participants</div>
           </div>
         </div>
       </div>

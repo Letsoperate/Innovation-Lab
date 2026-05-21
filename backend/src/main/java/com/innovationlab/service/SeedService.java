@@ -20,6 +20,7 @@ public class SeedService {
     private final BlogPostRepository blogPostRepo;
     private final ProjectRepository projectRepo;
     private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepo;
 
     @org.springframework.beans.factory.annotation.Autowired
     private VoteRepository voteRepo;
@@ -31,7 +32,8 @@ public class SeedService {
     public SeedService(CategoryRepository categoryRepo, TrackRepository trackRepo,
                        AudienceRepository audienceRepo, SponsorRepository sponsorRepo,
                        FAQRepository faqRepo, BlogPostRepository blogPostRepo,
-                       ProjectRepository projectRepo, PasswordEncoder passwordEncoder) {
+                       ProjectRepository projectRepo, PasswordEncoder passwordEncoder,
+                       UserRepository userRepo) {
         this.categoryRepo = categoryRepo;
         this.trackRepo = trackRepo;
         this.audienceRepo = audienceRepo;
@@ -40,6 +42,7 @@ public class SeedService {
         this.blogPostRepo = blogPostRepo;
         this.projectRepo = projectRepo;
         this.passwordEncoder = passwordEncoder;
+        this.userRepo = userRepo;
     }
 
     @Transactional
@@ -63,6 +66,7 @@ public class SeedService {
         int blogCount = seedBlogPosts();
         int projectCount = seedProjects();
         int commentCount = seedComments();
+        int userCount = seedUsers();
 
         Map<String, Integer> counts = new LinkedHashMap<>();
         counts.put("categories", catCount);
@@ -73,6 +77,7 @@ public class SeedService {
         counts.put("blogPosts", blogCount);
         counts.put("projects", projectCount);
         counts.put("comments", commentCount);
+        counts.put("users", userCount);
         return counts;
     }
 
@@ -469,6 +474,32 @@ public class SeedService {
         commentRepo.saveAll(comments);
         projectRepo.saveAll(allProjects);
         return commentCount;
+    }
+
+    private int seedUsers() {
+        String pass = passwordEncoder.encode("student123");
+        String[][] studentData = {
+            {"Zandile", "Sosiba", "222880416", "222880416@tut4life.ac.za", "Zandile2003"},
+            {"Mbongeni", "Mokoena", "222277914", "222277914@tut4life.ac.za", "Koena369"},
+            {"Lesego", "Lekwene", "222588138", "222588138@tut4life.ac.za", "LesegoLKW"},
+            {"Amanda Cecilia", "Mngadi", "223877010", "223877010@tut4life.ac.za", "AmandaMngadi"},
+            {"Khomanani", "Vumane", "240516594", "240516594@tut4life.ac.za", "khomiVumane"},
+            {"Ayuba salimo", "Shabangu", "223174230", "223174230@tut4life.ac.za", "Ayuba"},
+            {"Thandeka", "Shongwe", "223912192", "223912192@tut4life.ac.za", "ThandekaShongwe"},
+            {"Sinazo", "Mtwentula", "220472000", "220472000@tut4life.ac.za", "Mtwentula"},
+            {"Falakhe", "Shabangu", "222483123", "222483123@tut4life.ac.za", "Falakheshabangu"},
+            {"Lintshiwe Pontsho", "Ntoampi", "221651685", "221651685@tut4life.ac.za", "lintshiwe"},
+        };
+        int count = 0;
+        for (String[] s : studentData) {
+            if (userRepo.findByEmail(s[3]).isPresent()) continue;
+            User u = new User(s[0] + " " + s[1], s[3], pass, "Tshwane University of Technology", false);
+            u.setBio("Student at TUT | GitHub: @" + s[4]);
+            u.setAvatarUrl("https://ui-avatars.com/api/?name=" + s[0].replace(" ", "+") + "+" + s[1] + "&background=7C3AED&color=fff&size=128");
+            userRepo.save(u);
+            count++;
+        }
+        return count;
     }
 
     private Project build(String name, String tagline, String description,

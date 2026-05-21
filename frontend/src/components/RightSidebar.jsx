@@ -19,19 +19,17 @@ const RightSidebar = () => {
   }, []);
 
   const load = async () => {
-      try {
-        const [statsRes, hofRes, blogRes] = await Promise.all([
-          api.get("/stats"), api.get("/hall-of-fame"), api.get("/blog"),
-        ]);
-        setStats(statsRes.data);
-        setHallOfFame(hofRes.data.items || []);
-        setBlogPosts(blogRes.data);
-        const usersRes = await api.get("/users");
-        setUsers(usersRes.data || []);
-      } catch (err) { console.error("Failed to load sidebar data:", err); }
-    };
-    load();
-  }, []);
+    try {
+      const [statsRes, hofRes, blogRes] = await Promise.all([
+        api.get("/stats"), api.get("/hall-of-fame"), api.get("/blog"),
+      ]);
+      setStats(statsRes.data);
+      setHallOfFame(hofRes.data.items || []);
+      setBlogPosts(blogRes.data);
+      const usersRes = await api.get("/users");
+      setUsers(usersRes.data || []);
+    } catch (err) { console.error("Failed to load sidebar data:", err); }
+  };
 
   useEffect(() => {
     const tick = () => {

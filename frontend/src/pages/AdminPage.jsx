@@ -3,26 +3,18 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import {
-  Shield,
-  Users,
-  FolderOpen,
-  ChevronUp,
-  MessageCircle,
-  Bookmark,
-  TrendingUp,
-  Trash2,
-  Ship,
-  Rss,
-  Plus,
-  Edit3,
-  X,
-  Save,
-  Loader2,
-  Rocket,
-  BarChart3,
-  Calendar,
-  Award,
+  Shield, Users, FolderOpen, ChevronUp, MessageCircle, Bookmark, TrendingUp, Trash2,
+  Ship, Rss, Plus, Edit3, X, Save, Loader2, Rocket, BarChart3, Calendar, Award,
 } from "lucide-react";
+
+const sponsorLogoMap = {
+  "MTN Group": "/sponsors/mtn.png",
+  "Standard Bank": "/sponsors/standard-bank.jpg",
+  "Takealot": "/sponsors/takealot.png",
+  "Investec": "/sponsors/investec.png",
+  "Dimension Data": "/sponsors/dimension-data.jpg",
+  "Naspers": "/sponsors/naspers.png",
+};
 
 const AdminPage = () => {
   const { user, token, loading: authLoading } = useAuth();
@@ -363,9 +355,12 @@ const AdminPage = () => {
                 {sponsors.map((s) => (
                   <div key={s.id} className="p-4 bg-white border border-gray-200 rounded-xl">
                     <div className="flex items-center justify-between mb-3">
-                      <div className="w-12 h-12 rounded-xl flex items-center justify-center text-sm font-bold"
-                        style={{ backgroundColor: s.color, color: s.text_color }}>
-                        {s.logo}
+                      <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden">
+                        {sponsorLogoMap[s.name] ? (
+                          <img src={sponsorLogoMap[s.name]} alt={s.name} className="w-full h-full object-contain" />
+                        ) : (
+                          <span className="text-sm font-bold" style={{ backgroundColor: s.color, color: s.text_color }}>{s.logo}</span>
+                        )}
                       </div>
                       <div className="flex gap-1">
                         <button onClick={() => {

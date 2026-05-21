@@ -3,7 +3,7 @@ services:
     name: innovation-lab-api
     runtime: docker
     plan: free
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
     envVars:
       - key: DATASOURCE_URL

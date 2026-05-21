@@ -179,7 +179,7 @@ curl -X POST http://localhost:8181/api/seed
 ## Project Structure
 
 ```
-PeerPush/
+InnovationLab/
   backend/                        # Spring Boot API
     src/main/java/com/innovationlab/
       Application.java
@@ -201,3 +201,15 @@ PeerPush/
   render.yaml                     # Render config
   start.sh                        # Local dev startup script
 ```
+
+## Competition Schedule
+
+Innovation Lab operates in cycles throughout the year, giving students multiple opportunities to participate without disrupting their academic studies.
+
+- **Frequency**: 2–4 competition cycles per year, depending on sponsor support
+- **Duration**: Each cycle runs approximately 3 months (Registration → Finals)
+- **Flexibility**: Students can join any cycle, work from anywhere, at any time
+- **Study-Friendly**: No fixed schedules — students build at their own pace alongside their studies
+- **Sponsor-Dependent**: More sponsors = more cycles. Each cycle requires sponsor funding for prizes, mentorship, and platform operation
+
+The goal is to create a sustainable ecosystem where sponsors support student innovation year-round, and students can turn their ideas into tools whenever inspiration strikes — not just once a year.

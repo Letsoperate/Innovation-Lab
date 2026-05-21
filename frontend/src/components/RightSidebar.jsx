@@ -67,11 +67,14 @@ const RightSidebar = () => {
           <div className="text-center p-2 bg-gray-50 rounded-lg">
             <div className="flex items-center justify-center -space-x-1.5 mb-1">
               {users.slice(0, 4).map(u => (
-                <img key={u.id} src={u.avatar_url} alt={u.name} className="w-5 h-5 rounded-full ring-1 ring-white object-cover" />
+                <div key={u.id} className="relative">
+                  <img src={u.avatar_url} alt={u.name} className="w-5 h-5 rounded-full ring-1 ring-white object-cover" />
+                  <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 bg-green-500 rounded-full ring-1 ring-white" />
+                </div>
               ))}
               {users.length > 4 && <span className="w-5 h-5 rounded-full bg-purple-100 text-[8px] font-bold text-purple-600 flex items-center justify-center ring-1 ring-white">+{users.length-4}</span>}
             </div>
-            <div className="text-[9px] text-gray-500">{users.length} Participants</div>
+            <div className="text-[9px] text-gray-500">{users.length} Active</div>
           </div>
         </div>
       </div>

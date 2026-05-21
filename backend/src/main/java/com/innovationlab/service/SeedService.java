@@ -132,36 +132,42 @@ public class SeedService {
                 "MTN", "#FFC107", "#000000");
         mtn.setEmail("mtn@innovationlab.co.za");
         mtn.setPasswordHash(sponsorPass);
+        mtn.setWebsite("https://www.mtn.com");
         sponsors.add(mtn);
         
         Sponsor sb = new Sponsor("Standard Bank", "South Africa's largest bank by assets, driving financial inclusion and economic growth.",
                 "SB", "#003A70", "#FFFFFF");
         sb.setEmail("standardbank@innovationlab.co.za");
         sb.setPasswordHash(sponsorPass);
+        sb.setWebsite("https://www.standardbank.co.za");
         sponsors.add(sb);
         
         Sponsor tk = new Sponsor("Takealot", "South Africa's largest online retailer, empowering digital commerce across the continent.",
                 "TK", "#FF6B00", "#FFFFFF");
         tk.setEmail("takealot@innovationlab.co.za");
         tk.setPasswordHash(sponsorPass);
+        tk.setWebsite("https://www.takealot.com");
         sponsors.add(tk);
         
         Sponsor inv = new Sponsor("Investec", "Specialist banking and wealth management group committed to entrepreneurial excellence.",
                 "IN", "#1A3A5C", "#FFFFFF");
         inv.setEmail("investec@innovationlab.co.za");
         inv.setPasswordHash(sponsorPass);
+        inv.setWebsite("https://www.investec.com");
         sponsors.add(inv);
         
         Sponsor dd = new Sponsor("Dimension Data", "Global technology integrator and managed services provider, headquartered in Johannesburg.",
                 "DD", "#0072C6", "#FFFFFF");
         dd.setEmail("dimensiondata@innovationlab.co.za");
         dd.setPasswordHash(sponsorPass);
+        dd.setWebsite("https://www.dimensiondata.com");
         sponsors.add(dd);
         
         Sponsor nas = new Sponsor("Naspers", "Global consumer internet group and one of the largest technology investors worldwide.",
                 "NP", "#D0021B", "#FFFFFF");
         nas.setEmail("naspers@innovationlab.co.za");
         nas.setPasswordHash(sponsorPass);
+        nas.setWebsite("https://www.naspers.com");
         sponsors.add(nas);
 
         sponsorRepo.saveAll(sponsors);

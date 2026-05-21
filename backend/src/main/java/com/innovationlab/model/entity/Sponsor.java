@@ -25,6 +25,8 @@ public class Sponsor {
     @Column(name = "text_color", length = 20)
     private String textColor;
 
+    private String website;
+
     @Column(unique = true)
     private String email;
 
@@ -55,6 +57,8 @@ public class Sponsor {
     public void setColor(String color) { this.color = color; }
     public String getTextColor() { return textColor; }
     public void setTextColor(String textColor) { this.textColor = textColor; }
+    public String getWebsite() { return website; }
+    public void setWebsite(String website) { this.website = website; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
     public String getPasswordHash() { return passwordHash; }

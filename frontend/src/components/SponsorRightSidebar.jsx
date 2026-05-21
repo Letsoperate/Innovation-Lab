@@ -38,7 +38,7 @@ const SponsorRightSidebar = () => {
         const s = getSponsor(i);
         const logoPath = logoMap[s.name];
         return (
-          <div key={i} className="flex flex-col items-center justify-center p-4 bg-white border border-gray-200 rounded-xl hover:shadow-sm transition-shadow cursor-pointer animate-fade-in flex-1">
+          <a href={s.website || "#"} target="_blank" rel="noopener noreferrer" key={i} className="flex flex-col items-center justify-center p-4 bg-white border border-gray-200 rounded-xl hover:shadow-sm transition-shadow cursor-pointer animate-fade-in flex-1">
             {logoPath ? (
               <img src={logoPath} alt={s.name} className="w-16 h-16 object-contain mb-2 rounded-lg" />
             ) : (
@@ -48,7 +48,7 @@ const SponsorRightSidebar = () => {
             )}
             <span className="text-xs font-semibold text-purple-800 text-center leading-tight">{s.name}</span>
             <span className="text-[10px] text-gray-500 text-center leading-tight mt-1 line-clamp-2">{s.description}</span>
-          </div>
+          </a>
         );
       })}
     </aside>

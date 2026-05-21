@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   ChevronUp,
   MessageCircle,
@@ -95,9 +96,9 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-0.5">
-          <h3 className="text-sm font-semibold text-purple-800 truncate hover:underline cursor-pointer">
+          <Link to={`/p/${project.name?.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`} className="text-sm font-semibold text-purple-800 truncate hover:underline cursor-pointer">
             {project.name}
-          </h3>
+          </Link>
           {isTrending && (
             <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium text-orange-600 bg-orange-50 rounded">
               <Flame className="w-2.5 h-2.5" /> Hot

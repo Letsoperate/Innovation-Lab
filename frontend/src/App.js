@@ -12,6 +12,7 @@ import LeaderboardPage from "./pages/LeaderboardPage";
 import ProfilePage from "./pages/ProfilePage";
 import AdminPage from "./pages/AdminPage";
 import CategoryPage from "./pages/CategoryPage";
+import ProjectPage from "./pages/ProjectPage";
 import HallOfFamePage from "./pages/HallOfFamePage";
 import SponsorLoginPage from "./pages/SponsorLoginPage";
 import SponsorDashboard from "./pages/SponsorDashboard";
@@ -36,6 +37,7 @@ function App() {
             <Route path="/category/:slug" element={<CategoryPage />} />
             <Route path="/track/:slug" element={<CategoryPage />} />
             <Route path="/audience/:slug" element={<CategoryPage />} />
+            <Route path="/p/:slug" element={<ProjectPage />} />
             <Route path="/sponsor/login" element={<SponsorLoginPage />} />
             <Route path="/sponsor/dashboard" element={<SponsorDashboard />} />
             <Route path="/admin/login" element={<AdminLoginPage />} />

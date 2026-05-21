@@ -403,22 +403,53 @@ public class SeedService {
                 "ai", "ai-ml", "AI Agents AI Automation", 33, 67, 1, 5.0, true, 0,
                 hoursAgo(33)));
 
-        // Map project logos by index (files are 01-42 matching seed order)
-        String[] logoFiles = {
-            "01_SikkerKey.svg","02_NeshysPR.svg","03_Avif2JPG.svg","04_glncCLI.svg",
-            "05_Wipperoz.svg","06_LeadBoxer.svg","07_ColocNow.svg","08_Mindvaults.svg",
-            "09_RandomProfilesAPI.svg","10_AISelfie.svg","11_Amawish.svg","12_SecondNumber.svg",
-            "13_BewertungsFlow.svg","14_NoClick.svg","15_ToolIgnite.svg","16_ConversionProbe.svg",
-            "17_SomioAI.svg","18_reverscan.svg","19_Clausify.svg","20_SyncWhen.svg",
-            "21_NicheScout.svg","22_MemexAI.svg","23_PDFTranslatorPro.svg","24_MOR.svg",
-            "25_NetronEats.svg","26_ZensorAnalytics.svg","27_SkyChart.svg","28_ScrollLaunch.svg",
-            "29_Numi.svg","30_CVoria.svg","31_PeptideCalculator.svg","32_ForexCracked.svg",
-            "33_Skuno.svg","34_Worksheetly.svg","35_StockCar.svg","36_ClawGlow.svg",
-            "37_KormaDesk.svg","38_PricePush.svg","39_ProspectB2B.svg","40_Waypoint.svg",
-            "41_CliqSpy.svg","42_Lodgestory.svg"
-        };
-        for (int i = 0; i < Math.min(projects.size(), logoFiles.length); i++) {
-            projects.get(i).setLogoImage("/projects/" + logoFiles[i]);
+        // Map project logos by name
+        Map<String, String> logoMap = new HashMap<>();
+        logoMap.put("SikkerKey", "/projects/01_SikkerKey.svg");
+        logoMap.put("Neshys PR Platform", "/projects/02_NeshysPR.svg");
+        logoMap.put("Avif2JPG", "/projects/03_Avif2JPG.svg");
+        logoMap.put("glnc CLI", "/projects/04_glncCLI.svg");
+        logoMap.put("Wipperoz", "/projects/05_Wipperoz.svg");
+        logoMap.put("LeadBoxer Platform", "/projects/06_LeadBoxer.svg");
+        logoMap.put("SkyChart: Airline Executive", "/projects/27_SkyChart.svg");
+        logoMap.put("Zensor Analytics", "/projects/26_ZensorAnalytics.svg");
+        logoMap.put("NetronEats Restaurant Platform", "/projects/25_NetronEats.svg");
+        logoMap.put("MOR - AI Resume Builder", "/projects/24_MOR_ResumeBuilder.svg");
+        logoMap.put("PDF Translator Pro", "/projects/23_PDFTranslatorPro.svg");
+        logoMap.put("Memex AI", "/projects/22_MemexAI.svg");
+        logoMap.put("ProspectB2B", "/projects/39_ProspectB2B.svg");
+        logoMap.put("PricePush", "/projects/38_PricePush.svg");
+        logoMap.put("Waypoint: AI Trip Planner", "/projects/40_WaypointAI.svg");
+        logoMap.put("KormaDesk", "/projects/37_KormaDesk.svg");
+        logoMap.put("CliqSpy", "/projects/41_CliqSpy.svg");
+        logoMap.put("Lodgestory", "/projects/42_Lodgestory.svg");
+        logoMap.put("ColocNow", "/projects/07_ColocNow.svg");
+        logoMap.put("Mindvaults", "/projects/08_Mindvaults.svg");
+        logoMap.put("Random Profiles API", "/projects/09_RandomProfilesAPI.svg");
+        logoMap.put("AISelfie", "/projects/10_AISelfie.svg");
+        logoMap.put("Amawish", "/projects/11_Amawish.svg");
+        logoMap.put("SecondNumber", "/projects/12_SecondNumber.svg");
+        logoMap.put("BewertungsFlow", "/projects/13_BewertungsFlow.svg");
+        logoMap.put("NoClick", "/projects/14_NoClick.svg");
+        logoMap.put("Tool Ignite", "/projects/15_ToolIgnite.svg");
+        logoMap.put("Conversion Probe", "/projects/16_ConversionProbe.svg");
+        logoMap.put("Somio AI", "/projects/17_SomioAI.svg");
+        logoMap.put("reverscan", "/projects/18_reverscan.svg");
+        logoMap.put("Clausify", "/projects/19_Clausify.svg");
+        logoMap.put("SyncWhen", "/projects/20_SyncWhen.svg");
+        logoMap.put("NicheScout", "/projects/21_NicheScout.svg");
+        logoMap.put("ScrollLaunch", "/projects/28_ScrollLaunch.svg");
+        logoMap.put("Numi", "/projects/29_Numi.svg");
+        logoMap.put("CVoria", "/projects/30_CVoria.svg");
+        logoMap.put("Peptide Calculator", "/projects/31_PeptideCalculator.svg");
+        logoMap.put("ForexCracked", "/projects/32_ForexCracked.svg");
+        logoMap.put("Skuno", "/projects/33_Skuno.svg");
+        logoMap.put("Worksheetly", "/projects/34_Worksheetly.svg");
+        logoMap.put("StockCar", "/projects/35_StockCar.svg");
+        logoMap.put("ClawGlow", "/projects/36_ClawGlow.svg");
+        for (Project p : projects) {
+            String logo = logoMap.get(p.getName());
+            if (logo != null) p.setLogoImage(logo);
         }
 
         projectRepo.saveAll(projects);

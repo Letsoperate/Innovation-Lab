@@ -23,6 +23,7 @@ const SponsorDashboard = () => {
 
   useEffect(() => {
     if (!token) { navigate("/sponsor/login"); return; }
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     loadData();
     loadVotes();
   }, []);

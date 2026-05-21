@@ -42,7 +42,7 @@ const BrowseSidebar = () => {
         </div>
         <div className="space-y-0.5">
           {categories.slice(0, 7).map((cat) => (
-            <Link key={cat.id} to="/" className="block px-2 py-1.5 text-xs text-gray-600 hover:text-purple-800 hover:bg-gray-50 rounded-md transition-colors">
+            <Link key={cat.id} to={`/category/${cat.slug}`} className="block px-2 py-1.5 text-xs text-gray-600 hover:text-purple-800 hover:bg-gray-50 rounded-md transition-colors">
               {cat.name}
             </Link>
           ))}
@@ -58,7 +58,7 @@ const BrowseSidebar = () => {
         </div>
         <div className="space-y-0.5">
           {tracks.map((track) => (
-            <Link key={track.id} to="/" className="block px-2 py-1.5 text-xs text-gray-600 hover:text-purple-800 hover:bg-gray-50 rounded-md transition-colors">
+            <Link key={track.id} to={`/track/${track.slug}`} className="block px-2 py-1.5 text-xs text-gray-600 hover:text-purple-800 hover:bg-gray-50 rounded-md transition-colors">
               {track.name}
             </Link>
           ))}
@@ -74,7 +74,7 @@ const BrowseSidebar = () => {
         </div>
         <div className="space-y-0.5">
           {audiences.map((aud) => (
-            <Link key={aud.id} to="/" className="block px-2 py-1.5 text-xs text-gray-600 hover:text-purple-800 hover:bg-gray-50 rounded-md transition-colors">
+            <Link key={aud.id} to={`/audience/${aud.slug}`} className="block px-2 py-1.5 text-xs text-gray-600 hover:text-purple-800 hover:bg-gray-50 rounded-md transition-colors">
               {aud.name}
             </Link>
           ))}

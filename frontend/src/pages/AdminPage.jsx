@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 
 const AdminPage = () => {
-  const { user, token } = useAuth();
+  const { user, token, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("dashboard");
   const [dashboard, setDashboard] = useState(null);
@@ -41,12 +41,13 @@ const AdminPage = () => {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
+    if (authLoading) return;
     if (!token || !user?.is_admin) {
-      navigate("/");
+      navigate("/admin/login");
       return;
     }
     loadTab(activeTab);
-  }, [token, user]);
+  }, [token, user, authLoading]);
 
   useEffect(() => {
     if (user?.is_admin) loadTab(activeTab);

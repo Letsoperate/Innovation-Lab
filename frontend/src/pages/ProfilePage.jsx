@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import ProjectCard from "../components/ProjectCard";
+import { Avatar } from "@heroui/react";
 import {
   User,
   School,
@@ -106,9 +107,11 @@ const ProfilePage = () => {
       {/* Profile Card */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-          <div className="w-16 h-16 bg-[#009639] rounded-2xl flex items-center justify-center text-white text-2xl font-bold shrink-0">
-            {user.name?.charAt(0)?.toUpperCase() || "U"}
-          </div>
+          <Avatar size="lg" className="w-16 h-16 rounded-2xl">
+            <Avatar.Fallback className="bg-[#009639] text-white text-2xl font-bold rounded-2xl">
+              {user.name?.charAt(0)?.toUpperCase() || "U"}
+            </Avatar.Fallback>
+          </Avatar>
           <div className="flex-1 min-w-0">
             {editing ? (
               <div className="space-y-3">

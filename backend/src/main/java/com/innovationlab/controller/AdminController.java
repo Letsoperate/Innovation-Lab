@@ -88,6 +88,7 @@ public class AdminController {
             m.put("email", u.getEmail());
             m.put("institution", u.getInstitution());
             m.put("is_admin", u.isAdmin());
+            m.put("avatar_url", u.getAvatarUrl());
             m.put("project_count", projectRepo.countByUserId(u.getId()));
             return m;
         }).collect(Collectors.toList());

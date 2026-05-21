@@ -252,8 +252,13 @@ const AdminPage = () => {
               {users.map((u) => (
                 <div key={u.id} className="grid grid-cols-[1fr_120px_120px_80px] gap-2 px-4 py-3 items-center border-b border-gray-50 hover:bg-gray-50/50">
                   <div>
-                    <div className="text-sm font-medium text-purple-800">{u.name}</div>
-                    <div className="text-[10px] text-gray-500">{u.email}</div>
+                    <div className="flex items-center gap-2">
+                      <img src={u.avatar_url} alt={u.name} className="w-7 h-7 rounded-full object-cover" onError={(e) => {e.target.style.display='none'}} />
+                      <div>
+                        <div className="text-sm font-medium text-purple-800">{u.name}</div>
+                        <div className="text-[10px] text-gray-500">{u.email}</div>
+                      </div>
+                    </div>
                   </div>
                   <div className="text-xs text-gray-600 truncate">{u.institution || "—"}</div>
                   <div className="text-xs font-medium text-purple-800">{u.project_count}</div>

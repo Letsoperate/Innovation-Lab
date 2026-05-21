@@ -53,29 +53,29 @@ const RightSidebar = () => {
   return (
     <aside className="space-y-4">
       <div className="bg-white border border-gray-200 rounded-xl p-3">
-        <div className="flex items-center gap-1.5 mb-2">
+        <div className="flex items-center gap-1.5 mb-3">
           <TrendingUp className="w-3.5 h-3.5 text-[#009639]" />
           <span className="text-xs font-bold text-purple-800">Competition Stats</span>
         </div>
-        <div className="text-xl font-bold text-purple-800 mb-0.5">{stats.total_projects.toLocaleString()}</div>
-        <div className="text-[10px] text-gray-500 mb-2">Projects Submitted</div>
-        <div className="grid grid-cols-2 gap-1.5">
-          <div className="text-center p-2 bg-gray-50 rounded-lg">
-            <div className="text-xs font-bold text-purple-800">{stats.total_votes.toLocaleString()}</div>
-            <div className="text-[9px] text-gray-500">Total Votes</div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[11px] text-gray-500">Projects Submitted</span>
+          <span className="text-xl font-bold text-purple-800">{stats.total_projects.toLocaleString()}</span>
+        </div>
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-[11px] text-gray-500">Total Votes</span>
+          <span className="text-lg font-bold text-purple-800">{stats.total_votes.toLocaleString()}</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center -space-x-1.5">
+            {users.slice(0, 6).map(u => (
+              <div key={u.id} className="relative">
+                <img src={u.avatar_url} alt={u.name} className="w-6 h-6 rounded-full ring-1 ring-white object-cover" />
+                <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 bg-green-500 rounded-full ring-1 ring-white" />
+              </div>
+            ))}
+            {users.length > 6 && <span className="w-6 h-6 rounded-full bg-purple-100 text-[8px] font-bold text-purple-600 flex items-center justify-center ring-1 ring-white">+{users.length-6}</span>}
           </div>
-          <div className="text-center p-2 bg-gray-50 rounded-lg">
-            <div className="flex items-center justify-center -space-x-1.5 mb-1">
-              {users.slice(0, 4).map(u => (
-                <div key={u.id} className="relative">
-                  <img src={u.avatar_url} alt={u.name} className="w-5 h-5 rounded-full ring-1 ring-white object-cover" />
-                  <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 bg-green-500 rounded-full ring-1 ring-white" />
-                </div>
-              ))}
-              {users.length > 4 && <span className="w-5 h-5 rounded-full bg-purple-100 text-[8px] font-bold text-purple-600 flex items-center justify-center ring-1 ring-white">+{users.length-4}</span>}
-            </div>
-            <div className="text-[9px] text-gray-500">{users.length} Active</div>
-          </div>
+          <span className="text-[10px] text-gray-400">{users.length} Active</span>
         </div>
       </div>
 

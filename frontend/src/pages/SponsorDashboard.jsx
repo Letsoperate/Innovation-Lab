@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
-import { Building2, ChevronUp, Ship, Rocket, TrendingUp, LogOut, Trophy } from "lucide-react";
+import { Building2, ChevronUp, Ship, Rocket, TrendingUp, LogOut, Award } from "lucide-react";
 
 const sponsorLogoMap = {
   "MTN Group": "/sponsors/mtn.png",
@@ -103,7 +103,7 @@ const SponsorDashboard = () => {
         )}
 
         <h2 className="text-lg font-bold text-purple-800 mb-4 flex items-center gap-2">
-          <Trophy className="w-5 h-5 text-amber-500" /> Vote on Projects
+          <Award className="w-5 h-5 text-amber-500" /> Vote on Projects
         </h2>
 
         {loading ? (

@@ -3,8 +3,9 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import {
-  Shield, Users, FolderOpen, ChevronUp, MessageCircle, Bookmark, TrendingUp, Trash2,
-  Ship, Rss, Plus, Edit3, X, Save, Loader2, Rocket, BarChart3, Calendar, Award,
+  LayoutDashboard, Users, FolderKanban, ChevronUp, MessageSquare, Bookmark,
+  TrendingUp, Trash2, Ship, Globe, Plus, Pencil, X, Save, Loader2,
+  Rocket, ChartBar, Calendar, BadgeCheck,
 } from "lucide-react";
 
 const sponsorLogoMap = {
@@ -139,25 +140,25 @@ const AdminPage = () => {
   if (!user?.is_admin) {
     return (
       <div className="w-full px-4 py-20 text-center">
-        <Shield className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+        <LayoutDashboard className="w-12 h-12 text-gray-300 mx-auto mb-3" />
         <p className="text-gray-500">Admin access required.</p>
       </div>
     );
   }
 
   const tabs = [
-    { id: "dashboard", label: "Dashboard", icon: <BarChart3 className="w-4 h-4" /> },
+    { id: "dashboard", label: "Dashboard", icon: <ChartBar className="w-4 h-4" /> },
     { id: "users", label: "Users", icon: <Users className="w-4 h-4" /> },
-    { id: "projects", label: "Projects", icon: <FolderOpen className="w-4 h-4" /> },
-    { id: "blog", label: "Blog", icon: <Rss className="w-4 h-4" /> },
-    { id: "sponsors", label: "Sponsors", icon: <Award className="w-4 h-4" /> },
+    { id: "projects", label: "Projects", icon: <FolderKanban className="w-4 h-4" /> },
+    { id: "blog", label: "Blog", icon: <Globe className="w-4 h-4" /> },
+    { id: "sponsors", label: "Sponsors", icon: <BadgeCheck className="w-4 h-4" /> },
   ];
 
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-10">
       <div className="flex items-center gap-3 mb-8">
         <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center">
-          <Shield className="w-5 h-5 text-[#FFB612]" />
+          <LayoutDashboard className="w-5 h-5 text-[#FFB612]" />
         </div>
         <div>
           <h1 className="text-xl font-bold text-purple-800">Admin Panel</h1>
@@ -191,10 +192,10 @@ const AdminPage = () => {
             <div className="space-y-6">
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {[
-                  { label: "Projects", value: dashboard.total_projects, icon: <FolderOpen className="w-5 h-5" />, color: "text-blue-600 bg-blue-50" },
+                  { label: "Projects", value: dashboard.total_projects, icon: <FolderKanban className="w-5 h-5" />, color: "text-blue-600 bg-blue-50" },
                   { label: "Users", value: dashboard.total_users, icon: <Users className="w-5 h-5" />, color: "text-green-600 bg-green-50" },
                   { label: "Votes", value: dashboard.total_votes, icon: <ChevronUp className="w-5 h-5" />, color: "text-purple-600 bg-purple-50" },
-                  { label: "Comments", value: dashboard.total_comments, icon: <MessageCircle className="w-5 h-5" />, color: "text-orange-600 bg-orange-50" },
+                  { label: "Comments", value: dashboard.total_comments, icon: <MessageSquare className="w-5 h-5" />, color: "text-orange-600 bg-orange-50" },
                 ].map((stat) => (
                   <div key={stat.label} className="p-5 bg-white border border-gray-200 rounded-xl">
                     <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${stat.color}`}>
@@ -329,7 +330,7 @@ const AdminPage = () => {
                         setBlogModal({ open: true, mode: "edit", data: post });
                       }}
                         className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
-                        <Edit3 className="w-3.5 h-3.5" />
+                        <Pencil className="w-3.5 h-3.5" />
                       </button>
                       <button onClick={() => handleBlogDelete(post.id)}
                         className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
@@ -369,7 +370,7 @@ const AdminPage = () => {
                         <button onClick={() => {
                           setSponsorForm({ name: s.name, description: s.description, logo: s.logo, color: s.color, text_color: s.text_color });
                           setSponsorModal({ open: true, mode: "edit", data: s });
-                        }} className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg"><Edit3 className="w-3.5 h-3.5" /></button>
+                        }} className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg"><Pencil className="w-3.5 h-3.5" /></button>
                         <button onClick={() => handleSponsorDelete(s.id)}
                           className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg"><Trash2 className="w-3.5 h-3.5" /></button>
                       </div>

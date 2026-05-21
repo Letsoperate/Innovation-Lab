@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="g29" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecfdf5"/>
+      <stop offset="100%" style="stop-color:#d1fae5"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#g29)" rx="24"/>
+  <rect x="100" y="250" width="30" height="50" rx="4" fill="#059669" opacity="0.5"/>
+  <rect x="145" y="210" width="30" height="90" rx="4" fill="#059669" opacity="0.7"/>
+  <rect x="190" y="170" width="30" height="130" rx="4" fill="#059669" opacity="0.85"/>
+  <rect x="235" y="140" width="30" height="160" rx="4" fill="#059669"/>
+  <path d="M100 260 Q145 220 190 175 Q225 145 280 105" stroke="#34d399" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="280" cy="105" r="8" fill="#34d399"/>
+  <path d="M270 95 L280 105 L270 115" stroke="#34d399" stroke-width="2" fill="none"/>
+  <text x="200" y="350" font-family="Georgia, serif" font-size="36" font-weight="700" fill="#065f46" text-anchor="middle">numi</text>
+  <text x="200" y="378" font-family="Georgia" font-size="11" fill="#059669" text-anchor="middle" letter-spacing="4">SALES ACCELERATION</text>
+</svg>

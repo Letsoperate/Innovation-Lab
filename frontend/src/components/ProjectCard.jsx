@@ -78,14 +78,19 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
   const rankLabel = project.rank_label || project.rankLabel || "";
   const logoColor = project.logo_color || project.logoColor || "#009639";
   const logoInitial = project.logo_initial || project.logoInitial || project.name?.slice(0, 2).toUpperCase();
+  const logoImage = project.logo_image || project.logoImage;
 
   return (
     <div className="group flex items-start gap-3 p-4 border-b border-gray-100 hover:bg-gray-50/50 transition-colors">
       <div
-        className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm"
-        style={{ backgroundColor: logoColor }}
+        className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm overflow-hidden"
+        style={{ backgroundColor: logoImage ? "transparent" : logoColor }}
       >
-        {logoInitial}
+        {logoImage ? (
+          <img src={logoImage} alt={project.name} className="w-full h-full object-cover" />
+        ) : (
+          logoInitial
+        )}
       </div>
 
       <div className="flex-1 min-w-0">

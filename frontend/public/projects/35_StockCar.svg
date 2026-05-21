@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#0a0a0a" rx="24"/>
+  <circle cx="200" cy="160" r="75" fill="#111" stroke="#ef4444" stroke-width="3"/>
+  <path d="M160 130 L168 148 L185 148 L172 158 L177 175 L162 165 L147 175 L152 158 L139 148 L156 148Z" fill="#ef4444" opacity="0.3"/>
+  <circle cx="200" cy="160" r="30" fill="none" stroke="#ef4444" stroke-width="2" opacity="0.5"/>
+  <polyline points="155,190 165,175 175,182 185,160 195,170 205,148 215,165 225,155 240,175 250,165" stroke="#ef4444" stroke-width="2" fill="none"/>
+  <circle cx="200" cy="160" r="5" fill="#ef4444"/>
+  <text x="200" y="275" font-family="'Arial Black', sans-serif" font-size="26" font-weight="900" fill="white" text-anchor="middle">StockCar</text>
+  <text x="200" y="305" font-family="Arial" font-size="12" fill="#ef4444" text-anchor="middle" letter-spacing="2">YOUR PORTFOLIO PODCAST</text>
+  <rect x="140" y="325" width="120" height="22" rx="11" fill="#ef4444" opacity="0.2"/>
+  <text x="200" y="341" font-size="14" text-anchor="middle">🎙 ▶ ⬛⬛⬛⬛⬛⬛</text>
+</svg>

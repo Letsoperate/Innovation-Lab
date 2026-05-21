@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="g40" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0c4a6e"/>
+      <stop offset="100%" style="stop-color:#075985"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#g40)" rx="24"/>
+  <circle cx="200" cy="170" r="80" fill="#0369a1" opacity="0.3" stroke="#38bdf8" stroke-width="2"/>
+  <circle cx="200" cy="170" r="60" fill="none" stroke="#7dd3fc" stroke-width="1" opacity="0.5"/>
+  <circle cx="200" cy="170" r="2" fill="#38bdf8"/>
+  <line x1="200" y1="90" x2="200" y2="250" stroke="#38bdf8" stroke-width="1" opacity="0.4"/>
+  <line x1="120" y1="170" x2="280" y2="170" stroke="#38bdf8" stroke-width="1" opacity="0.4"/>
+  <path d="M200 110 L207 130 L200 127 L193 130Z" fill="#f59e0b"/>
+  <circle cx="155" cy="145" r="6" fill="#38bdf8"/>
+  <circle cx="240" cy="155" r="6" fill="#38bdf8"/>
+  <circle cx="175" cy="200" r="6" fill="#7dd3fc"/>
+  <path d="M155 145 Q190 135 240 155 Q220 185 175 200" stroke="#38bdf8" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="200" y="310" font-family="Georgia, serif" font-size="26" font-weight="700" fill="#f0f9ff" text-anchor="middle">WAYPOINT</text>
+  <text x="200" y="338" font-family="Georgia" font-size="13" fill="#38bdf8" text-anchor="middle" letter-spacing="2">AI TRIP PLANNER</text>
+</svg>

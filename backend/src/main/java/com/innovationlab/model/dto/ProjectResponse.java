@@ -19,6 +19,7 @@ public class ProjectResponse {
     private String techStack;
     private String logoColor;
     private String logoInitial;
+    private String logoImage;
     private List<String> categories;
     private int upvotes;
     private int views;
@@ -66,6 +67,8 @@ public class ProjectResponse {
     public void setLogoColor(String logoColor) { this.logoColor = logoColor; }
     public String getLogoInitial() { return logoInitial; }
     public void setLogoInitial(String logoInitial) { this.logoInitial = logoInitial; }
+    public String getLogoImage() { return logoImage; }
+    public void setLogoImage(String logoImage) { this.logoImage = logoImage; }
     public List<String> getCategories() { return categories; }
     public void setCategories(List<String> categories) { this.categories = categories; }
     public int getUpvotes() { return upvotes; }

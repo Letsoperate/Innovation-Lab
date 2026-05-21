@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="g22" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23"/>
+      <stop offset="100%" style="stop-color:#1a1a3e"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#g22)" rx="24"/>
+  <rect x="80" y="110" width="100" height="70" rx="8" fill="#1e1e4a" stroke="#4f46e5" stroke-width="2"/>
+  <rect x="220" y="110" width="100" height="70" rx="8" fill="#1e1e4a" stroke="#4f46e5" stroke-width="2"/>
+  <rect x="150" y="220" width="100" height="70" rx="8" fill="#1e1e4a" stroke="#7c3aed" stroke-width="2"/>
+  <line x1="180" y1="145" x2="220" y2="145" stroke="#4f46e5" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="130" y1="180" x2="200" y2="220" stroke="#4f46e5" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="270" y1="180" x2="200" y2="220" stroke="#4f46e5" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="130" y="150" font-family="monospace" font-size="10" fill="#818cf8" text-anchor="middle">Decision</text>
+  <text x="130" y="163" font-family="monospace" font-size="10" fill="#818cf8" text-anchor="middle">A</text>
+  <text x="270" y="150" font-family="monospace" font-size="10" fill="#818cf8" text-anchor="middle">Decision</text>
+  <text x="270" y="163" font-family="monospace" font-size="10" fill="#818cf8" text-anchor="middle">B</text>
+  <text x="200" y="258" font-family="monospace" font-size="10" fill="#a78bfa" text-anchor="middle">Outcome</text>
+  <text x="200" y="330" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#818cf8" text-anchor="middle">Memex AI</text>
+  <text x="200" y="358" font-family="Georgia" font-size="11" fill="#4f46e5" text-anchor="middle" letter-spacing="3">DECISION INTELLIGENCE</text>
+</svg>

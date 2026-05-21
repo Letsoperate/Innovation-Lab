@@ -296,6 +296,7 @@ public class ProjectService {
         r.setTechStack(p.getTechStack());
         r.setLogoColor(p.getLogoColor());
         r.setLogoInitial(p.getLogoInitial());
+        r.setLogoImage(p.getLogoImage());
         r.setCategories(p.getCategory() != null && !p.getCategory().isBlank()
                 ? List.of(p.getCategory()) : List.of());
         r.setUpvotes(p.getUpvotes());

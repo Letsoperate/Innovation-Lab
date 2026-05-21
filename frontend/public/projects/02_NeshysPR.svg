@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff8f0"/>
+      <stop offset="100%" style="stop-color:#ffe4cc"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#g2)" rx="24"/>
+  <ellipse cx="200" cy="175" rx="90" ry="70" fill="none" stroke="#e85d26" stroke-width="6"/>
+  <circle cx="200" cy="175" r="15" fill="#e85d26"/>
+  <line x1="155" y1="130" x2="120" y2="100" stroke="#e85d26" stroke-width="4" stroke-linecap="round"/>
+  <line x1="245" y1="130" x2="280" y2="100" stroke="#e85d26" stroke-width="4" stroke-linecap="round"/>
+  <line x1="200" y1="110" x2="200" y2="80" stroke="#e85d26" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="120" cy="98" r="8" fill="#e85d26"/>
+  <circle cx="280" cy="98" r="8" fill="#ff8c5a"/>
+  <circle cx="200" cy="75" r="8" fill="#ffb899"/>
+  <path d="M155 230 Q180 265 200 255 Q220 265 245 230" fill="#e85d26" stroke="none"/>
+  <text x="200" y="315" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#e85d26" text-anchor="middle">NESHYS</text>
+  <text x="200" y="345" font-family="Georgia, serif" font-size="14" fill="#c94010" text-anchor="middle" letter-spacing="4">PR PLATFORM</text>
+</svg>

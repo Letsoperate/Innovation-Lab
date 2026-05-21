@@ -392,6 +392,24 @@ public class SeedService {
                 "ai", "ai-ml", "AI Agents AI Automation", 33, 67, 1, 5.0, true, 0,
                 hoursAgo(33)));
 
+        // Map project logos by index (files are 01-42 matching seed order)
+        String[] logoFiles = {
+            "01_SikkerKey.svg","02_NeshysPR.svg","03_Avif2JPG.svg","04_glncCLI.svg",
+            "05_Wipperoz.svg","06_LeadBoxer.svg","07_ColocNow.svg","08_Mindvaults.svg",
+            "09_RandomProfilesAPI.svg","10_AISelfie.svg","11_Amawish.svg","12_SecondNumber.svg",
+            "13_BewertungsFlow.svg","14_NoClick.svg","15_ToolIgnite.svg","16_ConversionProbe.svg",
+            "17_SomioAI.svg","18_reverscan.svg","19_Clausify.svg","20_SyncWhen.svg",
+            "21_NicheScout.svg","22_MemexAI.svg","23_PDFTranslatorPro.svg","24_MOR.svg",
+            "25_NetronEats.svg","26_ZensorAnalytics.svg","27_SkyChart.svg","28_ScrollLaunch.svg",
+            "29_Numi.svg","30_CVoria.svg","31_PeptideCalculator.svg","32_ForexCracked.svg",
+            "33_Skuno.svg","34_Worksheetly.svg","35_StockCar.svg","36_ClawGlow.svg",
+            "37_KormaDesk.svg","38_PricePush.svg","39_ProspectB2B.svg","40_Waypoint.svg",
+            "41_CliqSpy.svg","42_Lodgestory.svg"
+        };
+        for (int i = 0; i < Math.min(projects.size(), logoFiles.length); i++) {
+            projects.get(i).setLogoImage("/projects/" + logoFiles[i]);
+        }
+
         projectRepo.saveAll(projects);
         return projects.size();
     }

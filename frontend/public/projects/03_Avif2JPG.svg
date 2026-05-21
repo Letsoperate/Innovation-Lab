@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fff4"/>
+      <stop offset="100%" style="stop-color:#dcffe8"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#g3)" rx="24"/>
+  <rect x="80" y="100" width="100" height="80" rx="8" fill="#2dd4bf" opacity="0.3" stroke="#2dd4bf" stroke-width="3"/>
+  <text x="130" y="148" font-family="monospace" font-size="14" fill="#2dd4bf" text-anchor="middle" font-weight="700">AVIF</text>
+  <rect x="220" y="100" width="100" height="80" rx="8" fill="#f59e0b" opacity="0.3" stroke="#f59e0b" stroke-width="3"/>
+  <text x="270" y="148" font-family="monospace" font-size="14" fill="#f59e0b" text-anchor="middle" font-weight="700">JPG</text>
+  <polygon points="180,135 195,125 195,145" fill="#1a202c"/>
+  <polygon points="220,135 205,125 205,145" fill="#1a202c"/>
+  <rect x="195" y="130" width="10" height="10" fill="#1a202c"/>
+  <rect x="100" y="210" width="200" height="6" rx="3" fill="#e2e8f0"/>
+  <rect x="100" y="210" width="160" height="6" rx="3" fill="#2dd4bf"/>
+  <text x="200" y="295" font-family="'Arial Black', sans-serif" font-size="26" font-weight="900" fill="#1a202c" text-anchor="middle">AVIF2JPG</text>
+  <text x="200" y="325" font-family="Arial" font-size="12" fill="#64748b" text-anchor="middle">BULK IMAGE CONVERTER</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="g42" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e1b4b"/>
+      <stop offset="100%" style="stop-color:#312e81"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#g42)" rx="24"/>
+  <rect x="90" y="105" width="220" height="170" rx="12" fill="#2e1065" stroke="#4f46e5" stroke-width="2"/>
+  <rect x="105" y="120" width="75" height="50" rx="6" fill="#4f46e5" opacity="0.5"/>
+  <text x="142" y="140" font-family="monospace" font-size="9" fill="#c7d2fe" text-anchor="middle">Email</text>
+  <text x="142" y="155" font-family="monospace" font-size="8" fill="#a5b4fc" text-anchor="middle">● ● ●</text>
+  <rect x="195" y="120" width="55" height="50" rx="6" fill="#0891b2" opacity="0.5"/>
+  <text x="222" y="140" font-family="monospace" font-size="9" fill="#cffafe" text-anchor="middle">Chat</text>
+  <text x="222" y="155" font-family="monospace" font-size="8" fill="#a5f3fc" text-anchor="middle">● ●</text>
+  <rect x="265" y="120" width="35" height="50" rx="6" fill="#059669" opacity="0.5"/>
+  <text x="282" y="140" font-family="monospace" font-size="9" fill="#d1fae5" text-anchor="middle">SMS</text>
+  <text x="282" y="155" font-family="monospace" font-size="8" fill="#a7f3d0" text-anchor="middle">●</text>
+  <rect x="105" y="185" width="195" height="75" rx="6" fill="#1e1b4b" stroke="#4f46e5" stroke-width="1" opacity="0.8"/>
+  <rect x="115" y="198" width="175" height="8" rx="3" fill="#4f46e5" opacity="0.6"/>
+  <rect x="115" y="215" width="150" height="6" rx="3" fill="#6366f1" opacity="0.4"/>
+  <rect x="115" y="228" width="165" height="6" rx="3" fill="#6366f1" opacity="0.4"/>
+  <rect x="115" y="243" width="145" height="6" rx="3" fill="#6366f1" opacity="0.3"/>
+  <text x="200" y="320" font-family="Georgia, serif" font-size="24" font-weight="700" fill="#e0e7ff" text-anchor="middle">Lodgestory</text>
+  <text x="200" y="350" font-family="Georgia" font-size="11" fill="#818cf8" text-anchor="middle" letter-spacing="2">OMNICHANNEL INBOX</text>
+</svg>

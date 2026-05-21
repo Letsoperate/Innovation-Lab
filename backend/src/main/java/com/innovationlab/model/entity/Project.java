@@ -48,6 +48,9 @@ public class Project {
     @Column(name = "logo_initial")
     private String logoInitial;
 
+    @Column(name = "logo_image")
+    private String logoImage;
+
     private int upvotes = 0;
     private int views = 0;
 
@@ -117,6 +120,8 @@ public class Project {
     public void setLogoColor(String logoColor) { this.logoColor = logoColor; }
     public String getLogoInitial() { return logoInitial; }
     public void setLogoInitial(String logoInitial) { this.logoInitial = logoInitial; }
+    public String getLogoImage() { return logoImage; }
+    public void setLogoImage(String logoImage) { this.logoImage = logoImage; }
     public int getUpvotes() { return upvotes; }
     public void setUpvotes(int upvotes) { this.upvotes = upvotes; }
     public int getViews() { return views; }

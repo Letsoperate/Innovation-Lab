@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="g31" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f4ff"/>
+      <stop offset="100%" style="stop-color:#e0e9ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#g31)" rx="24"/>
+  <circle cx="150" cy="140" r="20" fill="none" stroke="#4f46e5" stroke-width="3"/>
+  <text x="150" y="146" font-family="monospace" font-size="12" fill="#4f46e5" text-anchor="middle">NH₂</text>
+  <circle cx="220" cy="140" r="20" fill="none" stroke="#0891b2" stroke-width="3"/>
+  <text x="220" y="146" font-family="monospace" font-size="12" fill="#0891b2" text-anchor="middle">CH₂</text>
+  <circle cx="290" cy="140" r="20" fill="none" stroke="#7c3aed" stroke-width="3"/>
+  <text x="290" y="146" font-family="monospace" font-size="12" fill="#7c3aed" text-anchor="middle">COOH</text>
+  <line x1="170" y1="140" x2="200" y2="140" stroke="#64748b" stroke-width="2.5"/>
+  <line x1="240" y1="140" x2="270" y2="140" stroke="#64748b" stroke-width="2.5"/>
+  <rect x="80" y="190" width="240" height="100" rx="10" fill="white" stroke="#c7d2fe" stroke-width="2"/>
+  <text x="200" y="218" font-family="monospace" font-size="12" fill="#4f46e5" text-anchor="middle">Dose Calculator</text>
+  <rect x="100" y="228" width="200" height="28" rx="6" fill="#eef2ff"/>
+  <text x="200" y="248" font-family="monospace" font-size="13" fill="#6366f1" text-anchor="middle">5.00 mcg / vial</text>
+  <rect x="100" y="265" width="95" height="18" rx="4" fill="#4f46e5"/>
+  <rect x="205" y="265" width="95" height="18" rx="4" fill="#4f46e5" opacity="0.5"/>
+  <text x="147" y="278" font-family="monospace" font-size="10" fill="white" text-anchor="middle">CALCULATE</text>
+  <text x="252" y="278" font-family="monospace" font-size="10" fill="white" text-anchor="middle">RESET</text>
+  <text x="200" y="338" font-family="monospace" font-size="18" font-weight="700" fill="#4f46e5" text-anchor="middle">PEPTIDE CALC</text>
+  <text x="200" y="364" font-family="monospace" font-size="11" fill="#6366f1" text-anchor="middle" opacity="0.7">PRECISION DOSING</text>
+</svg>

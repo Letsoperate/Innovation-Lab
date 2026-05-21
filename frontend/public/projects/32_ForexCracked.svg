@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#0d0d0d" rx="24"/>
+  <rect x="60" y="120" width="280" height="160" rx="6" fill="#111" stroke="#1a1a1a" stroke-width="2"/>
+  <polyline points="80,230 110,210 140,240 170,190 200,220 230,175 260,200 290,160 320,180" stroke="#00ff88" stroke-width="2.5" fill="none"/>
+  <polyline points="80,240 110,250 140,245 170,260 200,240 230,255 260,235 290,250 320,240" stroke="#ff4444" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <line x1="60" y1="120" x2="60" y2="280" stroke="#1e1e1e" stroke-width="1"/>
+  <text x="70" y="145" font-family="monospace" font-size="9" fill="#333">1.2100</text>
+  <text x="70" y="185" font-family="monospace" font-size="9" fill="#333">1.2050</text>
+  <text x="70" y="225" font-family="monospace" font-size="9" fill="#333">1.2000</text>
+  <text x="200" y="330" font-family="'Arial Black', sans-serif" font-size="24" font-weight="900" fill="#00ff88" text-anchor="middle">FOREX</text>
+  <text x="200" y="358" font-family="'Arial Black', sans-serif" font-size="24" font-weight="900" fill="#ff4444" text-anchor="middle">CRACKED</text>
+</svg>

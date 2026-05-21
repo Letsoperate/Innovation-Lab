@@ -53,7 +53,10 @@ const HomePage = () => {
   };
 
   const handleVoteChange = (projectId, voted) => {
-    setVotedIds((prev) => voted ? [...prev, projectId] : prev.filter((id) => id !== projectId));
+    setVotedIds((prev) =>
+      voted ? [...prev, projectId] : prev.filter((id) => id !== projectId)
+    );
+    loadData(); // Refresh projects and stats after vote
   };
 
   const handleBookmarkChange = (projectId, bookmarked) => {

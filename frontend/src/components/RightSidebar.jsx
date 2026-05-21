@@ -13,7 +13,12 @@ const RightSidebar = () => {
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
 
   useEffect(() => {
-    const load = async () => {
+    load();
+    const interval = setInterval(load, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const load = async () => {
       try {
         const [statsRes, hofRes, blogRes] = await Promise.all([
           api.get("/stats"), api.get("/hall-of-fame"), api.get("/blog"),

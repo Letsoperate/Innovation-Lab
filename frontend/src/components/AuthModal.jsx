@@ -99,6 +99,9 @@ const AuthModal = ({ isOpen, onClose, initialMode = "login" }) => {
               className="w-full h-10 px-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009639]/20 focus:border-[#009639]"
               placeholder="Min 6 characters"
             />
+            {mode === "login" && (
+              <p className="text-right mt-1"><span className="text-[10px] text-gray-400 cursor-pointer hover:text-purple-600" onClick={() => alert("Password reset: contact the admin at admin@innovationlab.co.za")}>Forgot password?</span></p>
+            )}
           </div>
           <button
             type="submit" disabled={loading}

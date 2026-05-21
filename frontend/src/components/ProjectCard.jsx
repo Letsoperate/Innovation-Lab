@@ -145,6 +145,12 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
             </span>
           )}
 
+          {project.is_sponsored && (
+            <span className="inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-medium text-amber-600 bg-amber-50 rounded">
+              <Trophy className="w-3 h-3" /> Sponsored
+            </span>
+          )}
+
           {project.rating > 0 && (
             <span className="inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-medium text-amber-600">
               <Ship className="w-3 h-3 fill-amber-400 text-amber-400" /> Rating {project.rating}

@@ -37,7 +37,7 @@ const SubmitPage = () => {
   const [formData, setFormData] = useState({
     name: "", tagline: "", description: "", demo_url: "", repo_url: "",
     video_url: "", category: "", track: "", institution: "",
-    team_name: "", team_size: "1", tech_stack: "",
+    team_name: "", team_size: "1", tech_stack: "", screenshot_url: "",
   });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -178,6 +178,11 @@ const SubmitPage = () => {
               <span className="flex items-center gap-1"><Video className="w-3 h-3" /> Demo Video URL</span>
             </label>
             <input name="video_url" value={formData.video_url} onChange={handleChange} placeholder="https://youtube.com/watch?v=..."
+              className="w-full h-10 px-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009639]/20 focus:border-[#009639]" />
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-700 mb-1.5">Screenshot URL</label>
+            <input name="screenshot_url" value={formData.screenshot_url} onChange={handleChange} placeholder="https://imgur.com/your-screenshot.png"
               className="w-full h-10 px-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009639]/20 focus:border-[#009639]" />
           </div>
         </div>

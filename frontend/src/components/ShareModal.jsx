@@ -3,7 +3,8 @@ import { X, Copy, Check } from "lucide-react";
 
 const ShareModal = ({ projectName, projectId, isOpen, onClose }) => {
   const [copied, setCopied] = React.useState(false);
-  const url = `${window.location.origin}/?project=${projectId}`;
+  const slug = projectName?.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+  const url = `${window.location.origin}/p/${slug}`;
 
   const copyLink = () => {
     navigator.clipboard.writeText(`${projectName} — via Innovation Lab\n${url}`);

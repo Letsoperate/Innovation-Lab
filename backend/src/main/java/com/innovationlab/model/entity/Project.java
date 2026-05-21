@@ -74,6 +74,9 @@ public class Project {
     @Column(name = "award_won")
     private String awardWon;
 
+    @Column(unique = true)
+    private String slug;
+
     private int rank = 0;
 
     @Column(name = "rank_label")
@@ -143,6 +146,8 @@ public class Project {
     public void setFeatured(boolean featured) { isFeatured = featured; }
     public String getAwardWon() { return awardWon; }
     public void setAwardWon(String awardWon) { this.awardWon = awardWon; }
+    public String getSlug() { return slug; }
+    public void setSlug(String slug) { this.slug = slug; }
     public int getRank() { return rank; }
     public void setRank(int rank) { this.rank = rank; }
     public String getRankLabel() { return rankLabel; }

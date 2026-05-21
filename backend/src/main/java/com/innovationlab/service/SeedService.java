@@ -450,6 +450,7 @@ public class SeedService {
         for (Project p : projects) {
             String logo = logoMap.get(p.getName());
             if (logo != null) p.setLogoImage(logo);
+            p.setSlug(p.getName().toLowerCase().replaceAll("[^a-z0-9]+", "-").replaceAll("^-|-$", ""));
         }
 
         // Assign awards to top 10 projects by upvotes

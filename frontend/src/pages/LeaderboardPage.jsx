@@ -4,10 +4,10 @@ import {
   Trophy,
   Medal,
   Award,
-  Star,
+  Ship,
   ChevronUp,
   Flame,
-  Zap,
+  Rocket,
   Filter,
 } from "lucide-react";
 
@@ -76,12 +76,12 @@ const LeaderboardPage = () => {
   };
 
   return (
-    <div className="max-w-[900px] mx-auto px-4 sm:px-6 py-12">
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center mb-10">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-50 text-amber-600 text-xs font-medium rounded-full mb-4">
           <Trophy className="w-3 h-3" /> Rankings
         </div>
-        <h1 className="text-3xl font-bold text-[#111827] mb-3">Leaderboard</h1>
+        <h1 className="text-3xl font-bold text-purple-800 mb-3">Leaderboard</h1>
         <p className="text-sm text-gray-600 max-w-lg mx-auto">
           Top-ranked projects in the Innovation Lab competition. Rankings update in real-time based on community votes.
         </p>
@@ -90,15 +90,15 @@ const LeaderboardPage = () => {
       {stats && (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
           <div className="p-4 bg-white border border-gray-200 rounded-xl text-center">
-            <div className="text-lg font-bold text-[#111827]">{stats.total_projects}</div>
+            <div className="text-lg font-bold text-purple-800">{stats.total_projects}</div>
             <div className="text-[10px] text-gray-500 mt-0.5">Projects</div>
           </div>
           <div className="p-4 bg-white border border-gray-200 rounded-xl text-center">
-            <div className="text-lg font-bold text-[#111827]">{stats.total_votes.toLocaleString()}</div>
+            <div className="text-lg font-bold text-purple-800">{stats.total_votes.toLocaleString()}</div>
             <div className="text-[10px] text-gray-500 mt-0.5">Total Votes</div>
           </div>
           <div className="p-4 bg-white border border-gray-200 rounded-xl text-center">
-            <div className="text-lg font-bold text-[#111827]">{stats.total_participants.toLocaleString()}</div>
+            <div className="text-lg font-bold text-purple-800">{stats.total_participants.toLocaleString()}</div>
             <div className="text-[10px] text-gray-500 mt-0.5">Participants</div>
           </div>
           <div className="p-4 bg-[#009639]/5 border border-[#009639]/20 rounded-xl text-center">
@@ -115,7 +115,7 @@ const LeaderboardPage = () => {
             key={filter}
             onClick={() => setActiveFilter(filter)}
             className={`px-3 py-1.5 text-xs font-medium rounded-lg whitespace-nowrap transition-colors ${
-              activeFilter === filter ? "bg-[#111827] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              activeFilter === filter ? "bg-purple-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
             }`}
           >
             {filter}
@@ -154,29 +154,29 @@ const LeaderboardPage = () => {
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center gap-1.5">
-                    <h4 className="text-sm font-semibold text-[#111827] truncate">{project.name}</h4>
+                    <h4 className="text-sm font-semibold text-purple-800 truncate">{project.name}</h4>
                     {project.is_trending && <Flame className="w-3 h-3 text-orange-500 shrink-0" />}
                   </div>
                   <p className="text-[10px] text-gray-500 truncate">{project.institution}</p>
                 </div>
               </div>
               <div className="flex flex-col items-center">
-                <div className="flex items-center gap-1 text-sm font-semibold text-[#111827]">
+                <div className="flex items-center gap-1 text-sm font-semibold text-purple-800">
                   <ChevronUp className="w-3 h-3" /> {project.upvotes}
                 </div>
               </div>
               <div className="flex items-center justify-center gap-1">
                 {project.rating > 0 ? (
                   <>
-                    <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-                    <span className="text-sm font-semibold text-[#111827]">{project.rating}</span>
+                    <Ship className="w-3 h-3 fill-amber-400 text-amber-400" />
+                    <span className="text-sm font-semibold text-purple-800">{project.rating}</span>
                   </>
                 ) : (
                   <span className="text-xs text-gray-400">—</span>
                 )}
               </div>
               <div className="flex items-center justify-center gap-1">
-                <Zap className="w-3 h-3 text-[#009639]" />
+                <Rocket className="w-3 h-3 text-[#009639]" />
                 <span className="text-sm font-bold text-[#009639]">{project.innovation_score ?? project.vibe_push_score}</span>
               </div>
             </div>

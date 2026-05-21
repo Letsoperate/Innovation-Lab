@@ -7,7 +7,7 @@ import {
   Link2,
   Users,
   Tag,
-  Zap,
+  Rocket,
   CheckCircle,
   AlertCircle,
   School,
@@ -94,12 +94,12 @@ const SubmitPage = () => {
   };
 
   return (
-    <div className="max-w-[700px] mx-auto px-4 sm:px-6 py-12">
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-12"><div className="max-w-[700px] mx-auto">
       <div className="text-center mb-10">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#009639]/10 text-[#009639] text-xs font-medium rounded-full mb-4">
           <Upload className="w-3 h-3" /> Submit Entry
         </div>
-        <h1 className="text-3xl font-bold text-[#111827] mb-3">Submit Your Project</h1>
+        <h1 className="text-3xl font-bold text-purple-800 mb-3">Submit Your Project</h1>
         <p className="text-sm text-gray-600 max-w-md mx-auto">
           Showcase your innovative project to the community. Fill in the details below and your project goes live for voting.
         </p>
@@ -133,8 +133,8 @@ const SubmitPage = () => {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="p-6 bg-white border border-gray-200 rounded-xl space-y-5">
-          <h3 className="text-sm font-bold text-[#111827] flex items-center gap-2">
-            <Zap className="w-4 h-4 text-[#009639]" /> Project Details
+          <h3 className="text-sm font-bold text-purple-800 flex items-center gap-2">
+            <Rocket className="w-4 h-4 text-[#009639]" /> Project Details
           </h3>
           <div>
             <label className="block text-xs font-medium text-gray-700 mb-1.5">Project Name *</label>
@@ -160,7 +160,7 @@ const SubmitPage = () => {
         </div>
 
         <div className="p-6 bg-white border border-gray-200 rounded-xl space-y-5">
-          <h3 className="text-sm font-bold text-[#111827] flex items-center gap-2">
+          <h3 className="text-sm font-bold text-purple-800 flex items-center gap-2">
             <Link2 className="w-4 h-4 text-[#009639]" /> Links
           </h3>
           <div>
@@ -183,7 +183,7 @@ const SubmitPage = () => {
         </div>
 
         <div className="p-6 bg-white border border-gray-200 rounded-xl space-y-5">
-          <h3 className="text-sm font-bold text-[#111827] flex items-center gap-2">
+          <h3 className="text-sm font-bold text-purple-800 flex items-center gap-2">
             <Tag className="w-4 h-4 text-[#009639]" /> Classification
           </h3>
           <div>
@@ -205,7 +205,7 @@ const SubmitPage = () => {
         </div>
 
         <div className="p-6 bg-white border border-gray-200 rounded-xl space-y-5">
-          <h3 className="text-sm font-bold text-[#111827] flex items-center gap-2">
+          <h3 className="text-sm font-bold text-purple-800 flex items-center gap-2">
             <Users className="w-4 h-4 text-[#009639]" /> Team Information
           </h3>
           <div>
@@ -245,11 +245,12 @@ const SubmitPage = () => {
         <button
           type="submit"
           disabled={loading || !user}
-          className="w-full py-3 text-sm font-semibold text-white bg-[#111827] rounded-xl hover:bg-[#1f2937] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+          className="w-full py-3 text-sm font-semibold text-white bg-purple-600 rounded-xl hover:bg-purple-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
         >
           <Upload className="w-4 h-4" /> {loading ? "Submitting..." : "Submit Project"}
         </button>
       </form>
+    </div>
     </div>
   );
 };

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 160">
+  <rect width="300" height="160" fill="#ffffff"/>
+  <path d="M 90,35 L 80,35 L 80,125 L 90,125" fill="none" stroke="#534AB7" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 210,35 L 220,35 L 220,125 L 210,125" fill="none" stroke="#1D9E75" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="150" y="95" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="56" font-weight="700" letter-spacing="-1" fill="#2C2C2A">ILab</text>
+</svg>

@@ -1,4 +1,4 @@
-# VibePush SA - API Contracts & Integration Plan
+# Innovation Lab - API Contracts & Integration Plan
 
 ## API Endpoints
 
@@ -54,8 +54,8 @@ All data in `/src/data/mock.js` will be replaced with API calls:
 - `howItWorksSteps`, `competitionTimeline` → kept as static frontend data (not DB-driven)
 - Leaderboard → `GET /api/leaderboard?period=X`
 
-## MongoDB Collections
-- `users` - accounts with hashed passwords
+## PostgreSQL Tables (Spring Boot / JPA)
+- `users` - accounts with BCrypt-hashed passwords
 - `projects` - competition entries with computed scores
 - `votes` - user_id + project_id pairs
 - `comments` - project comments

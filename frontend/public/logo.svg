@@ -1,0 +1,12 @@
+<svg width="100%" viewBox="0 0 680 320" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>ILab Innovation Lab logo</title>
+  <g transform="translate(340, 160)" text-anchor="middle">
+    <text y="38" x="-118" style="fill:#AFA9EC;font-family:Inter, sans-serif;font-size:108px;font-weight:500;text-anchor:middle;dominant-baseline:auto">I</text>
+    <text y="38" x="18" style="fill:#B4B2A9;font-family:Inter, sans-serif;font-size:108px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Lab</text>
+    <circle cx="-138" cy="-46" r="7" style="fill:#5DCAA5"/>
+    <rect x="154" y="-76" width="10" height="10" rx="2" style="fill:#5DCAA5"/>
+    <rect x="170" y="-62" width="6" height="6" rx="1" opacity="0.5" style="fill:#5DCAA5"/>
+    <line x1="-195" y1="-8" x2="-195" y2="50" stroke="#3C3489" stroke-width="3.5" stroke-linecap="round" opacity="0.25"/>
+    <text y="82" x="0" style="fill:#888780;font-family:Inter, sans-serif;font-size:13px;font-weight:400;text-anchor:middle;dominant-baseline:auto">INNOVATION LAB</text>
+  </g>
+</svg>

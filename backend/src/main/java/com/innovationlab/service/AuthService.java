@@ -38,7 +38,8 @@ public class AuthService {
         String token = jwtProvider.createToken(Map.of(
             "sub", user.getId(),
             "email", user.getEmail(),
-            "name", user.getName()
+            "name", user.getName(),
+            "is_admin", user.isAdmin()
         ));
 
         return new AuthResponse(token, toResponse(user));
@@ -53,7 +54,8 @@ public class AuthService {
         String token = jwtProvider.createToken(Map.of(
             "sub", user.getId(),
             "email", user.getEmail(),
-            "name", user.getName()
+            "name", user.getName(),
+            "is_admin", user.isAdmin()
         ));
         return new AuthResponse(token, toResponse(user));
     }

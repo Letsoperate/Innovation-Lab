@@ -44,7 +44,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = "login" }) => {
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={onClose}>
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-6 mx-4" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-lg font-bold text-[#111827]">
+          <h2 className="text-lg font-bold text-purple-800">
             {mode === "login" ? "Welcome back" : "Create an account"}
           </h2>
           <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded-lg">
@@ -97,7 +97,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = "login" }) => {
           </div>
           <button
             type="submit" disabled={loading}
-            className="w-full h-10 text-sm font-semibold text-white bg-[#111827] rounded-lg hover:bg-[#1f2937] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+            className="w-full h-10 text-sm font-semibold text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
           >
             {loading ? "Please wait..." : mode === "login" ? (
               <><LogIn className="w-4 h-4" /> Sign in</>

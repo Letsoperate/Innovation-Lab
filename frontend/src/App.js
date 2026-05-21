@@ -11,6 +11,10 @@ import BlogPage from "./pages/BlogPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import ProfilePage from "./pages/ProfilePage";
 import AdminPage from "./pages/AdminPage";
+import HallOfFamePage from "./pages/HallOfFamePage";
+import SponsorLoginPage from "./pages/SponsorLoginPage";
+import SponsorDashboard from "./pages/SponsorDashboard";
+import AdminLoginPage from "./pages/AdminLoginPage";
 
 function App() {
   return (
@@ -26,6 +30,10 @@ function App() {
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/hall-of-fame" element={<HallOfFamePage />} />
+            <Route path="/sponsor/login" element={<SponsorLoginPage />} />
+            <Route path="/sponsor/dashboard" element={<SponsorDashboard />} />
+            <Route path="/admin/login" element={<AdminLoginPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>

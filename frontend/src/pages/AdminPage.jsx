@@ -11,14 +11,14 @@ import {
   Bookmark,
   TrendingUp,
   Trash2,
-  Star,
+  Ship,
   Rss,
   Plus,
   Edit3,
   X,
   Save,
   Loader2,
-  Zap,
+  Rocket,
   BarChart3,
   Calendar,
   Award,
@@ -145,7 +145,7 @@ const AdminPage = () => {
 
   if (!user?.is_admin) {
     return (
-      <div className="max-w-[900px] mx-auto px-4 py-20 text-center">
+      <div className="w-full px-4 py-20 text-center">
         <Shield className="w-12 h-12 text-gray-300 mx-auto mb-3" />
         <p className="text-gray-500">Admin access required.</p>
       </div>
@@ -161,13 +161,13 @@ const AdminPage = () => {
   ];
 
   return (
-    <div className="max-w-[1100px] mx-auto px-4 sm:px-6 py-10">
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-10">
       <div className="flex items-center gap-3 mb-8">
-        <div className="w-10 h-10 bg-[#111827] rounded-xl flex items-center justify-center">
+        <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center">
           <Shield className="w-5 h-5 text-[#FFB612]" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-[#111827]">Admin Panel</h1>
+          <h1 className="text-xl font-bold text-purple-800">Admin Panel</h1>
           <p className="text-xs text-gray-500">Manage Innovation Lab competition</p>
         </div>
       </div>
@@ -179,7 +179,7 @@ const AdminPage = () => {
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`flex items-center gap-1.5 px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
-              activeTab === tab.id ? "border-[#111827] text-[#111827]" : "border-transparent text-gray-500 hover:text-gray-700"
+              activeTab === tab.id ? "border-purple-600 text-purple-800" : "border-transparent text-gray-500 hover:text-gray-700"
             }`}
           >
             {tab.icon} {tab.label}
@@ -207,7 +207,7 @@ const AdminPage = () => {
                     <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${stat.color}`}>
                       {stat.icon}
                     </div>
-                    <div className="text-2xl font-bold text-[#111827]">{stat.value}</div>
+                    <div className="text-2xl font-bold text-purple-800">{stat.value}</div>
                     <div className="text-xs text-gray-500">{stat.label}</div>
                   </div>
                 ))}
@@ -228,12 +228,12 @@ const AdminPage = () => {
               </div>
               {dashboard.top_categories?.length > 0 && (
                 <div className="p-5 bg-white border border-gray-200 rounded-xl">
-                  <h3 className="text-sm font-bold text-[#111827] mb-4">Top Categories</h3>
+                  <h3 className="text-sm font-bold text-purple-800 mb-4">Top Categories</h3>
                   <div className="space-y-2">
                     {dashboard.top_categories.map((c, i) => (
                       <div key={i} className="flex items-center justify-between">
                         <span className="text-sm text-gray-700">{c.category || "Uncategorized"}</span>
-                        <span className="text-sm font-semibold text-[#111827]">{c.count} projects</span>
+                        <span className="text-sm font-semibold text-purple-800">{c.count} projects</span>
                       </div>
                     ))}
                   </div>
@@ -251,11 +251,11 @@ const AdminPage = () => {
               {users.map((u) => (
                 <div key={u.id} className="grid grid-cols-[1fr_120px_120px_80px] gap-2 px-4 py-3 items-center border-b border-gray-50 hover:bg-gray-50/50">
                   <div>
-                    <div className="text-sm font-medium text-[#111827]">{u.name}</div>
+                    <div className="text-sm font-medium text-purple-800">{u.name}</div>
                     <div className="text-[10px] text-gray-500">{u.email}</div>
                   </div>
                   <div className="text-xs text-gray-600 truncate">{u.institution || "—"}</div>
-                  <div className="text-xs font-medium text-[#111827]">{u.project_count}</div>
+                  <div className="text-xs font-medium text-purple-800">{u.project_count}</div>
                   <div>
                     <button
                       onClick={() => handleToggleAdmin(u.id)}
@@ -285,11 +285,11 @@ const AdminPage = () => {
                       {p.logo_initial}
                     </div>
                     <div className="min-w-0">
-                      <div className="text-sm font-medium text-[#111827] truncate">{p.name}</div>
+                      <div className="text-sm font-medium text-purple-800 truncate">{p.name}</div>
                       <div className="text-[10px] text-gray-500 truncate">{p.institution} • {p.team_name}</div>
                     </div>
                   </div>
-                  <div className="text-center text-sm font-medium text-[#111827]">{p.upvotes}</div>
+                  <div className="text-center text-sm font-medium text-purple-800">{p.upvotes}</div>
                   <div className="text-center text-sm font-medium text-[#009639]">{p.innovation_score ?? p.vibe_push_score}</div>
                   <div className="text-center text-xs text-gray-500">{p.views}</div>
                   <div className="text-center">
@@ -311,7 +311,7 @@ const AdminPage = () => {
                   setBlogForm({ title: "", excerpt: "", content: "", category: "", read_time: "" });
                   setBlogModal({ open: true, mode: "create", data: null });
                 }}
-                  className="flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-white bg-[#111827] rounded-lg hover:bg-[#1f2937] transition-colors">
+                  className="flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors">
                   <Plus className="w-3.5 h-3.5" /> New Post
                 </button>
               </div>
@@ -319,7 +319,7 @@ const AdminPage = () => {
                 {blogPosts.map((post) => (
                   <div key={post.id} className="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl">
                     <div className="min-w-0 flex-1">
-                      <div className="text-sm font-medium text-[#111827] truncate">{post.title}</div>
+                      <div className="text-sm font-medium text-purple-800 truncate">{post.title}</div>
                       <div className="text-[10px] text-gray-500">{post.category} • {post.date}</div>
                     </div>
                     <div className="flex items-center gap-1 shrink-0 ml-3">
@@ -349,7 +349,7 @@ const AdminPage = () => {
                   setSponsorForm({ name: "", description: "", logo: "", color: "#009639", text_color: "#fff" });
                   setSponsorModal({ open: true, mode: "create", data: null });
                 }}
-                  className="flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-white bg-[#111827] rounded-lg hover:bg-[#1f2937] transition-colors">
+                  className="flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors">
                   <Plus className="w-3.5 h-3.5" /> New Sponsor
                 </button>
               </div>
@@ -370,7 +370,7 @@ const AdminPage = () => {
                           className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg"><Trash2 className="w-3.5 h-3.5" /></button>
                       </div>
                     </div>
-                    <div className="text-sm font-semibold text-[#111827]">{s.name}</div>
+                    <div className="text-sm font-semibold text-purple-800">{s.name}</div>
                     <div className="text-[10px] text-gray-500">{s.description}</div>
                   </div>
                 ))}
@@ -385,7 +385,7 @@ const AdminPage = () => {
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setBlogModal({ open: false, mode: "create", data: null })}>
           <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-6 mx-4 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-5">
-              <h2 className="text-lg font-bold text-[#111827]">{blogModal.mode === "create" ? "New Blog Post" : "Edit Blog Post"}</h2>
+              <h2 className="text-lg font-bold text-purple-800">{blogModal.mode === "create" ? "New Blog Post" : "Edit Blog Post"}</h2>
               <button onClick={() => setBlogModal({ open: false, mode: "create", data: null })} className="p-1 hover:bg-gray-100 rounded-lg"><X className="w-5 h-5 text-gray-500" /></button>
             </div>
             <div className="space-y-4">
@@ -401,7 +401,7 @@ const AdminPage = () => {
                 <div><label className="text-xs font-medium text-gray-700 mb-1 block">Read Time</label>
                   <input value={blogForm.read_time} onChange={(e) => setBlogForm({ ...blogForm, read_time: e.target.value })} placeholder="e.g. 5 min read" className="w-full h-10 px-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009639]/20" /></div>
               </div>
-              <button onClick={handleBlogSave} disabled={saving || !blogForm.title} className="w-full h-10 text-sm font-semibold text-white bg-[#111827] rounded-lg hover:bg-[#1f2937] transition-colors flex items-center justify-center gap-2 disabled:opacity-50">
+              <button onClick={handleBlogSave} disabled={saving || !blogForm.title} className="w-full h-10 text-sm font-semibold text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50">
                 {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />} {blogModal.mode === "create" ? "Create Post" : "Save Changes"}
               </button>
             </div>
@@ -414,7 +414,7 @@ const AdminPage = () => {
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setSponsorModal({ open: false, mode: "create", data: null })}>
           <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-6 mx-4" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-5">
-              <h2 className="text-lg font-bold text-[#111827]">{sponsorModal.mode === "create" ? "New Sponsor" : "Edit Sponsor"}</h2>
+              <h2 className="text-lg font-bold text-purple-800">{sponsorModal.mode === "create" ? "New Sponsor" : "Edit Sponsor"}</h2>
               <button onClick={() => setSponsorModal({ open: false, mode: "create", data: null })} className="p-1 hover:bg-gray-100 rounded-lg"><X className="w-5 h-5 text-gray-500" /></button>
             </div>
             <div className="space-y-4">
@@ -442,9 +442,9 @@ const AdminPage = () => {
               <div className="p-4 bg-gray-50 rounded-xl text-center">
                 <div className="text-[10px] text-gray-400 mb-2">Preview</div>
                 <div className="w-14 h-14 rounded-xl flex items-center justify-center text-sm font-bold mx-auto" style={{ backgroundColor: sponsorForm.color, color: sponsorForm.text_color }}>{sponsorForm.logo || "?"}</div>
-                <div className="text-xs font-semibold text-[#111827] mt-2">{sponsorForm.name || "Sponsor Name"}</div>
+                <div className="text-xs font-semibold text-purple-800 mt-2">{sponsorForm.name || "Sponsor Name"}</div>
               </div>
-              <button onClick={handleSponsorSave} disabled={saving || !sponsorForm.name} className="w-full h-10 text-sm font-semibold text-white bg-[#111827] rounded-lg hover:bg-[#1f2937] transition-colors flex items-center justify-center gap-2 disabled:opacity-50">
+              <button onClick={handleSponsorSave} disabled={saving || !sponsorForm.name} className="w-full h-10 text-sm font-semibold text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50">
                 {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />} {sponsorModal.mode === "create" ? "Add Sponsor" : "Save Changes"}
               </button>
             </div>

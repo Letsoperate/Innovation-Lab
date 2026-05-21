@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: innovation-lab-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    envVars:
+      - key: DATASOURCE_URL
+        value: jdbc:postgresql://YOUR_RENDER_DB_HOST:5432/innovationlab
+      - key: DATASOURCE_USER
+        value: innovationlab
+      - key: DATASOURCE_PASSWORD
+        fromDatabase:
+          name: innovationlab-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ALLOWED_ORIGINS
+        value: https://YOUR_NETLIFY_SITE.netlify.app
+      - key: COMPETITION_END
+        value: 2026-08-15
+
+databases:
+  - name: innovationlab-db
+    databaseName: innovationlab
+    plan: free

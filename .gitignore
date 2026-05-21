@@ -19,6 +19,9 @@ node_modules/
 # Testing
 /coverage
 
+# Java build
+backend/target/
+
 # Next.js
 /.next/
 /out/

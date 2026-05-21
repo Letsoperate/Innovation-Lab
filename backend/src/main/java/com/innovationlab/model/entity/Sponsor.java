@@ -13,14 +13,25 @@ public class Sponsor {
     @Column(nullable = false)
     private String name;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(length = 500)
     private String description;
 
+    @Column(length = 20)
     private String logo;
+
+    @Column(length = 20)
     private String color;
 
-    @Column(name = "text_color")
+    @Column(name = "text_color", length = 20)
     private String textColor;
+
+    @Column(unique = true)
+    private String email;
+
+    @Column(name = "password_hash")
+    private String passwordHash;
+
+    private boolean active = true;
 
     public Sponsor() {}
 
@@ -44,4 +55,10 @@ public class Sponsor {
     public void setColor(String color) { this.color = color; }
     public String getTextColor() { return textColor; }
     public void setTextColor(String textColor) { this.textColor = textColor; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    public String getPasswordHash() { return passwordHash; }
+    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
+    public boolean isActive() { return active; }
+    public void setActive(boolean active) { this.active = active; }
 }

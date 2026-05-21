@@ -5,12 +5,12 @@ import {
   Share2,
   Bookmark,
   Flame,
-  Star,
+  Ship,
   Play,
   Trophy,
   Medal,
   Award,
-  Zap,
+  Rocket,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import api from "../services/api";
@@ -86,7 +86,7 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-0.5">
-          <h3 className="text-sm font-semibold text-[#111827] truncate hover:underline cursor-pointer">
+          <h3 className="text-sm font-semibold text-purple-800 truncate hover:underline cursor-pointer">
             {project.name}
           </h3>
           {isTrending && (
@@ -137,12 +137,12 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
 
           {project.rating > 0 && (
             <span className="inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-medium text-amber-600">
-              <Star className="w-3 h-3 fill-amber-400 text-amber-400" /> Rating {project.rating}
+              <Ship className="w-3 h-3 fill-amber-400 text-amber-400" /> Rating {project.rating}
             </span>
           )}
 
           <span className="inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-medium text-[#009639]">
-            <Zap className="w-3 h-3" /> {innovationScore} Innovation Score
+            <Rocket className="w-3 h-3" /> {innovationScore} Innovation Score
           </span>
 
           {rankLabel && (

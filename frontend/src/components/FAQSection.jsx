@@ -18,13 +18,13 @@ const FAQSection = () => {
 
   return (
     <div className="py-8 border-t border-gray-100">
-      <h2 className="text-lg font-bold text-[#111827] mb-5">
+      <h2 className="text-lg font-bold text-purple-800 mb-5">
         Frequently asked questions
       </h2>
       <Accordion type="single" collapsible className="w-full">
         {faqData.map((faq, index) => (
           <AccordionItem key={faq.id || index} value={`item-${index}`} className="border-b border-gray-100">
-            <AccordionTrigger className="text-sm font-medium text-[#111827] hover:no-underline py-4">
+            <AccordionTrigger className="text-sm font-medium text-purple-800 hover:no-underline py-4">
               {faq.question}
             </AccordionTrigger>
             <AccordionContent className="text-sm text-gray-600 leading-relaxed pb-4">

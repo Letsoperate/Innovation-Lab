@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
-import { Zap, ChevronRight } from "lucide-react";
+import { Rocket, ChevronRight } from "lucide-react";
 
 const BrowseSidebar = () => {
   const [categories, setCategories] = useState([]);
@@ -27,10 +27,10 @@ const BrowseSidebar = () => {
   }, []);
 
   return (
-    <aside className="space-y-6">
+    <aside className="space-y-5">
       <div className="flex items-center gap-2">
-        <Zap className="w-4 h-4 text-[#009639]" />
-        <span className="text-sm font-bold text-[#111827]">Browse</span>
+        <Rocket className="w-4 h-4 text-[#009639]" />
+        <span className="text-sm font-bold text-purple-800">Browse</span>
       </div>
 
       <div>
@@ -42,7 +42,7 @@ const BrowseSidebar = () => {
         </div>
         <div className="space-y-0.5">
           {categories.slice(0, 7).map((cat) => (
-            <Link key={cat.id} to="/" className="block px-2 py-1.5 text-xs text-gray-600 hover:text-[#111827] hover:bg-gray-50 rounded-md transition-colors">
+            <Link key={cat.id} to="/" className="block px-2 py-1.5 text-xs text-gray-600 hover:text-purple-800 hover:bg-gray-50 rounded-md transition-colors">
               {cat.name}
             </Link>
           ))}
@@ -58,7 +58,7 @@ const BrowseSidebar = () => {
         </div>
         <div className="space-y-0.5">
           {tracks.map((track) => (
-            <Link key={track.id} to="/" className="block px-2 py-1.5 text-xs text-gray-600 hover:text-[#111827] hover:bg-gray-50 rounded-md transition-colors">
+            <Link key={track.id} to="/" className="block px-2 py-1.5 text-xs text-gray-600 hover:text-purple-800 hover:bg-gray-50 rounded-md transition-colors">
               {track.name}
             </Link>
           ))}
@@ -74,7 +74,7 @@ const BrowseSidebar = () => {
         </div>
         <div className="space-y-0.5">
           {audiences.map((aud) => (
-            <Link key={aud.id} to="/" className="block px-2 py-1.5 text-xs text-gray-600 hover:text-[#111827] hover:bg-gray-50 rounded-md transition-colors">
+            <Link key={aud.id} to="/" className="block px-2 py-1.5 text-xs text-gray-600 hover:text-purple-800 hover:bg-gray-50 rounded-md transition-colors">
               {aud.name}
             </Link>
           ))}

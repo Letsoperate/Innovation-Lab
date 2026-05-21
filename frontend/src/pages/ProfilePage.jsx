@@ -12,7 +12,7 @@ import {
   Save,
   X,
   Bookmark,
-  Zap,
+  Rocket,
   ChevronUp,
   FolderOpen,
   Shield,
@@ -90,7 +90,7 @@ const ProfilePage = () => {
 
   if (!user) {
     return (
-      <div className="max-w-[900px] mx-auto px-4 py-20 text-center">
+      <div className="w-full px-4 py-20 text-center">
         <p className="text-gray-500">Please log in to view your profile.</p>
       </div>
     );
@@ -102,7 +102,7 @@ const ProfilePage = () => {
   ];
 
   return (
-    <div className="max-w-[900px] mx-auto px-4 sm:px-6 py-10">
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-10">
       {/* Profile Card */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
@@ -142,7 +142,7 @@ const ProfilePage = () => {
             ) : (
               <>
                 <div className="flex items-center gap-2 mb-1">
-                  <h1 className="text-xl font-bold text-[#111827]">{user.name}</h1>
+                  <h1 className="text-xl font-bold text-purple-800">{user.name}</h1>
                   {user.is_admin && (
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-full">
                       <Shield className="w-3 h-3" /> Admin
@@ -156,10 +156,10 @@ const ProfilePage = () => {
                 </div>
                 <div className="flex items-center gap-4 mt-3">
                   <div className="flex items-center gap-1 text-xs text-gray-500">
-                    <FolderOpen className="w-3 h-3" /> <strong className="text-[#111827]">{myProjects.length}</strong> Projects
+                    <FolderOpen className="w-3 h-3" /> <strong className="text-purple-800">{myProjects.length}</strong> Projects
                   </div>
                   <div className="flex items-center gap-1 text-xs text-gray-500">
-                    <Bookmark className="w-3 h-3" /> <strong className="text-[#111827]">{bookmarks.length}</strong> Saved
+                    <Bookmark className="w-3 h-3" /> <strong className="text-purple-800">{bookmarks.length}</strong> Saved
                   </div>
                 </div>
               </>
@@ -182,7 +182,7 @@ const ProfilePage = () => {
             onClick={() => setActiveTab(tab.id)}
             className={`flex items-center gap-1.5 px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
               activeTab === tab.id
-                ? "border-[#111827] text-[#111827]"
+                ? "border-purple-600 text-purple-800"
                 : "border-transparent text-gray-500 hover:text-gray-700"
             }`}
           >
@@ -222,7 +222,7 @@ const ProfilePage = () => {
           <div className="py-16 text-center">
             <FolderOpen className="w-10 h-10 text-gray-300 mx-auto mb-3" />
             <p className="text-sm text-gray-500 mb-4">You haven't submitted any projects yet.</p>
-            <button onClick={() => navigate("/submit")} className="px-4 py-2 text-sm font-medium text-white bg-[#111827] rounded-lg hover:bg-[#1f2937] transition-colors">
+            <button onClick={() => navigate("/submit")} className="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors">
               Submit Your First Project
             </button>
           </div>

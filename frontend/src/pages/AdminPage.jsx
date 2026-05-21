@@ -42,8 +42,8 @@ const AdminPage = () => {
   }, [token, user, authLoading]);
 
   useEffect(() => {
-    if (user?.is_admin) loadTab(activeTab);
-  }, [activeTab]);
+    if (!authLoading && user?.is_admin) loadTab(activeTab);
+  }, [activeTab, user, authLoading]);
 
   const loadTab = async (tab) => {
     setLoading(true);

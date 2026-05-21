@@ -6,6 +6,7 @@ import ProjectCard from "../components/ProjectCard";
 import { Avatar } from "@heroui/react";
 import {
   User, School, Mail, Calendar, Edit3, Save, X, Bookmark, FolderOpen, Shield, Loader2, UserPlus, UserCheck, Users,
+  Github, Linkedin, Globe, Heart,
 } from "lucide-react";
 
 const ProfilePage = () => {
@@ -179,6 +180,19 @@ const ProfilePage = () => {
                   {user.institution && <span className="flex items-center gap-1"><School className="w-3 h-3" /> {user.institution}</span>}
                   <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> Joined {new Date(user.created_at).toLocaleDateString()}</span>
                 </div>
+                {(user.github_url || user.linkedin_url || user.website_url) && (
+                  <div className="flex items-center gap-2 mt-2">
+                    {user.github_url && <a href={user.github_url} target="_blank" className="p-1.5 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"><Github className="w-3.5 h-3.5 text-gray-600" /></a>}
+                    {user.linkedin_url && <a href={user.linkedin_url} target="_blank" className="p-1.5 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"><Linkedin className="w-3.5 h-3.5 text-gray-600" /></a>}
+                    {user.website_url && <a href={user.website_url} target="_blank" className="p-1.5 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"><Globe className="w-3.5 h-3.5 text-gray-600" /></a>}
+                  </div>
+                )}
+                {user.hobbies && (
+                  <div className="flex items-center gap-2 mt-2">
+                    <Heart className="w-3 h-3 text-red-400" />
+                    <span className="text-[10px] text-gray-500">{user.hobbies}</span>
+                  </div>
+                )}
                 <div className="flex items-center gap-4 mt-3">
                   <div className="flex items-center gap-1 text-xs text-gray-500">
                     <FolderOpen className="w-3 h-3" /> <strong className="text-purple-800">{myProjects.length}</strong> Projects

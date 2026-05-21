@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import ProjectCard from "../components/ProjectCard";
 import { Avatar } from "@heroui/react";
@@ -10,7 +10,11 @@ import {
 
 const ProfilePage = () => {
   const { user, token } = useAuth();
+  const { userId } = useParams();
   const navigate = useNavigate();
+  const isOwnProfile = !userId || userId === user?.id;
+  const [profileUser, setProfileUser] = useState(null);
+  const [isFollowing, setIsFollowing] = useState(false);
   const [activeTab, setActiveTab] = useState("projects");
   const [myProjects, setMyProjects] = useState([]);
   const [bookmarks, setBookmarks] = useState([]);
@@ -22,15 +26,40 @@ const ProfilePage = () => {
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
-  const [isFollowing, setIsFollowing] = useState(false);
   const [followersCount, setFollowersCount] = useState(0);
   const [followingCount, setFollowingCount] = useState(0);
 
   useEffect(() => {
-    if (!token) { navigate("/"); return; }
-    loadData();
-    loadFollowData();
-  }, [token]);
+    if (!isOwnProfile && userId) {
+      loadPublicProfile();
+    } else if (!token) {
+      navigate("/");
+    } else if (isOwnProfile && token) {
+      loadData();
+      loadFollowData();
+    }
+  }, [token, userId]);
+
+  const loadPublicProfile = async () => {
+    try {
+      api.defaults.headers.common["Authorization"] = `Bearer ${token || ""}`;
+      const res = await api.get(`/users/${userId}/profile${token ? "" : ""}`);
+      setProfileUser(res.data);
+      setIsFollowing(res.data.is_following);
+      setFollowersCount(res.data.followers_count);
+      setFollowingCount(res.data.following_count);
+    } catch (err) { console.error(err); }
+  };
+
+  const handleFollow = async () => {
+    try {
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const res = await api.post(`/users/${userId}/follow`);
+      setIsFollowing(res.data.following);
+      setFollowersCount(res.data.followers_count);
+      setFollowingCount(res.data.following_count);
+    } catch {}
+  };
 
   const loadData = async () => {
     setLoading(true);
@@ -84,9 +113,12 @@ const ProfilePage = () => {
     } catch (err) { console.error("Failed to delete project:", err); }
   };
 
-  if (!user) {
-    return <div className="w-full px-4 py-20 text-center"><p className="text-gray-500">Please log in to view your profile.</p></div>;
+  if (!isOwnProfile && !profileUser) {
+    return <div className="w-full px-4 py-20 text-center"><div className="inline-block w-6 h-6 border-2 border-gray-300 border-t-[#009639] rounded-full animate-spin" /></div>;
   }
+
+  const displayUser = isOwnProfile ? user : profileUser;
+  if (!displayUser) return <div className="w-full px-4 py-20 text-center"><p className="text-gray-500">User not found.</p></div>;
 
   const tabs = [
     { id: "projects", label: "My Projects", icon: <FolderOpen className="w-4 h-4" />, count: myProjects.length },
@@ -99,11 +131,11 @@ const ProfilePage = () => {
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
           <Avatar size="lg" className="w-20 h-20 rounded-2xl shrink-0">
             <Avatar.Fallback className="bg-[#009639] text-white text-2xl font-bold rounded-2xl">
-              {user.name?.charAt(0)?.toUpperCase() || "U"}
+              {displayUser?.name?.charAt(0)?.toUpperCase() || "U"}
             </Avatar.Fallback>
           </Avatar>
           <div className="flex-1 min-w-0">
-            {editing ? (
+            {isOwnProfile && editing ? (
               <div className="space-y-3">
                 <div>
                   <label className="text-xs font-medium text-gray-500 mb-1 block">Name</label>
@@ -174,7 +206,12 @@ const ProfilePage = () => {
               </>
             )}
           </div>
-          {!editing && (
+          {!isOwnProfile ? (
+            token && <button onClick={handleFollow} className={`flex items-center gap-1.5 px-4 py-2 text-xs font-medium rounded-lg transition-colors shrink-0 ${isFollowing ? "bg-purple-100 text-purple-700" : "bg-purple-600 text-white hover:bg-purple-700"}`}>
+              {isFollowing ? <UserCheck className="w-3.5 h-3.5" /> : <UserPlus className="w-3.5 h-3.5" />}
+              {isFollowing ? "Following" : "Follow"}
+            </button>
+          ) : !editing && (
             <button onClick={handleEdit}
               className="flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors shrink-0">
               <Edit3 className="w-3.5 h-3.5" /> Edit Profile

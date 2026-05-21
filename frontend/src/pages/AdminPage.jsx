@@ -29,7 +29,7 @@ const AdminPage = () => {
   const [blogModal, setBlogModal] = useState({ open: false, mode: "create", data: null });
   const [sponsorModal, setSponsorModal] = useState({ open: false, mode: "create", data: null });
   const [blogForm, setBlogForm] = useState({ title: "", excerpt: "", content: "", category: "", read_time: "" });
-  const [sponsorForm, setSponsorForm] = useState({ name: "", description: "", logo: "", color: "#009639", text_color: "#fff" });
+  const [sponsorForm, setSponsorForm] = useState({ name: "", description: "", logo: "", color: "#009639", text_color: "#fff", email: "", password: "" });
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -344,7 +344,7 @@ const AdminPage = () => {
             <div>
               <div className="flex justify-end mb-4">
                 <button onClick={() => {
-                  setSponsorForm({ name: "", description: "", logo: "", color: "#009639", text_color: "#fff" });
+                  setSponsorForm({ name: "", description: "", logo: "", color: "#009639", text_color: "#fff", email: "", password: "" });
                   setSponsorModal({ open: true, mode: "create", data: null });
                 }}
                   className="flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors">
@@ -439,6 +439,12 @@ const AdminPage = () => {
                   </div>
                 </div>
               </div>
+              <div><label className="text-xs font-medium text-gray-700 mb-1 block">Login Email *</label>
+                <input value={sponsorForm.email} onChange={(e) => setSponsorForm({ ...sponsorForm, email: e.target.value })}
+                  placeholder="sponsor@company.co.za" className="w-full h-10 px-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500/20" /></div>
+              <div><label className="text-xs font-medium text-gray-700 mb-1 block">Login Password *</label>
+                <input type="password" value={sponsorForm.password} onChange={(e) => setSponsorForm({ ...sponsorForm, password: e.target.value })}
+                  placeholder="Min 6 characters" className="w-full h-10 px-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500/20" /></div>
               {/* Preview */}
               <div className="p-4 bg-gray-50 rounded-xl text-center">
                 <div className="text-[10px] text-gray-400 mb-2">Preview</div>

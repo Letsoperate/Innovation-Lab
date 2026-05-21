@@ -29,6 +29,7 @@ function App() {
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile/:userId" element={<ProfilePage />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/hall-of-fame" element={<HallOfFamePage />} />
             <Route path="/sponsor/login" element={<SponsorLoginPage />} />

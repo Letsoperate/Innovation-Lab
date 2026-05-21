@@ -114,16 +114,13 @@ COMPETITION_END = 2026-08-15
 
 ## Known Issues / TODO
 
-- [ ] Admin dashboard: data loads but may need hard refresh sometimes
-- [ ] Dynamic OG tags for shared project links (requires Edge Function)
-- [ ] Sponsor votes should contribute to final scoring logic
+- [x] Sponsor registration via admin UI (email + password fields added)
+- [x] Public profile pages (`/profile/:id` with Follow button)
+- [ ] Sponsor badge system on voted projects
 - [ ] Notification system (for comments, follows, wins)
-- [ ] Sponsor registration via admin UI (backend endpoint exists, frontend pending)
-- [ ] Password reset flow
-- [ ] Email verification
+- [ ] Dynamic OG tags for shared project links
+- [ ] Password reset / email verification
 - [ ] File upload for project screenshots
-- [ ] Sponsor badge system for voted projects
-- [ ] Public profile pages for other users (currently only own profile)
 
 ## Project Structure
 

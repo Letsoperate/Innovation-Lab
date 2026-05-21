@@ -478,6 +478,13 @@ public class SeedService {
 
     private int seedUsers() {
         String pass = passwordEncoder.encode("student123");
+        String[] avatarColors = {
+            "E74C3C","3498DB","2ECC71","F39C12","9B59B6",
+            "1ABC9C","E67E22","2980B9","D35400","16A085",
+            "C0392B","27AE60","8E44AD","F1C40F","7F8C8D",
+            "2C3E50","D35400","FF6B00","003A70","D0021B",
+            "7B2D8E","00A3E0","FFC107","1A3A5C","009639"
+        };
         String[][] studentData = {
             {"Zandile", "Sosiba", "222880416", "222880416@tut4life.ac.za", "Zandile2003"},
             {"Mbongeni", "Mokoena", "222277914", "222277914@tut4life.ac.za", "Koena369"},
@@ -495,7 +502,7 @@ public class SeedService {
             if (userRepo.findByEmail(s[3]).isPresent()) continue;
             User u = new User(s[0] + " " + s[1], s[3], pass, "Tshwane University of Technology", false);
             u.setBio("Student at TUT | GitHub: @" + s[4]);
-            u.setAvatarUrl("https://ui-avatars.com/api/?name=" + s[0].replace(" ", "+") + "+" + s[1] + "&background=7C3AED&color=fff&size=128");
+            u.setAvatarUrl("https://ui-avatars.com/api/?name=" + s[0].replace(" ", "+") + "+" + s[1] + "&background=" + avatarColors[count % avatarColors.length] + "&color=fff&size=128&bold=true");
             userRepo.save(u);
             count++;
         }

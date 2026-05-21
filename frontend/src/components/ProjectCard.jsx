@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import api from "../services/api";
+import CommentModal from "./CommentModal";
+import ShareModal from "./ShareModal";
 
 const getRankIcon = (rankLabel) => {
   if (!rankLabel) return null;
@@ -37,6 +39,8 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
   const [saved, setSaved] = useState(isBookmarked);
   const [currentUpvotes, setCurrentUpvotes] = useState(project.upvotes);
   const [voteLoading, setVoteLoading] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+  const [showShare, setShowShare] = useState(false);
 
   const handleUpvote = async () => {
     if (!user) return;
@@ -95,7 +99,10 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
             </span>
           )}
         </div>
-        <p className="text-xs text-gray-500 mb-2 truncate">{project.tagline}</p>
+        <p className="text-xs text-gray-500 mb-1 truncate">{project.tagline}</p>
+        {(project.user_name || project.userName) && (
+          <p className="text-[10px] text-gray-400 mb-1.5">by {project.user_name || project.userName}</p>
+        )}
 
         <div className="flex items-center flex-wrap gap-1.5">
           {categories.map((cat, i) => (
@@ -104,13 +111,11 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
             </span>
           ))}
 
-          {commentsCount > 0 && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] text-gray-500 cursor-pointer hover:text-gray-700">
-              <MessageCircle className="w-3 h-3" /> {commentsCount}
-            </span>
-          )}
+          <button onClick={() => setShowComments(true)} className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] text-gray-500 cursor-pointer hover:text-purple-700">
+            <MessageCircle className="w-3 h-3" /> {commentsCount > 0 ? commentsCount : "Comment"}
+          </button>
 
-          <button className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] text-gray-500 hover:text-gray-700">
+          <button onClick={() => setShowShare(true)} className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] text-gray-500 hover:text-purple-700">
             <Share2 className="w-3 h-3" /> Share
           </button>
 
@@ -168,6 +173,19 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
         </button>
         <span className="text-[10px] text-gray-400 mt-0.5">{project.views}</span>
       </div>
+
+      <CommentModal
+        projectId={project.id}
+        projectName={project.name}
+        isOpen={showComments}
+        onClose={() => setShowComments(false)}
+      />
+      <ShareModal
+        projectId={project.id}
+        projectName={project.name}
+        isOpen={showShare}
+        onClose={() => setShowShare(false)}
+      />
     </div>
   );
 };

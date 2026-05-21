@@ -77,7 +77,7 @@ const Footer = () => {
             </span>
           </div>
           <span className="text-xs text-gray-400">
-            &copy; {new Date().getFullYear()} Innovation Lab. All rights reserved.
+            &copy; {new Date().getFullYear()} Lintshiwe. All rights reserved.
           </span>
         </div>
       </div>

@@ -278,9 +278,12 @@ const AdminPage = () => {
               {projects.map((p) => (
                 <div key={p.id} className="grid grid-cols-[1fr_80px_80px_80px_60px] gap-2 px-4 py-3 items-center border-b border-gray-50 hover:bg-gray-50/50">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold shrink-0"
-                      style={{ backgroundColor: p.logo_color }}>
-                      {p.logo_initial}
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 overflow-hidden" style={{ backgroundColor: p.logo_image ? "transparent" : (p.logo_color || "#009639") }}>
+                      {p.logo_image ? (
+                        <img src={p.logo_image} alt={p.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="text-white text-xs font-bold">{p.logo_initial}</span>
+                      )}
                     </div>
                     <div className="min-w-0">
                       <div className="text-sm font-medium text-purple-800 truncate">{p.name}</div>

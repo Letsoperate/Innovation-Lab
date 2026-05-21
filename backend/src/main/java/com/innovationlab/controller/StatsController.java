@@ -67,20 +67,17 @@ public class StatsController {
 
     @GetMapping("/hall-of-fame")
     public ResponseEntity<Map<String, Object>> getHallOfFame() {
-        List<Project> sorted = projectRepo.findAll().stream()
-                .filter(p -> p.getUpvotes() > 0)
-                .sorted((a, b) -> Integer.compare(b.getUpvotes(), a.getUpvotes()))
+        List<Project> winners = projectRepo.findAll().stream()
+                .filter(p -> p.getAwardWon() != null && !p.getAwardWon().isEmpty())
+                .sorted(Comparator.comparing(Project::getAwardWon))
                 .limit(10)
                 .collect(Collectors.toList());
 
         List<HallOfFameItem> items = new ArrayList<>();
-        String[] awards = {"Project of the Year", "Most Innovative", "Community Choice", "Best Design", "Top Tech Stack",
-                "People's Choice", "Rising Star", "Best Newcomer", "Judges Pick", "Innovation Award"};
-        for (int i = 0; i < sorted.size(); i++) {
-            Project p = sorted.get(i);
+        for (Project p : winners) {
             items.add(new HallOfFameItem(
                     p.getName(),
-                    i < awards.length ? awards[i] : "Honorable Mention",
+                    p.getAwardWon(),
                     p.getLogoColor(),
                     p.getLogoInitial(),
                     p.getLogoImage(),

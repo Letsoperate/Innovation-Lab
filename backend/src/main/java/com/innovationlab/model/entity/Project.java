@@ -71,6 +71,9 @@ public class Project {
     @Column(name = "is_featured")
     private boolean isFeatured = false;
 
+    @Column(name = "award_won")
+    private String awardWon;
+
     private int rank = 0;
 
     @Column(name = "rank_label")
@@ -138,6 +141,8 @@ public class Project {
     public void setHasVideo(boolean hasVideo) { this.hasVideo = hasVideo; }
     public boolean isFeatured() { return isFeatured; }
     public void setFeatured(boolean featured) { isFeatured = featured; }
+    public String getAwardWon() { return awardWon; }
+    public void setAwardWon(String awardWon) { this.awardWon = awardWon; }
     public int getRank() { return rank; }
     public void setRank(int rank) { this.rank = rank; }
     public String getRankLabel() { return rankLabel; }

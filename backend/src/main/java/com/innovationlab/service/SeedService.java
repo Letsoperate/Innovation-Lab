@@ -452,6 +452,14 @@ public class SeedService {
             if (logo != null) p.setLogoImage(logo);
         }
 
+        // Assign awards to top 10 projects by upvotes
+        String[] awards = {"Project of the Year", "Most Innovative", "Community Choice", "Best Design",
+                "Top Tech Stack", "People's Choice", "Rising Star", "Best Newcomer", "Judges Pick", "Innovation Award"};
+        projects.sort((a, b) -> Integer.compare(b.getUpvotes(), a.getUpvotes()));
+        for (int i = 0; i < Math.min(10, projects.size()); i++) {
+            projects.get(i).setAwardWon(i < awards.length ? awards[i] : "Honorable Mention");
+        }
+
         projectRepo.saveAll(projects);
         return projects.size();
     }

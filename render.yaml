@@ -3,7 +3,8 @@ services:
     name: innovation-lab-api
     runtime: docker
     plan: free
-    dockerfilePath: ./backend/Dockerfile
+    dockerfilePath: ./Dockerfile
+    dockerContext: ./backend
     envVars:
       - key: DATASOURCE_URL
         value: jdbc:postgresql://YOUR_RENDER_DB_HOST:5432/innovationlab

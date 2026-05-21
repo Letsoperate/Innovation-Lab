@@ -182,6 +182,7 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
       <CommentModal
         projectId={project.id}
         projectName={project.name}
+        projectUserId={project.user_id || project.userId}
         isOpen={showComments}
         onClose={() => setShowComments(false)}
       />

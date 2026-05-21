@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import api from "../services/api";
 import { X, Send } from "lucide-react";
 
-const CommentModal = ({ projectId, projectName, isOpen, onClose }) => {
+const CommentModal = ({ projectId, projectName, projectUserId, isOpen, onClose }) => {
   const [comments, setComments] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
@@ -59,6 +59,9 @@ const CommentModal = ({ projectId, projectName, isOpen, onClose }) => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
                     <span className="text-[11px] font-semibold text-purple-800">{c.user_name || "Anonymous"}</span>
+                    {c.user_id === projectUserId && (
+                      <span className="px-1.5 py-0.5 text-[9px] font-semibold text-[#009639] bg-[#009639]/10 rounded">Author</span>
+                    )}
                     <span className="text-[9px] text-gray-400">{new Date(c.created_at).toLocaleDateString()}</span>
                   </div>
                   <p className="text-xs text-gray-700 leading-relaxed">{c.text}</p>

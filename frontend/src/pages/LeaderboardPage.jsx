@@ -146,11 +146,12 @@ const LeaderboardPage = () => {
             >
               <div className="flex justify-center">{getRankDisplay(index)}</div>
               <div className="flex items-center gap-3 min-w-0">
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xs font-bold shrink-0"
-                  style={{ backgroundColor: project.logo_color }}
-                >
-                  {project.logo_initial}
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 overflow-hidden" style={{ backgroundColor: project.logo_image ? "transparent" : (project.logo_color || "#009639") }}>
+                  {project.logo_image ? (
+                    <img src={project.logo_image} alt={project.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-white text-xs font-bold">{project.logo_initial}</span>
+                  )}
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center gap-1.5">

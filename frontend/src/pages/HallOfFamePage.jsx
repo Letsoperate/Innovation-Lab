@@ -57,11 +57,12 @@ const HallOfFamePage = () => {
                       <span className="text-sm font-bold text-gray-400">#{i + 1}</span>
                     </div>
                   )}
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xs font-bold shrink-0"
-                    style={{ backgroundColor: item.logo_color }}
-                  >
-                    {item.logo_initial || item.name?.charAt(0)}
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 overflow-hidden" style={{ backgroundColor: item.logo_image ? "transparent" : (item.logo_color || "#009639") }}>
+                    {item.logo_image ? (
+                      <img src={item.logo_image} alt={item.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-white text-xs font-bold">{item.logo_initial || item.name?.charAt(0)}</span>
+                    )}
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">
@@ -87,7 +88,7 @@ const HallOfFamePage = () => {
                     )}
                   </div>
                 </div>
-                <Link to="/leaderboard" className="hidden sm:flex items-center gap-1 shrink-0 px-3 py-1.5 text-[10px] font-medium text-purple-600 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
+                <Link to={`/?project=${item.id}`} className="hidden sm:flex items-center gap-1 shrink-0 px-3 py-1.5 text-[10px] font-medium text-purple-600 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
                   View <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>

@@ -114,13 +114,14 @@ COMPETITION_END = 2026-08-15
 
 ## Known Issues / TODO
 
-- [x] Sponsor registration via admin UI (email + password fields added)
+- [x] Sponsor registration via admin UI (email + password fields)
 - [x] Public profile pages (`/profile/:id` with Follow button)
-- [ ] Sponsor badge system on voted projects
+- [x] Sponsor badge — "Sponsored" badge on projects with sponsor votes
+- [x] Forgot password link — directs to contact admin
+- [x] Screenshot URL field in project submission form
 - [ ] Notification system (for comments, follows, wins)
 - [ ] Dynamic OG tags for shared project links
-- [ ] Password reset / email verification
-- [ ] File upload for project screenshots
+- [ ] File upload for project screenshots (URL field added, actual upload pending)
 
 ## Project Structure
 

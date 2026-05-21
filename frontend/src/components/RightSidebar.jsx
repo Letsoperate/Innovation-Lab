@@ -135,7 +135,7 @@ const RightSidebar = () => {
             </div>
           ))}
         </div>
-        <Link to="/leaderboard" className="flex items-center justify-center gap-1 mt-2 pt-2 border-t border-gray-100 text-[10px] font-medium text-gray-500 hover:text-purple-800 transition-colors">
+        <Link to="/hall-of-fame" className="flex items-center justify-center gap-1 mt-2 pt-2 border-t border-gray-100 text-[10px] font-medium text-gray-500 hover:text-purple-800 transition-colors">
           View all <ArrowRight className="w-2.5 h-2.5" />
         </Link>
       </div>

@@ -8,6 +8,8 @@ public class UserResponse {
     private String email;
     private String institution;
     private boolean isAdmin;
+    private String bio;
+    private String avatarUrl;
     private Instant createdAt;
 
     public UserResponse(String id, String name, String email, String institution, boolean isAdmin, Instant createdAt) {
@@ -24,5 +26,9 @@ public class UserResponse {
     public String getEmail() { return email; }
     public String getInstitution() { return institution; }
     public boolean getIsAdmin() { return isAdmin; }
+    public String getBio() { return bio; }
+    public void setBio(String bio) { this.bio = bio; }
+    public String getAvatarUrl() { return avatarUrl; }
+    public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
     public Instant getCreatedAt() { return createdAt; }
 }

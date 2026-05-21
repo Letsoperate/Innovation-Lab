@@ -25,6 +25,12 @@ public class User {
     @Column(name = "is_admin", nullable = false)
     private boolean isAdmin = false;
 
+    @Column(columnDefinition = "TEXT")
+    private String bio;
+
+    @Column(name = "avatar_url")
+    private String avatarUrl;
+
     @Column(name = "created_at", nullable = false)
     private Instant createdAt = Instant.now();
 
@@ -50,6 +56,10 @@ public class User {
     public void setInstitution(String institution) { this.institution = institution; }
     public boolean isAdmin() { return isAdmin; }
     public void setAdmin(boolean admin) { isAdmin = admin; }
+    public String getBio() { return bio; }
+    public void setBio(String bio) { this.bio = bio; }
+    public String getAvatarUrl() { return avatarUrl; }
+    public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
     public Instant getCreatedAt() { return createdAt; }
     public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
 }

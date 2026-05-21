@@ -76,8 +76,11 @@ public class AuthService {
     }
 
     private UserResponse toResponse(User u) {
-        return new UserResponse(u.getId(), u.getName(), u.getEmail(),
+        UserResponse r = new UserResponse(u.getId(), u.getName(), u.getEmail(),
             u.getInstitution() != null ? u.getInstitution() : "",
             u.isAdmin(), u.getCreatedAt());
+        r.setBio(u.getBio() != null ? u.getBio() : "");
+        r.setAvatarUrl(u.getAvatarUrl());
+        return r;
     }
 }

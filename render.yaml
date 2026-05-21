@@ -5,6 +5,26 @@ services:
     plan: free
     dockerfilePath: ./Dockerfile
     envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: innovationlab-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: innovationlab-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: innovationlab-db
+          property: database
+      - key: DATASOURCE_USER
+        fromDatabase:
+          name: innovationlab-db
+          property: user
+      - key: DATASOURCE_PASSWORD
+        fromDatabase:
+          name: innovationlab-db
+          property: password
       - key: JWT_SECRET
         generateValue: true
       - key: ALLOWED_ORIGINS
@@ -13,8 +33,6 @@ services:
         value: 2026-08-15
       - key: PORT
         value: "8080"
-      - key: SPRING_PROFILES_ACTIVE
-        value: "render"
 
 databases:
   - name: innovationlab-db

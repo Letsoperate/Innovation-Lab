@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
-import { Building2, ChevronUp, Star, Zap, TrendingUp, LogOut, Trophy } from "lucide-react";
+import { Building2, ChevronUp, Ship, Rocket, TrendingUp, LogOut, Trophy } from "lucide-react";
+
+const sponsorLogoMap = {
+  "MTN Group": "/sponsors/mtn.png",
+  "Standard Bank": "/sponsors/standard-bank.jpg",
+  "Takealot": "/sponsors/takealot.png",
+  "Investec": "/sponsors/investec.png",
+  "Dimension Data": "/sponsors/dimension-data.jpg",
+  "Naspers": "/sponsors/naspers.png",
+};
 
 const SponsorDashboard = () => {
   const [projects, setProjects] = useState([]);
@@ -63,7 +72,11 @@ const SponsorDashboard = () => {
       <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
         <div className="w-full px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Building2 className="w-5 h-5 text-purple-600" />
+            {sponsorLogoMap[name] ? (
+              <img src={sponsorLogoMap[name]} alt={name} className="w-7 h-7 rounded-lg object-contain" />
+            ) : (
+              <Building2 className="w-5 h-5 text-purple-600" />
+            )}
             <span className="text-sm font-bold text-purple-800">{name} Dashboard</span>
           </div>
           <button onClick={logout} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
@@ -99,9 +112,12 @@ const SponsorDashboard = () => {
           <div className="space-y-3">
             {projects.slice(0, 30).map((project) => (
               <div key={project.id} className="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-xl hover:shadow-sm transition-shadow">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xs font-bold shrink-0"
-                  style={{ backgroundColor: project.logo_color }}>
-                  {project.logo_initial}
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 overflow-hidden" style={{ backgroundColor: project.logo_image ? "transparent" : (project.logo_color || "#009639") }}>
+                  {project.logo_image ? (
+                    <img src={project.logo_image} alt={project.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-white text-xs font-bold">{project.logo_initial}</span>
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">

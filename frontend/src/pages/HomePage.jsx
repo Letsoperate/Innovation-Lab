@@ -26,9 +26,12 @@ const HomePage = () => {
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
   const [browseOpen, setBrowseOpen] = useState(false);
   const [statsOpen, setStatsOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalProjects, setTotalProjects] = useState(0);
+  const PAGE_SIZE = 12;
 
   useEffect(() => { loadData(); loadUserState(); }, []);
-  useEffect(() => { if (activeTab !== "top") loadTabProjects(activeTab); }, [activeTab]);
+  useEffect(() => { if (activeTab !== "top") { setCurrentPage(1); loadTabProjects(activeTab, 1); } }, [activeTab]);
 
   const loadData = async () => {
     setLoading(true);
@@ -37,10 +40,13 @@ const HomePage = () => {
     finally { setLoading(false); }
   };
 
-  const loadTabProjects = async (tab) => {
+  const loadTabProjects = async (tab, page = 1) => {
     setLoading(true);
-    try {       const res = await api.get(`/projects?tab=${tab}&limit=50`); setListProjects(res.data.projects || []); }
-    catch (err) { console.error("Failed to load projects:", err); }
+    try {
+      const res = await api.get(`/projects?tab=${tab}&page=${page}&limit=${PAGE_SIZE}`);
+      setListProjects(res.data.projects || []);
+      setTotalProjects(res.data.total || 0);
+    } catch (err) { console.error("Failed to load projects:", err); }
     finally { setLoading(false); }
   };
 
@@ -100,6 +106,24 @@ const HomePage = () => {
     </div>
   );
 
+  const Pagination = ({ page, total, pageSize, onPageChange }) => {
+    const totalPages = Math.ceil(total / pageSize);
+    if (totalPages <= 1) return null;
+    return (
+      <div className="flex items-center justify-center gap-2 mt-6">
+        <button onClick={() => onPageChange(page - 1)} disabled={page === 1}
+          className="px-3 py-1.5 text-xs font-medium text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-50">
+          Previous
+        </button>
+        <span className="text-xs text-gray-500">Page {page} of {totalPages}</span>
+        <button onClick={() => onPageChange(page + 1)} disabled={page >= totalPages}
+          className="px-3 py-1.5 text-xs font-medium text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-50">
+          Next
+        </button>
+      </div>
+    );
+  };
+
   const projectBoard = (
     <>
       <HeroSection />
@@ -131,13 +155,31 @@ const HomePage = () => {
           )}
         </Tabs.Panel>
         <Tabs.Panel id="live">
-          {loading ? renderLoading() : listProjects.length > 0 ? renderProjectSection("Today's Launches", listProjects) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
+          {loading ? renderLoading() : listProjects.length > 0 ? (
+            <>
+              {renderProjectSection("Today's Launches", listProjects)}
+              <Pagination page={currentPage} total={totalProjects} pageSize={PAGE_SIZE}
+                onPageChange={(p) => { setCurrentPage(p); loadTabProjects(activeTab, p); }} />
+            </>
+          ) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
         </Tabs.Panel>
         <Tabs.Panel id="recent">
-          {loading ? renderLoading() : listProjects.length > 0 ? renderProjectSection("Recent Submissions", listProjects) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
+          {loading ? renderLoading() : listProjects.length > 0 ? (
+            <>
+              {renderProjectSection("Recent Submissions", listProjects)}
+              <Pagination page={currentPage} total={totalProjects} pageSize={PAGE_SIZE}
+                onPageChange={(p) => { setCurrentPage(p); loadTabProjects(activeTab, p); }} />
+            </>
+          ) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
         </Tabs.Panel>
         <Tabs.Panel id="updated">
-          {loading ? renderLoading() : listProjects.length > 0 ? renderProjectSection("Recently Updated", listProjects) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
+          {loading ? renderLoading() : listProjects.length > 0 ? (
+            <>
+              {renderProjectSection("Recently Updated", listProjects)}
+              <Pagination page={currentPage} total={totalProjects} pageSize={PAGE_SIZE}
+                onPageChange={(p) => { setCurrentPage(p); loadTabProjects(activeTab, p); }} />
+            </>
+          ) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
         </Tabs.Panel>
       </Tabs>
       <FAQSection />

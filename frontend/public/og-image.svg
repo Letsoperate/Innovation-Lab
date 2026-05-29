@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa"/>
+      <stop offset="100%" style="stop-color:#e9ecef"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#f8f9fa"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Navbar -->
+  <rect width="1200" height="60" fill="#ffffff" rx="0"/>
+  <rect x="40" y="18" width="80" height="24" rx="4" fill="#534AB7" opacity="0.1"/>
+  <text x="42" y="35" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#534AB7">ILab</text>
+  <rect x="200" y="22" width="60" height="16" rx="4" fill="#e9ecef"/>
+  <rect x="280" y="22" width="50" height="16" rx="4" fill="#e9ecef"/>
+  <rect x="350" y="22" width="70" height="16" rx="4" fill="#e9ecef"/>
+  <rect x="1080" y="18" width="80" height="24" rx="12" fill="#534AB7"/>
+  <text x="1120" y="34" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">Sign in</text>
+
+  <!-- Hero Section -->
+  <rect x="0" y="60" width="1200" height="200" fill="url(#hero)"/>
+  <text x="600" y="120" font-family="Inter, sans-serif" font-size="32" font-weight="800" fill="#2C2C2A" text-anchor="middle">Where Students Turn Ideas Into AI-Powered Tools</text>
+  <text x="600" y="150" font-family="Inter, sans-serif" font-size="14" fill="#6b7280" text-anchor="middle">Compete, get discovered, and launch your innovation</text>
+
+  <!-- Search Bar -->
+  <rect x="350" y="170" width="500" height="40" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="370" y="194" font-family="Inter, sans-serif" font-size="12" fill="#9ca3af">Search projects...</text>
+  <rect x="790" y="175" width="50" height="30" rx="8" fill="#534AB7"/>
+  <text x="815" y="194" font-family="Inter, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Search</text>
+
+  <!-- CTA Buttons -->
+  <rect x="430" y="220" width="140" height="32" rx="8" fill="#534AB7"/>
+  <text x="500" y="240" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">Submit Project</text>
+  <rect x="590" y="220" width="140" height="32" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="660" y="240" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#6b7280" text-anchor="middle">How It Works</text>
+
+  <!-- Project Cards Section -->
+  <text x="60" y="300" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#2C2C2A">Top Projects</text>
+
+  <!-- Card 1 -->
+  <rect x="60" y="315" width="250" height="160" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="60" y="315" width="250" height="6" rx="3" fill="#E74C3C"/>
+  <rect x="76" y="335" width="40" height="40" rx="8" fill="#E74C3C" opacity="0.1"/>
+  <text x="86" y="361" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#E74C3C">SK</text>
+  <text x="126" y="348" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#2C2C2A">SikkerKey</text>
+  <text x="126" y="363" font-family="Inter, sans-serif" font-size="9" fill="#6b7280">Secrets management</text>
+  <rect x="76" y="385" width="50" height="16" rx="4" fill="#f3f4f6"/>
+  <text x="101" y="396" font-family="Inter, sans-serif" font-size="8" fill="#6b7280" text-anchor="middle">AI</text>
+  <rect x="136" y="385" width="70" height="16" rx="4" fill="#f3f4f6"/>
+  <text x="171" y="396" font-family="Inter, sans-serif" font-size="8" fill="#6b7280" text-anchor="middle">Security</text>
+  <text x="76" y="430" font-family="Inter, sans-serif" font-size="10" fill="#9ca3af">712 upvotes</text>
+  <text x="250" y="430" font-family="Inter, sans-serif" font-size="10" fill="#9ca3af" text-anchor="end">186 views</text>
+
+  <!-- Card 2 -->
+  <rect x="335" y="315" width="250" height="160" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="335" y="315" width="250" height="6" rx="3" fill="#1A3A5C"/>
+  <rect x="351" y="335" width="40" height="40" rx="8" fill="#1A3A5C" opacity="0.1"/>
+  <text x="361" y="361" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#1A3A5C">NP</text>
+  <text x="401" y="348" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#2C2C2A">Neshys PR</text>
+  <text x="401" y="363" font-family="Inter, sans-serif" font-size="9" fill="#6b7280">PR outreach platform</text>
+  <rect x="351" y="385" width="90" height="16" rx="4" fill="#f3f4f6"/>
+  <text x="396" y="396" font-family="Inter, sans-serif" font-size="8" fill="#6b7280" text-anchor="middle">Marketing</text>
+  <text x="351" y="430" font-family="Inter, sans-serif" font-size="10" fill="#9ca3af">1220 upvotes</text>
+  <text x="525" y="430" font-family="Inter, sans-serif" font-size="10" fill="#9ca3af" text-anchor="end">245 views</text>
+
+  <!-- Card 3 -->
+  <rect x="610" y="315" width="250" height="160" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="610" y="315" width="250" height="6" rx="3" fill="#FF6B00"/>
+  <rect x="626" y="335" width="40" height="40" rx="8" fill="#FF6B00" opacity="0.1"/>
+  <text x="636" y="361" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#FF6B00">AV</text>
+  <text x="676" y="348" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#2C2C2A">Avif2JPG</text>
+  <text x="676" y="363" font-family="Inter, sans-serif" font-size="9" fill="#6b7280">Bulk convert AVIF images</text>
+  <rect x="626" y="385" width="90" height="16" rx="4" fill="#f3f4f6"/>
+  <text x="671" y="396" font-family="Inter, sans-serif" font-size="8" fill="#6b7280" text-anchor="middle">Dev Tools</text>
+  <text x="626" y="430" font-family="Inter, sans-serif" font-size="10" fill="#9ca3af">615 upvotes</text>
+  <text x="800" y="430" font-family="Inter, sans-serif" font-size="10" fill="#9ca3af" text-anchor="end">178 views</text>
+
+  <!-- Sidebar hint -->
+  <rect x="885" y="315" width="260" height="160" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="905" y="340" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#2C2C2A">Leaderboard</text>
+  <rect x="905" y="350" width="220" height="20" rx="4" fill="#f3f4f6"/>
+  <rect x="905" y="378" width="220" height="20" rx="4" fill="#f3f4f6"/>
+  <rect x="905" y="406" width="220" height="20" rx="4" fill="#f3f4f6"/>
+  <rect x="905" y="434" width="160" height="20" rx="4" fill="#f3f4f6"/>
+
+  <!-- Stats Bar -->
+  <rect x="0" y="490" width="1200" height="50" fill="#ffffff" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="0,1,0,1"/>
+  <text x="200" y="520" font-family="Inter, sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">42 Projects</text>
+  <text x="400" y="520" font-family="Inter, sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">673K Votes</text>
+  <text x="600" y="520" font-family="Inter, sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">12 Participants</text>
+  <text x="800" y="520" font-family="Inter, sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">14 Days Left</text>
+  <text x="1000" y="520" font-family="Inter, sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">Finals Round</text>
+
+  <!-- Footer -->
+  <rect x="0" y="550" width="1200" height="80" fill="#1e1b4b"/>
+  <text x="600" y="585" font-family="Inter, sans-serif" font-size="11" fill="#9ca3af" text-anchor="middle">Innovation Lab - Where students turn ideas into AI-powered tools</text>
+  <text x="600" y="605" font-family="Inter, sans-serif" font-size="10" fill="#6b7280" text-anchor="middle">South Africa's premier innovation competition platform</text>
+
+  <!-- Watermark Logo -->
+  <g transform="translate(600, 315)" opacity="0.04">
+    <text y="38" x="-118" style="fill:#534AB7;font-family:Inter, sans-serif;font-size:108px;font-weight:500;text-anchor:middle;dominant-baseline:auto">I</text>
+    <text y="38" x="18" style="fill:#534AB7;font-family:Inter, sans-serif;font-size:108px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Lab</text>
+  </g>
+</svg>

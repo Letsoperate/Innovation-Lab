@@ -101,6 +101,15 @@ const AdminPage = () => {
     } catch (err) { toast.error("Failed to update admin status."); }
   };
 
+  const handleDeleteUser = async (userId, userName) => {
+    if (!window.confirm(`Delete user "${userName}" and all their projects?`)) return;
+    try {
+      await api.delete(`/admin/users/${userId}`);
+      toast.success(`User ${userName} deleted`);
+      loadTab("users");
+    } catch (err) { toast.error("Failed to delete user."); }
+  };
+
   const handleBlogSave = async () => {
     setSaving(true);
     try {
@@ -249,11 +258,11 @@ const AdminPage = () => {
           {/* Users */}
           {activeTab === "users" && (
             <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
-              <div className="grid grid-cols-[1fr_120px_120px_80px] gap-2 px-4 py-3 bg-gray-50 border-b border-gray-200 text-[10px] font-bold text-gray-500 uppercase">
-                <div>User</div><div>Institution</div><div>Projects</div><div>Role</div>
+              <div className="grid grid-cols-[1fr_120px_120px_80px_60px] gap-2 px-4 py-3 bg-gray-50 border-b border-gray-200 text-[10px] font-bold text-gray-500 uppercase">
+                <div>User</div><div>Institution</div><div>Projects</div><div>Role</div><div></div>
               </div>
               {users.map((u) => (
-                <div key={u.id} className="grid grid-cols-[1fr_120px_120px_80px] gap-2 px-4 py-3 items-center border-b border-gray-50 hover:bg-gray-50/50">
+                <div key={u.id} className="grid grid-cols-[1fr_120px_120px_80px_60px] gap-2 px-4 py-3 items-center border-b border-gray-50 hover:bg-gray-50/50">
                   <div>
                     <div className="flex items-center gap-2">
                       <img src={u.avatar_url} alt={u.name} className="w-7 h-7 rounded-full object-cover" onError={(e) => {e.target.style.display='none'}} />
@@ -273,6 +282,14 @@ const AdminPage = () => {
                       }`}
                     >
                       {u.is_admin ? "Admin" : "User"}
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => handleDeleteUser(u.id, u.name)}
+                      className="px-2 py-1 text-[10px] font-medium rounded bg-red-50 text-red-600 hover:bg-red-100"
+                    >
+                      Delete
                     </button>
                   </div>
                 </div>

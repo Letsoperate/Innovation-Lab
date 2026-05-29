@@ -5,6 +5,7 @@ import com.innovationlab.model.entity.*;
 import com.innovationlab.repository.*;
 import com.innovationlab.security.JwtProvider;
 import io.jsonwebtoken.Claims;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -109,6 +110,26 @@ public class AdminController {
         Map<String, Object> result = new HashMap<>();
         result.put("id", user.getId());
         result.put("is_admin", user.isAdmin());
+        return ResponseEntity.ok(result);
+    }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<Map<String, String>> deleteUser(
+            @RequestHeader(value = "Authorization", required = false) String auth,
+            @PathVariable String id) {
+        requireAdmin(auth);
+        User user = userRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        List<Project> userProjects = projectRepo.findByUserId(id, Pageable.unpaged());
+        for (Project p : userProjects) {
+            voteRepo.deleteByProjectId(p.getId());
+            commentRepo.deleteByProjectId(p.getId());
+            bookmarkRepo.deleteByProjectId(p.getId());
+            projectRepo.delete(p);
+        }
+        userRepo.delete(user);
+        Map<String, String> result = new HashMap<>();
+        result.put("message", "User deleted");
         return ResponseEntity.ok(result);
     }
 

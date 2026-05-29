@@ -76,7 +76,7 @@ const AdminPage = () => {
           break;
       }
     } catch (err) {
-      console.error("Admin load error:", err);
+      toast.error("Failed to load admin data.");
     } finally {
       setLoading(false);
     }
@@ -87,6 +87,7 @@ const AdminPage = () => {
     try {
       await api.delete(`/admin/projects/${id}`);
       setProjects((prev) => prev.filter((p) => p.id !== id));
+      toast.success("Project deleted!");
     } catch (err) { toast.error("Failed to delete project."); }
   };
 

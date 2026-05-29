@@ -28,6 +28,7 @@ const CommentModal = ({ projectId, projectName, projectUserId, isOpen, onClose }
         headers: { Authorization: `Bearer ${token}` }
       });
       setComments(prev => [res.data, ...prev]);
+      toast.success("Comment posted!");
       setText("");
     } catch (err) {
       toast.error("Failed to post comment.");

@@ -118,7 +118,8 @@ const ProfilePage = () => {
     try {
       await api.delete(`/projects/${projectId}`);
       setMyProjects((prev) => prev.filter((p) => p.id !== projectId));
-    } catch (err) { console.error("Failed to delete project:", err); }
+      toast.success("Project deleted!");
+    } catch (err) { toast.error("Failed to delete project."); }
   };
 
   if (!isOwnProfile && !profileUser) {

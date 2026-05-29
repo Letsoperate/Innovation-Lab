@@ -7,8 +7,32 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [loading, setLoading] = useState(true);
+  const [githubToken, setGithubToken] = useState(null);
 
   useEffect(() => {
+    // GitHub OAuth callback detection
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+
+    if (code) {
+      api.post("/auth/github/callback", { code })
+        .then((res) => {
+          const jwtToken = res.data.accessToken;  // backend uses accessToken, not token
+          const userData = res.data.user;
+          localStorage.setItem("token", jwtToken);
+          api.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
+          setToken(jwtToken);
+          setUser(userData);
+          window.history.replaceState({}, document.title, window.location.pathname);
+        })
+        .catch((err) => {
+          console.error("GitHub OAuth failed:", err);
+          window.history.replaceState({}, document.title, window.location.pathname);
+        })
+        .finally(() => setLoading(false));
+      return;
+    }
+  
     if (token) {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       api
@@ -50,10 +74,13 @@ export const AuthProvider = ({ children }) => {
     delete api.defaults.headers.common["Authorization"];
     setToken(null);
     setUser(null);
+    setGithubToken(null);
   };
 
+  const setGitHubAccessToken = (tok) => setGithubToken(tok);
+
   return (
-    <AuthContext.Provider value={{ user, token, loading, login, register, logout }}>
+    <AuthContext.Provider value={{ user, token, loading, login, register, logout, githubToken, setGitHubAccessToken }}>
       {children}
     </AuthContext.Provider>
   );

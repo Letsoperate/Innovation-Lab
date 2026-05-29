@@ -11,7 +11,9 @@ import {
   CheckCircle,
   AlertCircle,
   School,
+  Github,
 } from "lucide-react";
+import GitHubRepoModal from "../components/GitHubRepoModal";
 
 const institutions = [
   "University of Cape Town",
@@ -31,7 +33,8 @@ const institutions = [
 const COLORS = ["#E74C3C", "#27AE60", "#3498DB", "#8E44AD", "#F39C12", "#1ABC9C", "#E67E22", "#2980B9", "#D35400", "#16A085", "#9B59B6", "#2C3E50"];
 
 const SubmitPage = () => {
-  const { user } = useAuth();
+  const { user, githubToken } = useAuth();
+  const [showGitHubModal, setShowGitHubModal] = useState(false);
   const [categories, setCategories] = useState([]);
   const [tracks, setTracks] = useState([]);
   const [formData, setFormData] = useState({
@@ -130,6 +133,15 @@ const SubmitPage = () => {
           <div className="text-xs text-amber-700">
             <strong>Please sign up or log in</strong> to submit a project.
           </div>
+        </div>
+      )}
+
+      {user && githubToken && (
+        <div className="flex justify-center mb-6">
+          <button type="button" onClick={() => setShowGitHubModal(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors">
+            <Github className="w-4 h-4" /> Import from GitHub
+          </button>
         </div>
       )}
 
@@ -257,6 +269,13 @@ const SubmitPage = () => {
           <Upload className="w-4 h-4" /> {loading ? "Submitting..." : "Submit Project"}
         </button>
       </form>
+
+      <GitHubRepoModal
+        isOpen={showGitHubModal}
+        onClose={() => setShowGitHubModal(false)}
+        onSelect={(repo) => setFormData((prev) => ({ ...prev, name: repo.name, tagline: repo.tagline, description: repo.description, repo_url: repo.repo_url, tech_stack: repo.tech_stack }))}
+        githubAccessToken={githubToken}
+      />
     </div>
     </div>
   );

@@ -31,6 +31,9 @@ public class User {
     @Column(name = "avatar_url")
     private String avatarUrl;
 
+    @Column(name = "github_id", unique = true)
+    private String githubId;
+
     @Column(name = "github_url")
     private String githubUrl;
     @Column(name = "linkedin_url")
@@ -74,6 +77,8 @@ public class User {
     public void setBio(String bio) { this.bio = bio; }
     public String getAvatarUrl() { return avatarUrl; }
     public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
+    public String getGithubId() { return githubId; }
+    public void setGithubId(String githubId) { this.githubId = githubId; }
     public String getGithubUrl() { return githubUrl; }
     public void setGithubUrl(String githubUrl) { this.githubUrl = githubUrl; }
     public String getLinkedinUrl() { return linkedinUrl; }

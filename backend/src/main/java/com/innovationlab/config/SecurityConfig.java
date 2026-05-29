@@ -35,7 +35,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
+                .requestMatchers("/api/auth/register", "/api/auth/login", "/api/auth/github/callback").permitAll()
                 .requestMatchers("/api/sponsor/login", "/api/admin/login").permitAll()
                 .requestMatchers("/api/health", "/api/", "/api/stats", "/api/categories",
                     "/api/tracks", "/api/audiences", "/api/sponsors", "/api/faq",
@@ -47,6 +47,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/users/{id}/following").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/users/{id}/bookmarks").permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                .requestMatchers("/api/notifications/**").authenticated()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(rateLimitFilter, JwtAuthenticationFilter.class)

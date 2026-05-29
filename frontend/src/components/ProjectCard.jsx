@@ -14,6 +14,7 @@ import {
   Rocket,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import { useToast } from "../context/ToastContext";
 import api from "../services/api";
 import CommentModal from "./CommentModal";
 import ShareModal from "./ShareModal";
@@ -36,6 +37,7 @@ const getRankColor = (rankLabel) => {
 
 const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteChange, onBookmarkChange }) => {
   const { user } = useAuth();
+  const toast = useToast();
   const [upvoted, setUpvoted] = useState(isVoted);
   const [saved, setSaved] = useState(isBookmarked);
   const [currentUpvotes, setCurrentUpvotes] = useState(project.upvotes);
@@ -52,8 +54,9 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
       setUpvoted(res.data.voted);
       setCurrentUpvotes(res.data.upvotes);
       if (onVoteChange) onVoteChange(project.id, res.data.voted);
+      if (res.data.voted) toast.success("Vote added!"); else toast.info("Vote removed");
     } catch (err) {
-      console.error("Vote failed:", err);
+      toast.error("Failed to vote. Please try again.");
     } finally {
       setVoteLoading(false);
     }
@@ -65,8 +68,9 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
       const res = await api.post(`/projects/${project.id}/bookmark`);
       setSaved(res.data.bookmarked);
       if (onBookmarkChange) onBookmarkChange(project.id, res.data.bookmarked);
+      if (res.data.bookmarked) toast.success("Project saved!"); else toast.info("Removed from saved");
     } catch (err) {
-      console.error("Bookmark failed:", err);
+      toast.error("Failed to save. Please try again.");
     }
   };
 

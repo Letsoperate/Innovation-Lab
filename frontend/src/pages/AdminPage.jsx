@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useToast } from "../context/ToastContext";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import {
@@ -19,6 +20,7 @@ const sponsorLogoMap = {
 
 const AdminPage = () => {
   const { user, token, loading: authLoading } = useAuth();
+  const toast = useToast();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("dashboard");
   const [dashboard, setDashboard] = useState(null);
@@ -85,14 +87,15 @@ const AdminPage = () => {
     try {
       await api.delete(`/admin/projects/${id}`);
       setProjects((prev) => prev.filter((p) => p.id !== id));
-    } catch (err) { console.error(err); }
+    } catch (err) { toast.error("Failed to delete project."); }
   };
 
   const handleToggleAdmin = async (userId) => {
     try {
       await api.put(`/admin/users/${userId}/toggle-admin`);
+      toast.success("Admin status updated!");
       loadTab("users");
-    } catch (err) { console.error(err); }
+    } catch (err) { toast.error("Failed to toggle admin status."); }
   };
 
   const handleBlogSave = async () => {
@@ -104,8 +107,9 @@ const AdminPage = () => {
         await api.put(`/admin/blog/${blogModal.data.id}`, blogForm);
       }
       setBlogModal({ open: false, mode: "create", data: null });
+      toast.success(blogModal.mode === "create" ? "Post created!" : "Post updated!");
       loadTab("blog");
-    } catch (err) { console.error(err); } finally { setSaving(false); }
+    } catch (err) { toast.error("Failed to save blog post."); } finally { setSaving(false); }
   };
 
   const handleBlogDelete = async (id) => {
@@ -113,7 +117,8 @@ const AdminPage = () => {
     try {
       await api.delete(`/admin/blog/${id}`);
       loadTab("blog");
-    } catch (err) { console.error(err); }
+      toast.success("Deleted successfully!");
+    } catch (err) { toast.error("Failed to delete."); }
   };
 
   const handleSponsorSave = async () => {
@@ -125,8 +130,9 @@ const AdminPage = () => {
         await api.put(`/admin/sponsors/${sponsorModal.data.id}`, sponsorForm);
       }
       setSponsorModal({ open: false, mode: "create", data: null });
+      toast.success(sponsorModal.mode === "create" ? "Sponsor added!" : "Sponsor updated!");
       loadTab("sponsors");
-    } catch (err) { console.error(err); } finally { setSaving(false); }
+    } catch (err) { toast.error("Failed to save sponsor."); } finally { setSaving(false); }
   };
 
   const handleSponsorDelete = async (id) => {
@@ -134,7 +140,8 @@ const AdminPage = () => {
     try {
       await api.delete(`/admin/sponsors/${id}`);
       loadTab("sponsors");
-    } catch (err) { console.error(err); }
+      toast.success("Deleted successfully!");
+    } catch (err) { toast.error("Failed to delete."); }
   };
 
   if (!user?.is_admin) {

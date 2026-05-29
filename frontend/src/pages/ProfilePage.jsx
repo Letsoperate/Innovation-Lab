@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useToast } from "../context/ToastContext";
 import api from "../services/api";
 import ProjectCard from "../components/ProjectCard";
 import { Avatar } from "@heroui/react";
@@ -11,6 +12,7 @@ import {
 
 const ProfilePage = () => {
   const { user, token } = useAuth();
+  const toast = useToast();
   const { userId } = useParams();
   const navigate = useNavigate();
   const isOwnProfile = !userId || userId === user?.id;
@@ -59,7 +61,10 @@ const ProfilePage = () => {
       setIsFollowing(res.data.following);
       setFollowersCount(res.data.followers_count);
       setFollowingCount(res.data.following_count);
-    } catch {}
+      toast.success(isFollowing ? "Unfollowed" : "Following!");
+    } catch (err) {
+      toast.error("Failed to follow. Please try again.");
+    }
   };
 
   const loadData = async () => {
@@ -102,7 +107,9 @@ const ProfilePage = () => {
       await api.put("/auth/profile", editForm);
       setEditing(false);
       setProfileUser((prev) => prev ? { ...prev, ...editForm } : prev);
-    } catch (err) { console.error("Failed to update profile:", err); }
+      toast.success("Profile updated!");
+    } catch (err) {
+      toast.error("Failed to update profile."); }
     finally { setSaving(false); }
   };
 

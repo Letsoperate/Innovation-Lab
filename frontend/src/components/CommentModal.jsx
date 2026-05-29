@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
+import { useToast } from "../context/ToastContext";
 import { X, Send } from "lucide-react";
 
 const CommentModal = ({ projectId, projectName, projectUserId, isOpen, onClose }) => {
   const [comments, setComments] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
+  const toast = useToast();
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (isOpen) {
       api.get(`/projects/${projectId}/comments`)
         .then(res => setComments(res.data || []))
-        .catch(() => setComments([]));
+        .catch(() => { toast.error("Failed to load comments."); setComments([]); });
     }
   }, [isOpen, projectId]);
 
@@ -28,7 +30,7 @@ const CommentModal = ({ projectId, projectName, projectUserId, isOpen, onClose }
       setComments(prev => [res.data, ...prev]);
       setText("");
     } catch (err) {
-      console.error("Failed to post comment:", err);
+      toast.error("Failed to post comment.");
     } finally {
       setLoading(false);
     }

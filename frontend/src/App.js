@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import { ToastProvider } from "./context/ToastContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -35,7 +36,8 @@ function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <BrowserRouter>
+        <ToastProvider>
+          <BrowserRouter>
           <Navbar />
           <ErrorBoundary>
             <Routes>
@@ -59,7 +61,8 @@ function App() {
             </Routes>
           </ErrorBoundary>
           <Footer />
-        </BrowserRouter>
+          </BrowserRouter>
+        </ToastProvider>
       </AuthProvider>
     </div>
   );

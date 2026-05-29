@@ -28,6 +28,13 @@ public class AuthService {
         if (userRepo.findByEmailIgnoreCase(email).isPresent()) {
             throw new RuntimeException("Email already registered");
         }
+        String password = req.getPassword();
+        if (!password.matches(".*[A-Z].*")) {
+            throw new RuntimeException("Password must contain at least one uppercase letter");
+        }
+        if (!password.matches(".*[0-9].*")) {
+            throw new RuntimeException("Password must contain at least one number");
+        }
         boolean isAdmin = userRepo.count() == 0;
         User user = new User(
             SanitizeUtil.sanitize(req.getName()), email,

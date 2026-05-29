@@ -2,11 +2,12 @@ package com.innovationlab.model.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class RegisterRequest {
     @NotBlank private String name;
     @Email @NotBlank private String email;
-    @NotBlank private String password;
+    @NotBlank @Size(min = 8, message = "Password must be at least 8 characters") private String password;
     private String institution;
 
     public String getName() { return name; }

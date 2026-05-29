@@ -26,7 +26,7 @@ const stepIcons = [
 
 const howItWorksSteps = [
   { step: 1, title: "Register Your Team", description: "Create a free account, form your team (1-4 members), and verify your institutional affiliation. Registration takes less than 5 minutes." },
-  { step: 2, title: "Build Your Project", description: "Use innovation techniques and AI tools to build something amazing. There are no restrictions on tech stack — use whatever gets you in the zone." },
+  { step: 2, title: "Build Your Project", description: "Use innovation techniques and AI tools to build something amazing. There are no restrictions on tech stack  - use whatever gets you in the zone." },
   { step: 3, title: "Submit & Launch", description: "Submit your project with a description, demo video, screenshots, and tech stack details. Your project goes live for community voting immediately." },
   { step: 4, title: "Get Votes & Feedback", description: "The community votes on projects. Engage with other builders, get feedback, iterate on your project, and climb the rankings." },
   { step: 5, title: "Win Prizes", description: "Top projects advance to finals judged by industry experts. Winners receive cash prizes, mentorship, incubation, and more." },
@@ -55,7 +55,7 @@ const competitionTimeline = (() => {
 })();
 
 const HowItWorksPage = () => {
-  useEffect(() => { document.title = "How It Works — Innovation Lab"; }, []);
+  useEffect(() => { document.title = "How It Works  - Innovation Lab"; }, []);
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}
@@ -64,7 +64,7 @@ const HowItWorksPage = () => {
           How the Competition Works
         </h1>
         <p className="text-base text-gray-600 max-w-lg mx-auto">
-          From registration to winning — here's everything you need to know
+          From registration to winning  - here's everything you need to know
           about South Africa's premier innovation competition.
         </p>
       </div>
@@ -203,7 +203,7 @@ const HowItWorksPage = () => {
             </div>
             <div className="p-4">
               <h3 className="text-sm font-bold text-purple-800 mb-1">How to Earn Points</h3>
-              <p className="text-xs text-gray-500">Discover how the Innovation Score works — upvoting, commenting, sharing, and engaging with the community to boost your ranking.</p>
+              <p className="text-xs text-gray-500">Discover how the Innovation Score works  - upvoting, commenting, sharing, and engaging with the community to boost your ranking.</p>
               <span className="inline-flex items-center gap-1 mt-2 text-xs font-medium text-purple-600">Watch tutorial <ArrowRight className="w-3 h-3" /></span>
             </div>
           </div>

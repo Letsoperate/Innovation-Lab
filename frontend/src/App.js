@@ -22,7 +22,7 @@ import SponsorDashboard from "./pages/SponsorDashboard";
 import AdminLoginPage from "./pages/AdminLoginPage";
 
 function NotFoundPage() {
-  useEffect(() => { document.title = "Page Not Found — Innovation Lab"; }, []);
+  useEffect(() => { document.title = "Page Not Found  - Innovation Lab"; }, []);
   return (
     <div className="w-full px-4 py-20 text-center">
       <h1 className="text-6xl font-bold text-purple-800 mb-4">404</h1>

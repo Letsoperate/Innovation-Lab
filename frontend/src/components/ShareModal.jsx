@@ -7,7 +7,7 @@ const ShareModal = ({ projectName, projectId, isOpen, onClose }) => {
   const url = `${window.location.origin}/p/${slug}`;
 
   const copyLink = () => {
-    navigator.clipboard.writeText(`${projectName} — via Innovation Lab\n${url}`);
+    navigator.clipboard.writeText(`${projectName}  - via Innovation Lab\n${url}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

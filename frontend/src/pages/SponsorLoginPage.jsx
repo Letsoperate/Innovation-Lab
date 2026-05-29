@@ -11,7 +11,7 @@ const SponsorLoginPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => { document.title = "Sponsor Login — Innovation Lab"; }, []);
+  useEffect(() => { document.title = "Sponsor Login  - Innovation Lab"; }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();

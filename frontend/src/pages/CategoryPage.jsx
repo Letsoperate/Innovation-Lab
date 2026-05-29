@@ -12,7 +12,7 @@ const CategoryPage = () => {
   const [totalProjects, setTotalProjects] = useState(0);
   const PAGE_SIZE = 12;
 
-  useEffect(() => { document.title = "Category — Innovation Lab"; }, []);
+  useEffect(() => { document.title = "Category  - Innovation Lab"; }, []);
 
   useEffect(() => {
     loadProjects(currentPage);

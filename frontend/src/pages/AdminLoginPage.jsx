@@ -12,7 +12,7 @@ const AdminLoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => { document.title = "Admin Login — Innovation Lab"; }, []);
+  useEffect(() => { document.title = "Admin Login  - Innovation Lab"; }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();

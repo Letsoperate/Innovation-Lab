@@ -28,7 +28,7 @@ const ProfilePage = () => {
   const [saving, setSaving] = useState(false);
   const [votedIds, setVotedIds] = useState([]);
 
-  useEffect(() => { document.title = "Profile — Innovation Lab"; }, []);
+  useEffect(() => { document.title = "Profile  - Innovation Lab"; }, []);
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);

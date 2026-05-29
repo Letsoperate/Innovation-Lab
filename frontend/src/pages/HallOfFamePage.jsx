@@ -13,7 +13,7 @@ const HallOfFamePage = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => { document.title = "Hall of Fame — Innovation Lab"; }, []);
+  useEffect(() => { document.title = "Hall of Fame  - Innovation Lab"; }, []);
 
   useEffect(() => {
     api.get("/hall-of-fame")

@@ -20,7 +20,7 @@ const LeaderboardPage = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => { document.title = "Leaderboard — Innovation Lab"; }, []);
+  useEffect(() => { document.title = "Leaderboard  - Innovation Lab"; }, []);
 
   useEffect(() => {
     loadStats();
@@ -175,7 +175,7 @@ const LeaderboardPage = () => {
                     <span className="text-sm font-semibold text-purple-800">{project.rating}</span>
                   </>
                 ) : (
-                  <span className="text-xs text-gray-400">—</span>
+                  <span className="text-xs text-gray-400"> -</span>
                 )}
               </div>
               <div className="flex items-center justify-center gap-1">

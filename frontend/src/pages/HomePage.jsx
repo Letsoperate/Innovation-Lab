@@ -190,19 +190,19 @@ const HomePage = () => {
 
   return (
     <div className="w-full h-[calc(100vh-60px)] flex flex-col">
-      {/* Sponsor Banner — visible on mobile/tablet */}
+      {/* Sponsor Banner  - visible on mobile/tablet */}
       <div className="lg:hidden">
         <SponsorBanner />
       </div>
 
       {/* Main content area */}
       <div className="flex-1 flex gap-3 lg:gap-4 overflow-hidden px-0 sm:px-2 lg:px-4">
-        {/* Far Left: Sponsors — xl only */}
+        {/* Far Left: Sponsors  - xl only */}
         <div className="hidden xl:flex w-[15%] shrink-0 pt-6 animate-slide-left overflow-y-auto bg-purple-50">
           <SponsorSidebar />
         </div>
 
-        {/* Left: Browse — lg+ */}
+        {/* Left: Browse  - lg+ */}
         <div className="hidden lg:flex w-[15%] shrink-0 pt-6 pl-3 animate-slide-left delay-100 overflow-y-auto">
           <BrowseSidebar />
         </div>
@@ -212,12 +212,12 @@ const HomePage = () => {
           {projectBoard}
         </div>
 
-        {/* Right: Stats — lg+ */}
+        {/* Right: Stats  - lg+ */}
         <div className="hidden lg:flex w-[15%] shrink-0 pt-6 animate-slide-right overflow-y-auto">
           <RightSidebar />
         </div>
 
-        {/* Far Right: Sponsors — xl only */}
+        {/* Far Right: Sponsors  - xl only */}
         <div className="hidden xl:flex w-[15%] shrink-0 pt-6 animate-slide-right overflow-y-auto bg-purple-50">
           <SponsorRightSidebar />
         </div>

@@ -35,7 +35,7 @@ const AdminPage = () => {
   const [sponsorForm, setSponsorForm] = useState({ name: "", description: "", logo: "", color: "#009639", text_color: "#fff", email: "", password: "" });
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => { document.title = "Admin Panel — Innovation Lab"; }, []);
+  useEffect(() => { document.title = "Admin Panel  - Innovation Lab"; }, []);
 
   useEffect(() => {
     if (authLoading) return;
@@ -274,7 +274,7 @@ const AdminPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="text-xs text-gray-600 truncate">{u.institution || "—"}</div>
+                  <div className="text-xs text-gray-600 truncate">{u.institution || " -"}</div>
                   <div className="text-xs font-medium text-purple-800">{u.project_count}</div>
                   <div>
                     <button

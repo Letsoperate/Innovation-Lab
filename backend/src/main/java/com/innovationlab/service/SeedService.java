@@ -182,7 +182,7 @@ public class SeedService {
     private int seedFAQ() {
         List<FAQ> faqs = List.of(
                 new FAQ("What is the Innovation Lab?",
-                        "Innovation Lab is the product discovery platform for people and AI. Products are described in a structured, machine-readable way with controlled vocabularies for use cases, audiences, platforms, and pricing — so both humans and AI systems can discover exactly what they need. Innovation Lab also provides an MCP server and public API for AI integration, plus a supportive builder community that helps products gain traction."),
+                        "Innovation Lab is the product discovery platform for people and AI. Products are described in a structured, machine-readable way with controlled vocabularies for use cases, audiences, platforms, and pricing  - so both humans and AI systems can discover exactly what they need. Innovation Lab also provides an MCP server and public API for AI integration, plus a supportive builder community that helps products gain traction."),
                 new FAQ("How does Innovation Lab compare to Product Hunt?",
                         "While Product Hunt focuses on a single launch day, Innovation Lab provides sustained discovery beyond launch day. Innovation Lab features structured product data for AI discoverability, build-in-public features with product updates, transparent revenue tracking, and a community engagement system that rewards mutual support. Products continue gaining visibility long after their initial launch."),
                 new FAQ("What is an Innovation Score?",
@@ -301,7 +301,7 @@ public class SeedService {
                 "marketing-seo", "innovation", "Freemium Competitor Analysis", 397354, 8765, 1059, 4.9, true, 31,
                 daysAgo(15)));
         projects.add(build("Lodgestory", "Unify your customer engagement in one omnichannel inbox",
-                "A unified customer engagement platform that consolidates all communication channels — email, chat, social, SMS — into one intelligent omnichannel inbox.",
+                "A unified customer engagement platform that consolidates all communication channels  - email, chat, social, SMS  - into one intelligent omnichannel inbox.",
                 "automation-workflow", "innovation", "Freemium Customer Support", 159159, 5432, 1003, 4.7, true, 27,
                 daysAgo(20)));
 
@@ -319,7 +319,7 @@ public class SeedService {
                 "developer-tools", "open", "Freemium Testing & QA", 47, 89, 1, 4.0, true, 0,
                 hoursAgo(12)));
         projects.add(build("AISelfie", "Turn your selfie into any scene with AI",
-                "Transform your selfies into stunning AI-generated scenes — from fantasy worlds to professional headshots — using advanced image generation models.",
+                "Transform your selfies into stunning AI-generated scenes  - from fantasy worlds to professional headshots  - using advanced image generation models.",
                 "ai", "ai-ml", "Freemium Image Generation", 68, 134, 2, 4.0, true, 1,
                 hoursAgo(13)));
         projects.add(build("Amawish", "Create personalized birthday cards and invitations",
@@ -351,7 +351,7 @@ public class SeedService {
                 "content-creation", "ai-ml", "Freemium Content Creation", 23, 48, 1, 4.0, false, 0,
                 hoursAgo(20)));
         projects.add(build("reverscan", "Reverse file search for Mac using content and screenshots",
-                "A powerful Mac utility that lets you search for files by describing their content or uploading screenshots — no more digging through folders.",
+                "A powerful Mac utility that lets you search for files by describing their content or uploading screenshots  - no more digging through folders.",
                 "developer-tools", "open", "Freemium Knowledge Base", 22, 44, 1, 4.0, false, 1,
                 hoursAgo(21)));
         projects.add(build("Clausify", "AI-powered contract analysis for freelancers",
@@ -359,7 +359,7 @@ public class SeedService {
                 "ai", "ai-ml", "Freemium Data Analysis", 22, 52, 1, 4.0, false, 1,
                 hoursAgo(22)));
         projects.add(build("SyncWhen", "Find the best time to meet. No signup, no ads, no clutter.",
-                "A minimal meeting scheduler that helps groups find the optimal meeting time across time zones with zero friction — no accounts needed.",
+                "A minimal meeting scheduler that helps groups find the optimal meeting time across time zones with zero friction  - no accounts needed.",
                 "productivity", "open", "Free Schedule group meetings", 34, 78, 1, 4.0, true, 1,
                 hoursAgo(23)));
         projects.add(build("NicheScout", "Own Your Niche",
@@ -399,7 +399,7 @@ public class SeedService {
                 "finance-trading", "ai-ml", "Free AI Voice Generation", 22, 45, 1, 4.0, false, 1,
                 hoursAgo(32)));
         projects.add(build("ClawGlow", "Deploy autonomous AI agents in seconds",
-                "A platform that lets you deploy fully autonomous AI agents for your business in seconds — no infrastructure setup, no code, instant results.",
+                "A platform that lets you deploy fully autonomous AI agents for your business in seconds  - no infrastructure setup, no code, instant results.",
                 "ai", "ai-ml", "AI Agents AI Automation", 33, 67, 1, 5.0, true, 0,
                 hoursAgo(33)));
 

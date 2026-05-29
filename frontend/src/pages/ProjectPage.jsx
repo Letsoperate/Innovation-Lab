@@ -29,7 +29,7 @@ const ProjectPage = () => {
       if (p) {
         setProject(p);
         setCurrentUpvotes(p.upvotes);
-        document.title = `${p.name} — Innovation Lab`;
+        document.title = `${p.name}  - Innovation Lab`;
       }
     } catch (err) { console.error(err); }
     finally { setLoading(false); }

@@ -1,9 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Search, Upload, ArrowRight, Trophy, ClipboardList } from "lucide-react";
 
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
 
   return (
     <div className="text-center pb-6 mb-2 animate-fade-in-up">
@@ -44,7 +52,7 @@ const HeroSection = () => {
 
       {/* Search Bar */}
       <div className="max-w-lg mx-auto mb-5">
-        <div className="relative">
+        <form onSubmit={handleSearch} className="relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input
             type="text"
@@ -53,10 +61,10 @@ const HeroSection = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full h-12 pl-11 pr-4 sm:pr-24 text-sm border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-[#009639]/20 focus:border-[#009639] transition-colors shadow-sm"
           />
-          <button className="absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors">
+          <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors">
             <Search className="w-3.5 h-3.5" /> Search
           </button>
-        </div>
+        </form>
       </div>
 
       {/* CTA Buttons */}

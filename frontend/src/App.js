@@ -16,6 +16,7 @@ import AdminPage from "./pages/AdminPage";
 import CategoryPage from "./pages/CategoryPage";
 import ProjectPage from "./pages/ProjectPage";
 import HallOfFamePage from "./pages/HallOfFamePage";
+import SearchPage from "./pages/SearchPage";
 import SponsorLoginPage from "./pages/SponsorLoginPage";
 import SponsorDashboard from "./pages/SponsorDashboard";
 import AdminLoginPage from "./pages/AdminLoginPage";
@@ -57,6 +58,7 @@ function App() {
               <Route path="/sponsor/login" element={<SponsorLoginPage />} />
               <Route path="/sponsor/dashboard" element={<SponsorDashboard />} />
               <Route path="/admin/login" element={<AdminLoginPage />} />
+              <Route path="/search" element={<SearchPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </ErrorBoundary>

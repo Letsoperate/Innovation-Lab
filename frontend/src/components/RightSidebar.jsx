@@ -15,7 +15,7 @@ const RightSidebar = () => {
 
   useEffect(() => {
     load();
-    const interval = setInterval(load, 10000);
+    const interval = setInterval(load, 60000);
     return () => clearInterval(interval);
   }, []);
 
@@ -73,7 +73,15 @@ const RightSidebar = () => {
           <div className="flex items-center -space-x-1.5">
             {users.slice(0, 6).map(u => (
               <div key={u.id} className="relative">
-                <img src={u.avatar_url} alt={u.name} className="w-6 h-6 rounded-full ring-1 ring-white object-cover" />
+                <img
+                  src={u.avatar_url}
+                  alt={u.name}
+                  className="w-6 h-6 rounded-full ring-1 ring-white object-cover"
+                  onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+                />
+                <div className="w-6 h-6 rounded-full bg-purple-100 items-center justify-center text-[8px] font-bold text-purple-600 ring-1 ring-white" style={{ display: 'none' }}>
+                  {u.name?.charAt(0)}
+                </div>
                 <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 bg-green-500 rounded-full ring-1 ring-white" />
               </div>
             ))}

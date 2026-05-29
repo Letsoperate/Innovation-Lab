@@ -23,7 +23,7 @@ const ProfilePage = () => {
   const [myProjects, setMyProjects] = useState([]);
   const [bookmarks, setBookmarks] = useState([]);
   const [editing, setEditing] = useState(false);
-  const [editForm, setEditForm] = useState({ name: "", institution: "", bio: "" });
+  const [editForm, setEditForm] = useState({ name: "", institution: "", bio: "", githubUrl: "", linkedinUrl: "", websiteUrl: "", hobbies: "" });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [votedIds, setVotedIds] = useState([]);
@@ -97,7 +97,7 @@ const ProfilePage = () => {
   };
 
   const handleEdit = () => {
-    setEditForm({ name: user?.name || "", institution: user?.institution || "", bio: user?.bio || "" });
+    setEditForm({ name: user?.name || "", institution: user?.institution || "", bio: user?.bio || "", githubUrl: user?.github_url || "", linkedinUrl: user?.linkedin_url || "", websiteUrl: user?.website_url || "", hobbies: user?.hobbies || "" });
     setEditing(true);
   };
 
@@ -161,6 +161,32 @@ const ProfilePage = () => {
                   <label className="text-xs font-medium text-gray-500 mb-1 block">Bio</label>
                   <textarea value={editForm.bio} onChange={(e) => setEditForm({ ...editForm, bio: e.target.value })} rows={3}
                     className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009639]/20 resize-none" />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-medium text-gray-500 mb-1 block">GitHub URL</label>
+                    <input value={editForm.githubUrl} onChange={(e) => setEditForm({ ...editForm, githubUrl: e.target.value })}
+                      placeholder="https://github.com/username"
+                      className="w-full h-9 px-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009639]/20 focus:border-[#009639]" />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-gray-500 mb-1 block">LinkedIn URL</label>
+                    <input value={editForm.linkedinUrl} onChange={(e) => setEditForm({ ...editForm, linkedinUrl: e.target.value })}
+                      placeholder="https://linkedin.com/in/username"
+                      className="w-full h-9 px-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009639]/20 focus:border-[#009639]" />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-gray-500 mb-1 block">Website URL</label>
+                    <input value={editForm.websiteUrl} onChange={(e) => setEditForm({ ...editForm, websiteUrl: e.target.value })}
+                      placeholder="https://yoursite.com"
+                      className="w-full h-9 px-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009639]/20 focus:border-[#009639]" />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-gray-500 mb-1 block">Hobbies</label>
+                    <input value={editForm.hobbies} onChange={(e) => setEditForm({ ...editForm, hobbies: e.target.value })}
+                      placeholder="e.g. Reading, Coding, Music"
+                      className="w-full h-9 px-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009639]/20 focus:border-[#009639]" />
+                  </div>
                 </div>
                 <div className="flex gap-2">
                   <button onClick={handleSave} disabled={saving}

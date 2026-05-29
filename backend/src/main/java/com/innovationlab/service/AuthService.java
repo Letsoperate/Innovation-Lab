@@ -80,6 +80,11 @@ public class AuthService {
             .orElseThrow(() -> new RuntimeException("User not found"));
         if (req.getName() != null && !req.getName().isBlank()) user.setName(SanitizeUtil.sanitize(req.getName()));
         if (req.getInstitution() != null) user.setInstitution(SanitizeUtil.sanitize(req.getInstitution()));
+        if (req.getBio() != null) user.setBio(SanitizeUtil.sanitize(req.getBio()));
+        if (req.getGithubUrl() != null) user.setGithubUrl(req.getGithubUrl());
+        if (req.getLinkedinUrl() != null) user.setLinkedinUrl(req.getLinkedinUrl());
+        if (req.getWebsiteUrl() != null) user.setWebsiteUrl(req.getWebsiteUrl());
+        if (req.getHobbies() != null) user.setHobbies(SanitizeUtil.sanitize(req.getHobbies()));
         userRepo.save(user);
         return toResponse(user);
     }
@@ -90,6 +95,10 @@ public class AuthService {
             u.isAdmin(), u.getCreatedAt());
         r.setBio(u.getBio() != null ? u.getBio() : "");
         r.setAvatarUrl(u.getAvatarUrl());
+        r.setGithubUrl(u.getGithubUrl());
+        r.setLinkedinUrl(u.getLinkedinUrl());
+        r.setWebsiteUrl(u.getWebsiteUrl());
+        r.setHobbies(u.getHobbies());
         return r;
     }
 }

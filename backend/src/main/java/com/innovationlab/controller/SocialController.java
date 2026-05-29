@@ -140,6 +140,10 @@ public class SocialController {
         if (body.containsKey("institution")) user.setInstitution(body.get("institution"));
         if (body.containsKey("bio")) user.setBio(body.get("bio"));
         if (body.containsKey("avatar_url")) user.setAvatarUrl(body.get("avatar_url"));
+        if (body.containsKey("githubUrl")) user.setGithubUrl(body.get("githubUrl"));
+        if (body.containsKey("linkedinUrl")) user.setLinkedinUrl(body.get("linkedinUrl"));
+        if (body.containsKey("websiteUrl")) user.setWebsiteUrl(body.get("websiteUrl"));
+        if (body.containsKey("hobbies")) user.setHobbies(body.get("hobbies"));
         userRepo.save(user);
         return ResponseEntity.ok(getProfile(auth, userId).getBody());
     }

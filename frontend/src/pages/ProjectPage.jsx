@@ -4,6 +4,7 @@ import api from "../services/api";
 import { ChevronUp, MessageCircle, Share2, Bookmark, Flame, Rocket, Play, Star, Calendar, Globe, Users } from "lucide-react";
 import CommentModal from "../components/CommentModal";
 import ShareModal from "../components/ShareModal";
+import { Skeleton } from "@heroui/react";
 import { useAuth } from "../context/AuthContext";
 
 const ProjectPage = () => {
@@ -52,7 +53,15 @@ const ProjectPage = () => {
   };
 
   if (loading) {
-    return <div className="w-full px-4 py-20 text-center"><div className="inline-block w-8 h-8 border-2 border-gray-300 border-t-[#009639] rounded-full animate-spin" /></div>;
+    return (
+      <div className="w-full max-w-4xl mx-auto px-4 py-10">
+        <div className="space-y-4">
+          <Skeleton className="h-8 w-64 rounded-lg" />
+          <Skeleton className="h-4 w-96 rounded-lg" />
+          <Skeleton className="h-32 w-full rounded-xl" />
+        </div>
+      </div>
+    );
   }
 
   if (!project) {

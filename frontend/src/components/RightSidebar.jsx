@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
 import { Trophy, Ship, Medal, Calendar, ArrowRight, Rocket, TrendingUp } from "lucide-react";
+import SidebarSkeleton from "./skeletons/SidebarSkeleton";
 
 const COMPETITION_END = new Date(new Date().getFullYear(), 7, 15, 23, 59, 59);
 
@@ -51,7 +52,7 @@ const RightSidebar = () => {
     return () => clearInterval(timer);
   }, []);
 
-  if (!stats) return null;
+  if (!stats) return <SidebarSkeleton />;
 
   return (
     <aside className="space-y-4">

@@ -5,6 +5,7 @@ import { useToast } from "../context/ToastContext";
 import api from "../services/api";
 import ProjectCard from "../components/ProjectCard";
 import { Avatar } from "@heroui/react";
+import ProfileSkeleton from "../components/skeletons/ProfileSkeleton";
 import {
   User, School, Mail, Calendar, Edit3, Save, X, Bookmark, FolderOpen, Shield, Loader2, UserPlus, UserCheck, Users,
   Github, Linkedin, Globe, Heart,
@@ -123,7 +124,7 @@ const ProfilePage = () => {
   };
 
   if (!isOwnProfile && !profileUser) {
-    return <div className="w-full px-4 py-20 text-center"><div className="inline-block w-6 h-6 border-2 border-gray-300 border-t-[#009639] rounded-full animate-spin" /></div>;
+    return <ProfileSkeleton />;
   }
 
   const displayUser = isOwnProfile ? user : profileUser;

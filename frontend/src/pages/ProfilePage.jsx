@@ -51,7 +51,7 @@ const ProfilePage = () => {
       setIsFollowing(res.data.is_following);
       setFollowersCount(res.data.followers_count);
       setFollowingCount(res.data.following_count);
-    } catch (err) { console.error(err); }
+    } catch (err) { toast.error("Failed to load profile."); }
   };
 
   const handleFollow = async () => {
@@ -77,7 +77,7 @@ const ProfilePage = () => {
       setBookmarks(bmRes.data.projects || []);
       setVotedIds(voteRes.data.ids || []);
       setBookmarkedIds(bmIdsRes.data.ids || []);
-    } catch (err) { console.error("Failed to load profile data:", err); }
+    } catch (err) { toast.error("Failed to load profile data."); }
     finally { setLoading(false); }
   };
 

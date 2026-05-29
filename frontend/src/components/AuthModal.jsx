@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { X, LogIn, UserPlus } from "lucide-react";
+import { X, LogIn, UserPlus, Github } from "lucide-react";
 
 const AuthModal = ({ isOpen, onClose, initialMode = "login" }) => {
   const { login, register } = useAuth();
@@ -114,6 +114,22 @@ const AuthModal = ({ isOpen, onClose, initialMode = "login" }) => {
             )}
           </button>
         </form>
+
+        <div className="relative my-4">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-200"></div>
+          </div>
+          <div className="relative flex justify-center text-xs">
+            <span className="px-2 bg-white text-gray-400">or continue with</span>
+          </div>
+        </div>
+
+        <a
+          href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID || ""}&scope=read:user,user:email`}
+          className="w-full h-10 text-sm font-semibold text-white bg-gray-900 hover:bg-gray-800 rounded-lg transition-colors flex items-center justify-center gap-2"
+        >
+          <Github className="w-4 h-4" /> Continue with GitHub
+        </a>
 
         <div className="mt-4 text-center">
           {mode === "login" ? (

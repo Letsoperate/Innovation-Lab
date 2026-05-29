@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useContext, useState, useCallback, useRef, useEffect } from "react";
 import { CheckCircle, XCircle, AlertTriangle, Info, X } from "lucide-react";
 
 const ToastContext = createContext(null);
@@ -19,12 +19,19 @@ const BG_COLORS = {
 
 export const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
+  const mountedRef = useRef(true);
+
+  useEffect(() => {
+    return () => { mountedRef.current = false; };
+  }, []);
 
   const addToast = useCallback((message, type = "info", duration = 3000) => {
     const id = Date.now() + Math.random();
     setToasts((prev) => [...prev, { id, message, type }]);
     setTimeout(() => {
-      setToasts((prev) => prev.filter((t) => t.id !== id));
+      if (mountedRef.current) {
+        setToasts((prev) => prev.filter((t) => t.id !== id));
+      }
     }, duration);
   }, []);
 
@@ -32,12 +39,12 @@ export const ToastProvider = ({ children }) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
-  const toast = {
+  const toast = React.useMemo(() => ({
     success: (msg) => addToast(msg, "success"),
     error: (msg) => addToast(msg, "error"),
     warning: (msg) => addToast(msg, "warning"),
     info: (msg) => addToast(msg, "info"),
-  };
+  }), [addToast]);
 
   return (
     <ToastContext.Provider value={toast}>

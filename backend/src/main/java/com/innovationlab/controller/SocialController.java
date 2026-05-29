@@ -3,6 +3,7 @@ package com.innovationlab.controller;
 import com.innovationlab.model.entity.*;
 import com.innovationlab.repository.*;
 import com.innovationlab.security.JwtProvider;
+import com.innovationlab.service.NotificationService;
 import io.jsonwebtoken.Claims;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +16,14 @@ public class SocialController {
     private final FollowRepository followRepo;
     private final UserRepository userRepo;
     private final JwtProvider jwtProvider;
+    private final NotificationService notificationService;
 
-    public SocialController(FollowRepository followRepo, UserRepository userRepo, JwtProvider jwtProvider) {
+    public SocialController(FollowRepository followRepo, UserRepository userRepo, JwtProvider jwtProvider,
+                            NotificationService notificationService) {
         this.followRepo = followRepo;
         this.userRepo = userRepo;
         this.jwtProvider = jwtProvider;
+        this.notificationService = notificationService;
     }
 
     @GetMapping("/users")
@@ -51,6 +55,14 @@ public class SocialController {
             following = false;
         } else {
             followRepo.save(new Follow(userId, id));
+            // Notify the followed user
+            User follower = userRepo.findById(userId).orElse(null);
+            notificationService.createNotification(
+                id,
+                "FOLLOW",
+                (follower != null ? follower.getName() : "Someone") + " started following you",
+                "/profile/" + userId
+            );
             following = true;
         }
         Map<String, Object> resp = new HashMap<>();

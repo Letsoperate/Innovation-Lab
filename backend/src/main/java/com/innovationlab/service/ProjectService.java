@@ -19,15 +19,17 @@ public class ProjectService {
     private final CommentRepository commentRepo;
     private final BookmarkRepository bookmarkRepo;
     private final UserRepository userRepo;
+    private final NotificationService notificationService;
 
     public ProjectService(ProjectRepository projectRepo, VoteRepository voteRepo,
                           CommentRepository commentRepo, BookmarkRepository bookmarkRepo,
-                          UserRepository userRepo) {
+                          UserRepository userRepo, NotificationService notificationService) {
         this.projectRepo = projectRepo;
         this.voteRepo = voteRepo;
         this.commentRepo = commentRepo;
         this.bookmarkRepo = bookmarkRepo;
         this.userRepo = userRepo;
+        this.notificationService = notificationService;
     }
 
     public Map<String, Object> listProjects(String tab, String period, String category,
@@ -191,6 +193,16 @@ public class ProjectService {
             voteRepo.save(vote);
             project.setUpvotes(project.getUpvotes() + 1);
             projectRepo.save(project);
+            // Notify project owner (don't notify if voting on own project)
+            if (!project.getUserId().equals(userId)) {
+                User voter = userRepo.findById(userId).orElse(null);
+                notificationService.createNotification(
+                    project.getUserId(),
+                    "VOTE",
+                    (voter != null ? voter.getName() : "Someone") + " voted on " + project.getName(),
+                    "/project/" + project.getId()
+                );
+            }
             return new VoteResponse(true, project.getUpvotes());
         }
     }
@@ -221,6 +233,15 @@ public class ProjectService {
         commentRepo.save(comment);
         project.setCommentsCount(project.getCommentsCount() + 1);
         projectRepo.save(project);
+        // Notify project owner
+        if (!project.getUserId().equals(userId)) {
+            notificationService.createNotification(
+                project.getUserId(),
+                "COMMENT",
+                userName + " commented on " + project.getName(),
+                "/project/" + project.getId()
+            );
+        }
         CommentResponse r = new CommentResponse();
         r.setId(comment.getId());
         r.setProjectId(comment.getProjectId());
@@ -239,6 +260,17 @@ public class ProjectService {
         } else {
             Bookmark bookmark = new Bookmark(projectId, userId);
             bookmarkRepo.save(bookmark);
+            // Notify project owner
+            Project project = projectRepo.findById(projectId).orElse(null);
+            if (project != null && !project.getUserId().equals(userId)) {
+                User bookmarker = userRepo.findById(userId).orElse(null);
+                notificationService.createNotification(
+                    project.getUserId(),
+                    "BOOKMARK",
+                    (bookmarker != null ? bookmarker.getName() : "Someone") + " saved " + project.getName(),
+                    "/project/" + project.getId()
+                );
+            }
             return new BookmarkResponse(true);
         }
     }

@@ -4,6 +4,7 @@ import com.innovationlab.model.dto.*;
 import com.innovationlab.model.entity.User;
 import com.innovationlab.repository.UserRepository;
 import com.innovationlab.security.JwtProvider;
+import com.innovationlab.util.SanitizeUtil;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,9 +30,9 @@ public class AuthService {
         }
         boolean isAdmin = userRepo.count() == 0;
         User user = new User(
-            req.getName(), email,
+            SanitizeUtil.sanitize(req.getName()), email,
             encoder.encode(req.getPassword()),
-            req.getInstitution() != null ? req.getInstitution() : "",
+            req.getInstitution() != null ? SanitizeUtil.sanitize(req.getInstitution()) : "",
             isAdmin
         );
         userRepo.save(user);
@@ -70,8 +71,8 @@ public class AuthService {
     public UserResponse updateProfile(String userId, ProfileUpdateRequest req) {
         User user = userRepo.findById(userId)
             .orElseThrow(() -> new RuntimeException("User not found"));
-        if (req.getName() != null && !req.getName().isBlank()) user.setName(req.getName());
-        if (req.getInstitution() != null) user.setInstitution(req.getInstitution());
+        if (req.getName() != null && !req.getName().isBlank()) user.setName(SanitizeUtil.sanitize(req.getName()));
+        if (req.getInstitution() != null) user.setInstitution(SanitizeUtil.sanitize(req.getInstitution()));
         userRepo.save(user);
         return toResponse(user);
     }

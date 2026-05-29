@@ -3,6 +3,7 @@ package com.innovationlab.service;
 import com.innovationlab.model.dto.*;
 import com.innovationlab.model.entity.*;
 import com.innovationlab.repository.*;
+import com.innovationlab.util.SanitizeUtil;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
@@ -131,18 +132,18 @@ public class ProjectService {
 
     public ProjectResponse createProject(ProjectRequest req, String userId, String userName) {
         Project project = new Project();
-        project.setName(req.getName());
-        project.setTagline(req.getTagline());
-        project.setDescription(req.getDescription());
+        project.setName(SanitizeUtil.sanitize(req.getName()));
+        project.setTagline(SanitizeUtil.sanitize(req.getTagline()));
+        project.setDescription(SanitizeUtil.sanitize(req.getDescription()));
         project.setDemoUrl(req.getDemoUrl());
         project.setRepoUrl(req.getRepoUrl());
         project.setVideoUrl(req.getVideoUrl());
         project.setCategory(req.getCategory());
         project.setTrack(req.getTrack());
-        project.setInstitution(req.getInstitution());
-        project.setTeamName(req.getTeamName());
+        project.setInstitution(SanitizeUtil.sanitize(req.getInstitution()));
+        project.setTeamName(SanitizeUtil.sanitize(req.getTeamName()));
         project.setTeamSize(req.getTeamSize());
-        project.setTechStack(req.getTechStack());
+        project.setTechStack(SanitizeUtil.sanitize(req.getTechStack()));
         project.setLogoColor(req.getLogoColor() != null ? req.getLogoColor() : "#009639");
         project.setLogoInitial(req.getLogoInitial());
         project.setUserId(userId);
@@ -157,18 +158,18 @@ public class ProjectService {
         if (!isAdmin && !project.getUserId().equals(userId)) {
             throw new RuntimeException("Not authorized to update this project");
         }
-        if (req.getName() != null) project.setName(req.getName());
-        if (req.getTagline() != null) project.setTagline(req.getTagline());
-        if (req.getDescription() != null) project.setDescription(req.getDescription());
+        if (req.getName() != null) project.setName(SanitizeUtil.sanitize(req.getName()));
+        if (req.getTagline() != null) project.setTagline(SanitizeUtil.sanitize(req.getTagline()));
+        if (req.getDescription() != null) project.setDescription(SanitizeUtil.sanitize(req.getDescription()));
         if (req.getDemoUrl() != null) project.setDemoUrl(req.getDemoUrl());
         if (req.getRepoUrl() != null) project.setRepoUrl(req.getRepoUrl());
         if (req.getVideoUrl() != null) project.setVideoUrl(req.getVideoUrl());
         if (req.getCategory() != null) project.setCategory(req.getCategory());
         if (req.getTrack() != null) project.setTrack(req.getTrack());
-        if (req.getInstitution() != null) project.setInstitution(req.getInstitution());
-        if (req.getTeamName() != null) project.setTeamName(req.getTeamName());
+        if (req.getInstitution() != null) project.setInstitution(SanitizeUtil.sanitize(req.getInstitution()));
+        if (req.getTeamName() != null) project.setTeamName(SanitizeUtil.sanitize(req.getTeamName()));
         project.setTeamSize(req.getTeamSize());
-        if (req.getTechStack() != null) project.setTechStack(req.getTechStack());
+        if (req.getTechStack() != null) project.setTechStack(SanitizeUtil.sanitize(req.getTechStack()));
         if (req.getLogoColor() != null) project.setLogoColor(req.getLogoColor());
         if (req.getLogoInitial() != null) project.setLogoInitial(req.getLogoInitial());
         project.setUpdatedAt(Instant.now());

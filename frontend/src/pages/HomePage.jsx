@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useToast } from "../context/ToastContext";
 import HeroSection from "../components/HeroSection";
 import BrowseSidebar from "../components/BrowseSidebar";
 import RightSidebar from "../components/RightSidebar";
@@ -30,6 +31,7 @@ const HomePage = () => {
   const [totalProjects, setTotalProjects] = useState(0);
   const PAGE_SIZE = 12;
 
+  useEffect(() => { document.title = "Innovation Lab"; }, []);
   useEffect(() => { loadData(); loadUserState(); }, []);
   useEffect(() => { if (activeTab !== "top") { setCurrentPage(1); loadTabProjects(activeTab, 1); } }, [activeTab]);
 

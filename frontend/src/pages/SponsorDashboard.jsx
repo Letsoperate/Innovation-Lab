@@ -21,6 +21,8 @@ const SponsorDashboard = () => {
   const token = localStorage.getItem("sponsorToken");
   const name = localStorage.getItem("sponsorName") || "Sponsor";
 
+  useEffect(() => { document.title = "Sponsor Dashboard — Innovation Lab"; }, []);
+
   useEffect(() => {
     if (!token) { navigate("/sponsor/login"); return; }
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;

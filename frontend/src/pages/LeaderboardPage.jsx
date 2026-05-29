@@ -20,6 +20,8 @@ const LeaderboardPage = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  useEffect(() => { document.title = "Leaderboard — Innovation Lab"; }, []);
+
   useEffect(() => {
     loadStats();
   }, []);

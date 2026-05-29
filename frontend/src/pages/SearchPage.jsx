@@ -16,6 +16,8 @@ const SearchPage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
 
+  useEffect(() => { document.title = "Search — Innovation Lab"; }, []);
+
   useEffect(() => {
     if (!query) return;
     const controller = new AbortController();

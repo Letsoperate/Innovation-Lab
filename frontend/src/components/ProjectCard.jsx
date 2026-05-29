@@ -100,10 +100,22 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
         style={{ backgroundColor: logoImage ? "transparent" : logoColor }}
       >
         {logoImage ? (
-          <img src={logoImage} alt={project.name} className="w-full h-full object-cover" />
-        ) : (
-          logoInitial
-        )}
+          <img
+            src={logoImage}
+            alt={project.name}
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.style.display = "none";
+              e.target.nextSibling.style.display = "flex";
+            }}
+          />
+        ) : null}
+        <div
+          className="w-full h-full items-center justify-center"
+          style={{ backgroundColor: logoColor, display: logoImage ? "none" : "flex" }}
+        >
+          {logoInitial}
+        </div>
       </div>
 
       <div className="flex-1 min-w-0">

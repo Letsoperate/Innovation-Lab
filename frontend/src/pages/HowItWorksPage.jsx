@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   UserPlus,
@@ -55,6 +55,7 @@ const competitionTimeline = (() => {
 })();
 
 const HowItWorksPage = () => {
+  useEffect(() => { document.title = "How It Works — Innovation Lab"; }, []);
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}

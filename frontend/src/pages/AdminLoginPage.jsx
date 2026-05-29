@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Eye, EyeOff } from "lucide-react";
@@ -11,6 +11,8 @@ const AdminLoginPage = () => {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => { document.title = "Admin Login — Innovation Lab"; }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();

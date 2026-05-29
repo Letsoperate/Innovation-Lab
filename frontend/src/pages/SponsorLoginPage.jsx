@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { Eye, EyeOff } from "lucide-react";
@@ -10,6 +10,8 @@ const SponsorLoginPage = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => { document.title = "Sponsor Login — Innovation Lab"; }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();

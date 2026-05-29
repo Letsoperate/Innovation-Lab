@@ -43,6 +43,8 @@ const SubmitPage = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => { document.title = "Submit Project — Innovation Lab"; }, []);
+
   useEffect(() => {
     const load = async () => {
       try {

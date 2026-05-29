@@ -6,6 +6,8 @@ const BlogPage = () => {
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  useEffect(() => { document.title = "Blog — Innovation Lab"; }, []);
+
   useEffect(() => {
     api.get("/blog")
       .then((res) => setBlogPosts(res.data))

@@ -28,11 +28,14 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: ALLOWED_ORIGINS
-        value: https://YOUR_NETLIFY_SITE.netlify.app
+        value: https://innovation-lab-platform.netlify.app
       - key: COMPETITION_END
         value: 2026-08-15
-      - key: PORT
-        value: "8080"
+      - key: GITHUB_CLIENT_ID
+        value: Ov23liG6w3csuLdB25RE
+      - key: GITHUB_CLIENT_SECRET
+        sync: false
+        value: ''
 
 databases:
   - name: innovationlab-db

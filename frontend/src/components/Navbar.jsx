@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronDown, Menu, X, LogOut, User, Shield, Clock } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import AuthModal from "./AuthModal";
+import NotificationBell from "./NotificationBell";
 
 const timeline = [
   { phase: "Registration", status: "completed" },
@@ -85,6 +86,7 @@ const Navbar = () => {
                       <Shield className="w-3.5 h-3.5" /> Admin
                     </Link>
                   )}
+                  <NotificationBell />
                   <button
                     onClick={logout}
                     className="p-2 text-gray-500 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"

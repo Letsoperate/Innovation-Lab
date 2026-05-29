@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useToast } from "../context/ToastContext";
+import { useAuth } from "../context/AuthContext";
 import HeroSection from "../components/HeroSection";
 import BrowseSidebar from "../components/BrowseSidebar";
 import RightSidebar from "../components/RightSidebar";
@@ -10,6 +11,7 @@ import ProjectCard from "../components/ProjectCard";
 import FAQSection from "../components/FAQSection";
 import api from "../services/api";
 import { Tabs, Spinner, Skeleton } from "@heroui/react";
+import { Users } from "lucide-react";
 
 const tabs = [
   { id: "top", label: "Top", icon: null },
@@ -19,6 +21,8 @@ const tabs = [
 ];
 
 const HomePage = () => {
+  const { user } = useAuth();
+  const [feedSource, setFeedSource] = useState("discover");
   const [activeTab, setActiveTab] = useState("top");
   const [grouped, setGrouped] = useState({ today: [], yesterday: [], week: [], month: [], all: [] });
   const [listProjects, setListProjects] = useState([]);
@@ -29,11 +33,15 @@ const HomePage = () => {
   const [statsOpen, setStatsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalProjects, setTotalProjects] = useState(0);
+  const [followingProjects, setFollowingProjects] = useState([]);
+  const [followingTotal, setFollowingTotal] = useState(0);
+  const [followingPage, setFollowingPage] = useState(1);
   const PAGE_SIZE = 12;
 
   useEffect(() => { document.title = "Innovation Lab"; }, []);
   useEffect(() => { loadData(); loadUserState(); }, []);
   useEffect(() => { if (activeTab !== "top") { setCurrentPage(1); loadTabProjects(activeTab, 1); } }, [activeTab]);
+  useEffect(() => { if (feedSource === "following") { setFollowingPage(1); loadFollowingProjects(1); } }, [feedSource]);
 
   const loadData = async () => {
     setLoading(true);
@@ -49,6 +57,16 @@ const HomePage = () => {
       setListProjects(res.data.projects || []);
       setTotalProjects(res.data.total || 0);
     } catch (err) { console.error("Failed to load projects:", err); }
+    finally { setLoading(false); }
+  };
+
+  const loadFollowingProjects = async (page = 1) => {
+    setLoading(true);
+    try {
+      const res = await api.get(`/projects?tab=following&page=${page}&limit=${PAGE_SIZE}`);
+      setFollowingProjects(res.data.projects || []);
+      setFollowingTotal(res.data.total || 0);
+    } catch (err) { console.error("Failed to load following projects:", err); }
     finally { setLoading(false); }
   };
 
@@ -129,61 +147,112 @@ const HomePage = () => {
   const projectBoard = (
     <>
       <HeroSection />
-      <Tabs
-        selectedKey={activeTab}
-        onSelectionChange={(key) => setActiveTab(String(key))}
-        className="mb-6"
-      >
-        <Tabs.ListContainer>
-          <Tabs.List aria-label="Projects" className="flex items-center gap-1 border-b border-gray-200">
-            {tabs.map(t => (
-              <Tabs.Tab key={t.id} id={t.id} className="text-sm font-medium px-4 py-3 border-b-2 border-transparent data-[selected=true]:border-purple-600 data-[selected=true]:text-purple-800 text-gray-500">
-                {t.icon === "live" && <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse inline-block mr-1.5" />}
-                {t.label}
-              </Tabs.Tab>
-            ))}
-          </Tabs.List>
-        </Tabs.ListContainer>
+      {/* Feed source tab bar: Discover / Following */}
+      <div className="flex items-center gap-1 mb-6">
+        <button
+          onClick={() => setFeedSource("discover")}
+          className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+            feedSource === "discover"
+              ? "bg-purple-100 text-purple-700"
+              : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+          }`}
+        >
+          Discover
+        </button>
+        {user ? (
+          <button
+            onClick={() => setFeedSource("following")}
+            className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+              feedSource === "following"
+                ? "bg-purple-100 text-purple-700"
+                : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+            }`}
+          >
+            Following
+          </button>
+        ) : (
+          <button
+            className="px-4 py-2 text-sm font-medium rounded-lg text-gray-300 cursor-not-allowed"
+            title="Sign in to see projects from users you follow"
+          >
+            Following
+          </button>
+        )}
+      </div>
 
-        <Tabs.Panel id="top">
-          {loading ? renderLoading() : (
+      {feedSource === "following" ? (
+        <>
+          {loading ? renderLoading() : followingProjects.length > 0 ? (
             <>
-              {grouped.today.length > 0 && renderProjectSection(`Today Top ${grouped.today.length}`, grouped.today)}
-              {grouped.yesterday.length > 0 && renderProjectSection(`Yesterday Top ${grouped.yesterday.length}`, grouped.yesterday)}
-              {grouped.week.length > 0 && renderProjectSection(`This Week Top ${grouped.week.length}`, grouped.week)}
-              {grouped.month.length > 0 && renderProjectSection(`This Month Top ${grouped.month.length}`, grouped.month)}
-              {grouped.all && grouped.all.length > 0 && renderProjectSection(`Older Projects`, grouped.all)}
+              {renderProjectSection("Projects from people you follow", followingProjects)}
+              <Pagination page={followingPage} total={followingTotal} pageSize={PAGE_SIZE}
+                onPageChange={(p) => { setFollowingPage(p); loadFollowingProjects(p); }} />
             </>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-16 text-center">
+              <Users className="w-12 h-12 text-gray-300 mb-3" />
+              <p className="text-gray-500 text-sm">No projects from people you follow yet.</p>
+              <p className="text-gray-400 text-xs mt-1">Follow other builders to see their projects here.</p>
+            </div>
           )}
-        </Tabs.Panel>
-        <Tabs.Panel id="live">
-          {loading ? renderLoading() : listProjects.length > 0 ? (
-            <>
-              {renderProjectSection("Today's Launches", listProjects)}
-              <Pagination page={currentPage} total={totalProjects} pageSize={PAGE_SIZE}
-                onPageChange={(p) => { setCurrentPage(p); loadTabProjects(activeTab, p); }} />
-            </>
-          ) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
-        </Tabs.Panel>
-        <Tabs.Panel id="recent">
-          {loading ? renderLoading() : listProjects.length > 0 ? (
-            <>
-              {renderProjectSection("Recent Submissions", listProjects)}
-              <Pagination page={currentPage} total={totalProjects} pageSize={PAGE_SIZE}
-                onPageChange={(p) => { setCurrentPage(p); loadTabProjects(activeTab, p); }} />
-            </>
-          ) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
-        </Tabs.Panel>
-        <Tabs.Panel id="updated">
-          {loading ? renderLoading() : listProjects.length > 0 ? (
-            <>
-              {renderProjectSection("Recently Updated", listProjects)}
-              <Pagination page={currentPage} total={totalProjects} pageSize={PAGE_SIZE}
-                onPageChange={(p) => { setCurrentPage(p); loadTabProjects(activeTab, p); }} />
-            </>
-          ) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
-        </Tabs.Panel>
-      </Tabs>
+        </>
+      ) : (
+        <Tabs
+          selectedKey={activeTab}
+          onSelectionChange={(key) => setActiveTab(String(key))}
+          className="mb-6"
+        >
+          <Tabs.ListContainer>
+            <Tabs.List aria-label="Projects" className="flex items-center gap-1 border-b border-gray-200">
+              {tabs.map(t => (
+                <Tabs.Tab key={t.id} id={t.id} className="text-sm font-medium px-4 py-3 border-b-2 border-transparent data-[selected=true]:border-purple-600 data-[selected=true]:text-purple-800 text-gray-500">
+                  {t.icon === "live" && <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse inline-block mr-1.5" />}
+                  {t.label}
+                </Tabs.Tab>
+              ))}
+            </Tabs.List>
+          </Tabs.ListContainer>
+
+          <Tabs.Panel id="top">
+            {loading ? renderLoading() : (
+              <>
+                {grouped.today.length > 0 && renderProjectSection(`Today Top ${grouped.today.length}`, grouped.today)}
+                {grouped.yesterday.length > 0 && renderProjectSection(`Yesterday Top ${grouped.yesterday.length}`, grouped.yesterday)}
+                {grouped.week.length > 0 && renderProjectSection(`This Week Top ${grouped.week.length}`, grouped.week)}
+                {grouped.month.length > 0 && renderProjectSection(`This Month Top ${grouped.month.length}`, grouped.month)}
+                {grouped.all && grouped.all.length > 0 && renderProjectSection(`Older Projects`, grouped.all)}
+              </>
+            )}
+          </Tabs.Panel>
+          <Tabs.Panel id="live">
+            {loading ? renderLoading() : listProjects.length > 0 ? (
+              <>
+                {renderProjectSection("Today's Launches", listProjects)}
+                <Pagination page={currentPage} total={totalProjects} pageSize={PAGE_SIZE}
+                  onPageChange={(p) => { setCurrentPage(p); loadTabProjects(activeTab, p); }} />
+              </>
+            ) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
+          </Tabs.Panel>
+          <Tabs.Panel id="recent">
+            {loading ? renderLoading() : listProjects.length > 0 ? (
+              <>
+                {renderProjectSection("Recent Submissions", listProjects)}
+                <Pagination page={currentPage} total={totalProjects} pageSize={PAGE_SIZE}
+                  onPageChange={(p) => { setCurrentPage(p); loadTabProjects(activeTab, p); }} />
+              </>
+            ) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
+          </Tabs.Panel>
+          <Tabs.Panel id="updated">
+            {loading ? renderLoading() : listProjects.length > 0 ? (
+              <>
+                {renderProjectSection("Recently Updated", listProjects)}
+                <Pagination page={currentPage} total={totalProjects} pageSize={PAGE_SIZE}
+                  onPageChange={(p) => { setCurrentPage(p); loadTabProjects(activeTab, p); }} />
+              </>
+            ) : <div className="py-12 text-center text-gray-500 text-sm">No projects found.</div>}
+          </Tabs.Panel>
+        </Tabs>
+      )}
       <FAQSection />
     </>
   );

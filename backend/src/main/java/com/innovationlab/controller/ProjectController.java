@@ -23,6 +23,7 @@ public class ProjectController {
 
     @GetMapping("/projects")
     public ResponseEntity<Map<String, Object>> listProjects(
+            @RequestHeader(value = "Authorization", required = false) String auth,
             @RequestParam(defaultValue = "recent") String tab,
             @RequestParam(required = false) String period,
             @RequestParam(required = false) String category,
@@ -30,6 +31,11 @@ public class ProjectController {
             @RequestParam(required = false) String search,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "12") int limit) {
+        if ("following".equals(tab)) {
+            String userId = extractUserId(auth);
+            if (userId == null) return ResponseEntity.status(401).build();
+            return ResponseEntity.ok(projectService.listFollowingProjects(userId, page, limit));
+        }
         return ResponseEntity.ok(projectService.listProjects(tab, period, category, track, search, page, limit));
     }
 

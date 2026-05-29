@@ -308,6 +308,17 @@ public class ProjectService {
                 .collect(Collectors.toList());
     }
 
+    public Map<String, Object> listFollowingProjects(String userId, int page, int limit) {
+        Pageable pageable = PageRequest.of(page - 1, limit);
+        List<Project> projects = projectRepo.findProjectsFromFollowedUsers(userId, pageable);
+        long total = projectRepo.countProjectsFromFollowedUsers(userId);
+        List<ProjectResponse> responses = projects.stream().map(this::toResponse).collect(Collectors.toList());
+        Map<String, Object> result = new HashMap<>();
+        result.put("projects", responses);
+        result.put("total", total);
+        return result;
+    }
+
     public void deleteProject(String id, String userId, boolean isAdmin) {
         Project project = projectRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Project not found"));

@@ -18,6 +18,7 @@ import { useToast } from "../context/ToastContext";
 import api from "../services/api";
 import CommentModal from "./CommentModal";
 import ShareModal from "./ShareModal";
+import AuthModal from "./AuthModal";
 
 const getRankIcon = (rankLabel) => {
   if (!rankLabel) return null;
@@ -44,9 +45,13 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
   const [voteLoading, setVoteLoading] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showShare, setShowShare] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const handleUpvote = async () => {
-    if (!user) return;
+    if (!user) {
+      setShowAuthModal(true);
+      return;
+    }
     if (voteLoading) return;
     setVoteLoading(true);
     try {
@@ -63,7 +68,10 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
   };
 
   const handleBookmark = async () => {
-    if (!user) return;
+    if (!user) {
+      setShowAuthModal(true);
+      return;
+    }
     try {
       const res = await api.post(`/projects/${project.id}/bookmark`);
       setSaved(res.data.bookmarked);
@@ -203,6 +211,7 @@ const ProjectCard = ({ project, isVoted = false, isBookmarked = false, onVoteCha
         isOpen={showShare}
         onClose={() => setShowShare(false)}
       />
+      <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} initialMode="login" />
     </div>
   );
 };

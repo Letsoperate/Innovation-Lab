@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ErrorBoundary from "./components/ErrorBoundary";
 import HomePage from "./pages/HomePage";
 import HowItWorksPage from "./pages/HowItWorksPage";
 import SubmitPage from "./pages/SubmitPage";
@@ -36,25 +37,27 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/how-it-works" element={<HowItWorksPage />} />
-            <Route path="/submit" element={<SubmitPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/leaderboard" element={<LeaderboardPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/profile/:userId" element={<ProfilePage />} />
-            <Route path="/admin" element={<AdminPage />} />
-            <Route path="/hall-of-fame" element={<HallOfFamePage />} />
-            <Route path="/category/:slug" element={<CategoryPage />} />
-            <Route path="/track/:slug" element={<CategoryPage />} />
-            <Route path="/audience/:slug" element={<CategoryPage />} />
-            <Route path="/p/:slug" element={<ProjectPage />} />
-            <Route path="/sponsor/login" element={<SponsorLoginPage />} />
-            <Route path="/sponsor/dashboard" element={<SponsorDashboard />} />
-            <Route path="/admin/login" element={<AdminLoginPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+          <ErrorBoundary>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/how-it-works" element={<HowItWorksPage />} />
+              <Route path="/submit" element={<SubmitPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/leaderboard" element={<LeaderboardPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/profile/:userId" element={<ProfilePage />} />
+              <Route path="/admin" element={<AdminPage />} />
+              <Route path="/hall-of-fame" element={<HallOfFamePage />} />
+              <Route path="/category/:slug" element={<CategoryPage />} />
+              <Route path="/track/:slug" element={<CategoryPage />} />
+              <Route path="/audience/:slug" element={<CategoryPage />} />
+              <Route path="/p/:slug" element={<ProjectPage />} />
+              <Route path="/sponsor/login" element={<SponsorLoginPage />} />
+              <Route path="/sponsor/dashboard" element={<SponsorDashboard />} />
+              <Route path="/admin/login" element={<AdminLoginPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </ErrorBoundary>
           <Footer />
         </BrowserRouter>
       </AuthProvider>

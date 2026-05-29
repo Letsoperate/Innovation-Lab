@@ -91,12 +91,14 @@ const AdminPage = () => {
     } catch (err) { toast.error("Failed to delete project."); }
   };
 
-  const handleToggleAdmin = async (userId) => {
+  const handleToggleAdmin = async (userId, userName, currentlyAdmin) => {
+    const action = currentlyAdmin ? "remove admin from" : "make admin";
+    if (!window.confirm(`Are you sure you want to ${action} ${userName}?`)) return;
     try {
       await api.put(`/admin/users/${userId}/toggle-admin`);
-      toast.success("Admin status updated!");
+      toast.success(`Admin status updated for ${userName}`);
       loadTab("users");
-    } catch (err) { toast.error("Failed to toggle admin status."); }
+    } catch (err) { toast.error("Failed to update admin status."); }
   };
 
   const handleBlogSave = async () => {
@@ -265,7 +267,7 @@ const AdminPage = () => {
                   <div className="text-xs font-medium text-purple-800">{u.project_count}</div>
                   <div>
                     <button
-                      onClick={() => handleToggleAdmin(u.id)}
+                      onClick={() => handleToggleAdmin(u.id, u.name, u.is_admin)}
                       className={`px-2 py-1 text-[10px] font-medium rounded ${
                         u.is_admin ? "bg-amber-50 text-amber-700 border border-amber-200" : "bg-gray-100 text-gray-600"
                       }`}

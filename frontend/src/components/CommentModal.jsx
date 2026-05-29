@@ -73,7 +73,7 @@ const CommentModal = ({ projectId, projectName, projectUserId, isOpen, onClose }
             ))
           )}
         </div>
-        {token && (
+        {token ? (
           <form onSubmit={handleSubmit} className="p-3 border-t border-gray-100 flex gap-2">
             <input
               value={text} onChange={e => setText(e.target.value)}
@@ -85,6 +85,10 @@ const CommentModal = ({ projectId, projectName, projectUserId, isOpen, onClose }
               <Send className="w-3 h-3" /> Post
             </button>
           </form>
+        ) : (
+          <div className="p-3 border-t border-gray-100 text-center">
+            <p className="text-xs text-gray-500">Log in to join the conversation</p>
+          </div>
         )}
       </div>
     </div>

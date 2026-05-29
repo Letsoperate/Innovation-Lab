@@ -23,12 +23,12 @@ const ProjectPage = () => {
 
   const loadProject = async () => {
     try {
-      const res = await api.get(`/projects?search=${encodeURIComponent(slug.replace(/-/g, " "))}&limit=100`);
-      const match = (res.data.projects || []).find(p => (p.slug || p.name?.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")) === slug);
-      if (match) {
-        setProject(match);
-        setCurrentUpvotes(match.upvotes);
-        document.title = `${match.name} — Innovation Lab`;
+      const res = await api.get(`/projects/slug/${encodeURIComponent(slug)}`);
+      const p = res.data;
+      if (p) {
+        setProject(p);
+        setCurrentUpvotes(p.upvotes);
+        document.title = `${p.name} — Innovation Lab`;
       }
     } catch (err) { console.error(err); }
     finally { setLoading(false); }

@@ -226,7 +226,7 @@ const AdminPage = () => {
                   <div className="space-y-2">
                     {dashboard.top_categories.map((c, i) => (
                       <div key={i} className="flex items-center justify-between">
-                        <span className="text-sm text-gray-700">{c.category || "Uncategorized"}</span>
+                        <span className="text-sm text-gray-700">{c.name || "Uncategorized"}</span>
                         <span className="text-sm font-semibold text-purple-800">{c.count} projects</span>
                       </div>
                     ))}

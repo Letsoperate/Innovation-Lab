@@ -18,6 +18,18 @@ import SponsorLoginPage from "./pages/SponsorLoginPage";
 import SponsorDashboard from "./pages/SponsorDashboard";
 import AdminLoginPage from "./pages/AdminLoginPage";
 
+function NotFoundPage() {
+  return (
+    <div className="w-full px-4 py-20 text-center">
+      <h1 className="text-6xl font-bold text-purple-800 mb-4">404</h1>
+      <p className="text-gray-500 mb-6">The page you're looking for doesn't exist.</p>
+      <a href="/" className="px-6 py-2.5 text-sm font-medium text-white bg-purple-600 rounded-xl hover:bg-purple-700 transition-colors">
+        Go Home
+      </a>
+    </div>
+  );
+}
+
 function App() {
   return (
     <div className="App">
@@ -41,6 +53,7 @@ function App() {
             <Route path="/sponsor/login" element={<SponsorLoginPage />} />
             <Route path="/sponsor/dashboard" element={<SponsorDashboard />} />
             <Route path="/admin/login" element={<AdminLoginPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>

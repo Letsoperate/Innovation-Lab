@@ -121,6 +121,14 @@ public class ProjectService {
         return toResponse(project);
     }
 
+    public ProjectResponse getProjectBySlug(String slug) {
+        Project project = projectRepo.findBySlug(slug)
+                .orElseThrow(() -> new RuntimeException("Project not found"));
+        project.setViews(project.getViews() + 1);
+        projectRepo.save(project);
+        return toResponse(project);
+    }
+
     public ProjectResponse createProject(ProjectRequest req, String userId, String userName) {
         Project project = new Project();
         project.setName(req.getName());

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, String>, JpaSpecificationExecutor<Project> {
@@ -18,4 +19,5 @@ public interface ProjectRepository extends JpaRepository<Project, String>, JpaSp
     long countByCreatedAtAfter(Instant date);
     long countByCategory(String category);
     long countByCategoryAndCreatedAtAfter(String category, Instant date);
+    Optional<Project> findBySlug(String slug);
 }

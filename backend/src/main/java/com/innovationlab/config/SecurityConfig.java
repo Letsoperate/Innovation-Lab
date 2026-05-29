@@ -3,6 +3,7 @@ package com.innovationlab.config;
 import com.innovationlab.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -37,9 +38,14 @@ public class SecurityConfig {
                 .requestMatchers("/api/health", "/api/", "/api/stats", "/api/categories",
                     "/api/tracks", "/api/audiences", "/api/sponsors", "/api/faq",
                     "/api/blog", "/api/blog/**", "/api/leaderboard", "/api/hall-of-fame",
-                    "/api/projects", "/api/projects/grouped", "/api/search", "/api/seed").permitAll()
-                .requestMatchers("/api/admin/**").authenticated()
-                .anyRequest().permitAll()
+                    "/api/projects", "/api/projects/grouped", "/api/projects/slug/{slug}", "/api/projects/{id}",
+                    "/api/search", "/api/seed").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/users/{id}/profile").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/users/{id}/followers").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/users/{id}/following").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/users/{id}/bookmarks").permitAll()
+                .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

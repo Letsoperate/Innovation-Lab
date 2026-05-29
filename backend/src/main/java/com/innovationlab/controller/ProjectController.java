@@ -38,6 +38,11 @@ public class ProjectController {
         return ResponseEntity.ok(projectService.getGroupedProjects());
     }
 
+    @GetMapping("/projects/slug/{slug}")
+    public ResponseEntity<ProjectResponse> getProjectBySlug(@PathVariable String slug) {
+        return ResponseEntity.ok(projectService.getProjectBySlug(slug));
+    }
+
     @GetMapping("/projects/{id}")
     public ResponseEntity<ProjectResponse> getProject(@PathVariable String id) {
         return ResponseEntity.ok(projectService.getProject(id));

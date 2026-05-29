@@ -101,7 +101,7 @@ const ProfilePage = () => {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       await api.put("/auth/profile", editForm);
       setEditing(false);
-      window.location.reload();
+      setProfileUser((prev) => prev ? { ...prev, ...editForm } : prev);
     } catch (err) { console.error("Failed to update profile:", err); }
     finally { setSaving(false); }
   };
@@ -167,30 +167,30 @@ const ProfilePage = () => {
             ) : (
               <>
                 <div className="flex items-center gap-2 mb-1">
-                  <h1 className="text-xl font-bold text-purple-800">{user.name}</h1>
-                  {user.is_admin && (
+                  <h1 className="text-xl font-bold text-purple-800">{displayUser.name}</h1>
+                  {displayUser.is_admin && (
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-full">
                       <Shield className="w-3 h-3" /> Admin
                     </span>
                   )}
                 </div>
-                {user.bio && <p className="text-sm text-gray-600 mb-2">{user.bio}</p>}
+                {displayUser.bio && <p className="text-sm text-gray-600 mb-2">{displayUser.bio}</p>}
                 <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500">
-                  <span className="flex items-center gap-1"><Mail className="w-3 h-3" /> {user.email}</span>
-                  {user.institution && <span className="flex items-center gap-1"><School className="w-3 h-3" /> {user.institution}</span>}
-                  <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> Joined {new Date(user.created_at).toLocaleDateString()}</span>
+                  <span className="flex items-center gap-1"><Mail className="w-3 h-3" /> {displayUser.email}</span>
+                  {displayUser.institution && <span className="flex items-center gap-1"><School className="w-3 h-3" /> {displayUser.institution}</span>}
+                  <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> Joined {new Date(displayUser.created_at).toLocaleDateString()}</span>
                 </div>
-                {(user.github_url || user.linkedin_url || user.website_url) && (
+                {(displayUser.github_url || displayUser.linkedin_url || displayUser.website_url) && (
                   <div className="flex items-center gap-2 mt-2">
-                    {user.github_url && <a href={user.github_url} target="_blank" className="p-1.5 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"><Github className="w-3.5 h-3.5 text-gray-600" /></a>}
-                    {user.linkedin_url && <a href={user.linkedin_url} target="_blank" className="p-1.5 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"><Linkedin className="w-3.5 h-3.5 text-gray-600" /></a>}
-                    {user.website_url && <a href={user.website_url} target="_blank" className="p-1.5 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"><Globe className="w-3.5 h-3.5 text-gray-600" /></a>}
+                    {displayUser.github_url && <a href={displayUser.github_url} target="_blank" className="p-1.5 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"><Github className="w-3.5 h-3.5 text-gray-600" /></a>}
+                    {displayUser.linkedin_url && <a href={displayUser.linkedin_url} target="_blank" className="p-1.5 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"><Linkedin className="w-3.5 h-3.5 text-gray-600" /></a>}
+                    {displayUser.website_url && <a href={displayUser.website_url} target="_blank" className="p-1.5 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"><Globe className="w-3.5 h-3.5 text-gray-600" /></a>}
                   </div>
                 )}
-                {user.hobbies && (
+                {displayUser.hobbies && (
                   <div className="flex items-center gap-2 mt-2">
                     <Heart className="w-3 h-3 text-red-400" />
-                    <span className="text-[10px] text-gray-500">{user.hobbies}</span>
+                    <span className="text-[10px] text-gray-500">{displayUser.hobbies}</span>
                   </div>
                 )}
                 <div className="flex items-center gap-4 mt-3">

@@ -2,20 +2,23 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
 import { useToast } from "../context/ToastContext";
+import { useAuth } from "../context/AuthContext";
 import { X, Send } from "lucide-react";
 
 const CommentModal = ({ projectId, projectName, projectUserId, isOpen, onClose }) => {
   const [comments, setComments] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const toast = useToast();
-  const token = localStorage.getItem("token");
+  const { token } = useAuth();
 
   useEffect(() => {
     if (isOpen) {
+      setError(false);
       api.get(`/projects/${projectId}/comments`)
         .then(res => setComments(res.data || []))
-        .catch(() => { toast.error("Failed to load comments."); setComments([]); });
+        .catch(() => { setError(true); setComments([]); });
     }
   }, [isOpen, projectId]);
 
@@ -53,7 +56,11 @@ const CommentModal = ({ projectId, projectName, projectUserId, isOpen, onClose }
         </div>
         <div className="flex-1 overflow-y-auto p-4 space-y-3">
           {comments.length === 0 ? (
-            <p className="text-xs text-gray-400 text-center py-8">No comments yet. Be the first!</p>
+            error ? (
+              <p className="text-xs text-red-400 text-center py-8">Failed to load comments. Please try again.</p>
+            ) : (
+              <p className="text-xs text-gray-400 text-center py-8">No comments yet. Be the first!</p>
+            )
           ) : (
             comments.map(c => (
               <div key={c.id} className="flex gap-2">

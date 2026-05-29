@@ -2,11 +2,14 @@ package com.innovationlab.config;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class RateLimitFilter implements Filter {
 
     private final ConcurrentHashMap<String, RateLimitEntry> requestCounts = new ConcurrentHashMap<>();
